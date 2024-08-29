@@ -1,0 +1,18 @@
+/* @import 'ascenso.css'; */
+@import 'inicio.css';
+/* @import 'estilos.css'; */
+
+/* @import 'form.css'; */
+/* @import 'news.css'; */
+/* @import 'rotating-image-gallery.css'; */
+/* @import 'slider.css'; */
+/* @import 'swiper.css'; */
+/* @import 'view-resolutions.css'; */
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+[x-cloak] {
+    display: none;
+}

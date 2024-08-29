@@ -1,0 +1,352 @@
+@import url('https://fonts.googleapis.com/css?family=Poppins:400,500,600,700&display=swap');
+*{
+  margin: 0;
+  padding: 0;
+  outline: none;
+  font-family: 'Poppins', sans-serif;
+}
+body{
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 100vh;
+  background: url("../img/bg.png"), -webkit-linear-gradient(bottom, #0250c5, #04527b);
+}
+::selection{
+  color: #fff;
+  background: #04527b;
+}
+.container-form{
+  /* height:max-content; */
+  height:fit-content;
+  width: 400px;
+  background: #fff;
+  text-align: center;
+  border-radius: 5px;
+  padding: 10px 35px 0 35px;
+}
+.container-form header{
+  font-size: 20px;
+  font-weight: 600;
+}
+.container-form .form-outer{
+  width: 100%;
+  overflow: hidden;
+}
+.container-form .form-outer form{
+  display: flex;
+  width: 300%;
+}
+.form-outer form .page{
+  width: 33.33%;
+  height: 90vh;
+  margin: 0 0.10px;
+  transition: margin-left 0.3s ease-in-out;
+}
+.form-outer form .page .title{
+  text-align: left;
+  font-size: 20px;
+  font-weight: 500;
+}
+.form-outer form .page .field{
+  width: 100%;
+  margin: 13px 0;
+  display: flex;  
+  position: relative;
+}
+form .page .field .label{
+  position: absolute;
+  top: -15px;
+  font-size: 15px;
+  font-weight: 500;
+  margin-bottom: 200px;
+}
+form .page .field input, textarea{
+  height: 100%;
+  width: 100%;
+  box-sizing: border-box;
+  border: 1px solid lightgrey;
+  border-radius: 5px;
+  padding-left: 15px;
+  padding: 5px;
+  margin-top: 10px;
+  font-size: 18px;
+}
+
+form .page .field select{
+  width: 100%;
+  height: 39px;
+  
+  padding: 5px;
+  font-size: 17px;
+  font-weight: 500;
+}
+form .page .field button{
+  width: 100%;
+  height: calc(100% + 5px);
+  border: none;
+  background: #04527b;
+  margin-top: -20px;
+  border-radius: 5px;
+  color: #fff;
+  cursor: pointer;
+  font-size: 18px;
+  font-weight: 500;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+  transition: 0.5s ease;
+}
+form .page .field button:hover{
+  background: #000;
+}
+
+
+form .page .btns button{
+  margin-top: 10px!important;
+}
+form .page .btns button.prev{
+  margin-right: 3px;
+}
+form .page .btns button.next{
+  margin-left: 3px;
+
+}
+.container-form .progress-bar{
+  display: flex;
+  margin: 5px 0;
+  user-select: none;
+}
+.container-form .progress-bar .step{
+  text-align: center;
+  width: 100%;
+  position: relative;
+}
+.container-form .progress-bar .step p{
+  font-weight: 500;
+  font-size: 12px;
+  color: #000;
+  margin-bottom: 8px;
+}
+.progress-bar .step .bullet{
+  height: 25px;
+  width: 25px;
+  border: 2px solid #000;
+  display: inline-block;
+  border-radius: 50%;
+  position: relative;
+  transition: 0.2s;
+  font-weight: 500;
+  font-size: 17px;
+  line-height: 25px;
+}
+.progress-bar .step .bullet.active{
+  border-color: #04527b;
+  background: #04527b;
+}
+.progress-bar .step .bullet span{
+  position: absolute;
+  left: 50%;
+  transform: translateX(-50%);
+}
+.progress-bar .step .bullet.active span{
+  display: none;
+}
+.progress-bar .step .bullet:before,
+.progress-bar .step .bullet:after{
+  position: absolute;
+  content: '';
+  bottom: 11px;
+  right: -100px;
+  height: 3px;
+  width: 90px;
+  background: #262626;
+}
+.progress-bar .step .bullet.active:after{
+  background: #0250c5;
+  transform: scaleX(0);
+  transform-origin: left;
+  animation: animate 0.3s linear forwards;
+}
+@keyframes animate {
+  100%{
+    transform: scaleX(1);
+  }
+}
+.progress-bar .step:last-child .bullet:before,
+.progress-bar .step:last-child .bullet:after{
+  display: none;
+}
+.progress-bar .step p.active{
+  color: #0250c5;
+  transition: 0.2s linear;
+}
+.progress-bar .step .check{
+  position: absolute;
+  left: 50%;
+  top: 70%;
+  font-size: 15px;
+  transform: translate(-50%, -50%);
+  display: none;
+}
+.progress-bar .step .check.active{
+  display: block;
+  color: #fff;
+}
+
+
+.container-form1 {
+  align-items: center;
+  justify-content: center;
+}
+
+select{
+  height: 100%;
+  width: 100%;
+  border: 1px solid lightgrey;
+  border-radius: 5px;
+  padding-left: 15px;
+}
+
+.custom-radio {
+  display: flex;
+  align-items: center;
+  cursor: pointer;
+  position: relative;
+  padding-left: 35px;
+  margin-bottom: 12px;
+  font-size: 18px;
+  user-select: none;
+}
+
+.custom-radio input {
+  position: absolute;
+  opacity: 0;
+  cursor: pointer;
+  height: 0;
+  width: 0;
+}
+
+.radiomark {
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: 25px;
+  width: 25px;
+  background-color: #eee;
+  border-radius: 50%;
+  transition: background-color 0.2s;
+}
+
+.custom-radio:hover input ~ .radiomark {
+  background-color: #ccc;
+}
+
+.custom-radio input:checked ~ .radiomark {
+  background-color: #4CAF50;
+}
+
+.radiomark:after {
+  content: "";
+  position: absolute;
+  display: none;
+}
+
+.custom-radio input:checked ~ .radiomark:after {
+  display: block;
+}
+
+.custom-radio .radiomark:after {
+  top: 9px;
+  left: 9px;
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: white;
+}
+
+.label-text {
+  margin-left: 10px;
+}
+
+.select-city{
+  height: 100%;
+  width: 100%;
+  border: 1px solid lightgrey;
+  border-radius: 5px;
+  padding-left: 15px;
+  margin-top: 10px;
+  font-size: 18px;
+}
+
+
+
+ .body-crud {
+  font-family: Arial, sans-serif;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin: 0;
+}
+
+.container-crud {
+  background-color: #fff;
+  padding: 20px;
+  border-radius: 8px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  width: 300px;
+}
+
+h1 {
+  text-align: center;
+}
+
+.input-container {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  margin-bottom: 20px;
+}
+.input-crud {
+  width: 70%;
+  padding: 8px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+}
+
+#addBtn {
+  padding: 8px 12px;
+  background-color: #04527b;
+  color: white;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+#addBtn:hover {
+  background-color: #000;
+}
+
+ul {
+  list-style-type: none;
+  padding: 0;
+}
+
+li {
+  display: flex;
+  justify-content: space-between;
+  padding: 8px;
+  border-bottom: 1px solid #ccc;
+}
+
+.edit-btn, .delete-btn {
+  margin-left: 10px;
+  cursor: pointer;
+}
+
+.edit-btn {
+  color: #FFC107;
+}
+
+.delete-btn {
+  color: #F44336;
+} 

@@ -1,0 +1,13 @@
+import './bootstrap';
+import './action-buttons';
+// import './ascenso';
+// import './crud-persons';
+// import './equipo-tecnico';
+// import './form';
+import './lightbox';
+import './main';
+import './menu';
+// import './navs';
+// import './questions';
+// import './slider';
+// import './tabs';
