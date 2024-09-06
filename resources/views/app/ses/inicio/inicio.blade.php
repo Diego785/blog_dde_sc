@@ -11,9 +11,9 @@
 
 <body>
 
-    <section id="inicio">
+    <section id="inicio" style="margin-top:55%;">
 
-        <h2 class="subtitulo">{{$unidad->nombre}}</h2>
+        <h2 class="subtitulo" style="margin-top: 3%;">{{$unidad->nombre}}</h2>
         <div style="display: flex; justify-content:center;">
             <li class="card">
                 <div class="img"><img src="{{ asset($unidad->perfil_jefe_path) }}" class="img-galeria"
@@ -71,7 +71,12 @@
 
 
     </section>
-    
+    <div class="imagen-light" style="display: block; text-align: center; ">
+        <img src="img/close.svg" alt="" class="close">
+        <img src="" alt="" class="agregar-imagen">
+        <p class="imagen-description"
+            style="color:white; text-align: center; justify-content: center; align-items: center;"></p>
+    </div>
 
 
     <section class="contenedor" id="servicio">

@@ -33,7 +33,7 @@
 
 
 
-        @include('layouts.partials.app.navbar')
+        @include('layouts.partials.app.navbar', ['name' => $unidad->nombre])
         @include('app.seae.inicio.slider')
 
 
@@ -41,7 +41,7 @@
     </header>
 
     <main>
-        @include('app.seae.inicio.inicio')
+        @include('app.seae.inicio.inicio', ['unidad' => $unidad])
         @include('app.seae.inicio.noticias')
         @include('app.seae.inicio.preguntas')
         @include('app.seae.inicio.equipo-tecnico')
@@ -63,7 +63,7 @@
 
         </div>
         <div class="fab-wrapper">
-            <a href="{{route('show-form')}}" class="fab" id="fab2">
+            <a href="{{ route('show-form') }}" class="fab" id="fab2">
                 <i class="fab fa-wpforms"></i>
             </a>
             <span class="tooltip">Formulario de Denuncias</span>

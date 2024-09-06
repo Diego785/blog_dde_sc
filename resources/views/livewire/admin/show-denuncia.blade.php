@@ -124,9 +124,9 @@
                                                     {{ $form_denuncia->id }}
                                                 </td>
 
-                                                @if ($form_denuncia->denunciante?->nombre != null)
+                                                @if ($form_denuncia->denunciante?->nombre != null && $form_denuncia->mantener_identidad_reserva == 0)
                                                     <td class="text-sm text-gray-900 font-light px-6 py-4">
-                                                        {{ $form_denuncia->denunciante->nombre }}
+                                                        {{ $form_denuncia->denunciante->nombre }} 
                                                     </td>
                                                 @else
                                                     <td

@@ -11,16 +11,17 @@
 
 <body>
 
-    <section id="inicio">
+    <section id="inicio" style="margin-top:55%;">
 
-        <h2 class="subtitulo">{{$unidad->nombre}}</h2>
+        <h2 class="subtitulo">{{ $unidad->nombre }}</h2>
         <div style="display: flex; justify-content:center;">
             <li class="card">
                 <div class="img"><img src="{{ asset($unidad->perfil_jefe_path) }}" class="img-galeria"
                         draggable="false"></div>
-                <h2>{{$unidad->jefe}}</h2>
-                <span>{{$unidad->cargo}}</span>
+                <h2>{{ $unidad->jefe }}</h2>
+                <span>{{ $unidad->cargo }}</span>
             </li>
+
 
             <div class="body-rotating-gallery">
 
@@ -59,7 +60,7 @@
                     <span style="--i:11"><img class="img-galeria"
                             src="{{ asset('img/img-actividades/actividad11.jpg') }}"
                             data-description="La Subdirección De Educación Regular Santa Cruz participó del ACTO DE PRESENTACIÓN DE LA COLECCIÓN EL PRINCIPITO TRADUCIDO A IDIOMAS ORIGINARIOS realizado por la Editorial del Estado Plurinacional de Bolivia en la 25º FERIA INTERNACIONAL DEL LIBRO DE SANTA CRUZ en instalaciones de FEXCPOCRUZ"></span>
-                    
+
                     <!-- <span style="--i:8"><img class="img-galeria" src="{{ asset('img/img/img-1.jpg') }}"></span>
                     <span style="--i:9"><img class="img-galeria" src="{{ asset('img/img/img-2.jpg') }}"></span>
                     <span style="--i:10"><img class="img-galeria" src="{{ asset('img/img/img-3.jpg') }}"></span> -->
@@ -71,7 +72,12 @@
 
 
     </section>
-    
+    <div class="imagen-light" style="display: block; text-align: center; ">
+        <img src="img/close.svg" alt="" class="close">
+        <img src="" alt="" class="agregar-imagen">
+        <p class="imagen-description"
+            style="color:white; text-align: center; justify-content: center; align-items: center;"></p>
+    </div>
 
 
     <section class="contenedor" id="servicio">

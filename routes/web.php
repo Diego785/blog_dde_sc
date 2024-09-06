@@ -8,6 +8,7 @@ use App\Http\Controllers\SDER\BibliografiaController;
 use App\Http\Controllers\SDER\FormDenunciaController;
 use App\Http\Controllers\SDER\InicioController;
 use App\Http\Controllers\SDER\NoticiaController;
+use App\Http\Controllers\SES\InstitutoController;
 use Illuminate\Support\Facades\Route;
 
 // Route::get('/', function () {
@@ -46,8 +47,9 @@ Route::get('/sder/form-denuncias', [FormDenunciaController::class, 'showForm'])-
 Route::get('/sder/form-denunciados/{formulario}', [FormDenunciaController::class, 'showDenunciados'])->name('show-form.denunciados');
 
 Route::get('/sder/show-bibliografia', [BibliografiaController::class, 'showBibliografia'])->name('show-bibliografia');
+Route::get('/ses/show-institutos', [InstitutoController::class, 'showInstitutos'])->name('show-institutos');
 
-Route::get('/sder/show-news/{noticia}', [NoticiaController::class, 'showNews'])->name('show-news');
+Route::get('/sder/show-news/{noticia}/{subdireccion}', [NoticiaController::class, 'showNews'])->name('show-news');
 
 
 //------------------------------------------------ ADMIN ---------------------------------------//

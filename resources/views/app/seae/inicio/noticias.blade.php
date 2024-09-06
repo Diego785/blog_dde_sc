@@ -19,11 +19,11 @@
                 <div class="wrapper">
 
                     @foreach ($noticias as $noticia)
-                        <a href="{{ route('show-news', ['noticia' => $noticia->id, 'subdireccion' => $unidad->id]) }}">
+                   
+                        <a href="{{route('show-news', $noticia->id)}}">
                             <div class="card-news">
                                 <div class="card-banner">
-                                    <img class="banner-img" src='{{ asset('storage/' . $noticia->portada_path) }}'
-                                        alt=''>
+                                    <img class="banner-img" src='{{ asset('storage/' . $noticia->portada_path) }}' alt=''>
                                 </div>
                                 <div class="card-body">
                                     {{-- <p class="blog-hashtag">30 Jul 2024</p> --}}

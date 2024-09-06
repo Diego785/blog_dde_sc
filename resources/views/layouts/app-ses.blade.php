@@ -33,7 +33,7 @@
 
 
 
-        @include('layouts.partials.app.navbar')
+        @include('layouts.partials.app.navbar', ['name' => $unidad->nombre])
         @include('app.sder.inicio.slider')
 
 
@@ -41,7 +41,7 @@
     </header>
 
     <main>
-        @include('app.sder.inicio.inicio')
+        @include('app.sder.inicio.inicio',  ['unidad' => $unidad])
         @include('app.sder.inicio.noticias')
         @include('app.sder.inicio.preguntas')
         @include('app.sder.inicio.equipo-tecnico')

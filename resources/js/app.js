@@ -6,7 +6,6 @@ import './action-buttons';
 // import './form';
 import './lightbox';
 import './main';
-import './menu';
 // import './navs';
 // import './questions';
 // import './slider';

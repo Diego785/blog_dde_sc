@@ -60,7 +60,10 @@ class ShowDenuncia extends Component
                 } 
                 $query->where('unidad_educativa', 'like', '%' . $this->search . '%');
             });
-        });
+        })
+
+         // Add the orderBy clause here for descending order
+    ->orderBy('id', 'desc'); // Change 'created_at' to the column you want to order by
     
         return $query;
     }

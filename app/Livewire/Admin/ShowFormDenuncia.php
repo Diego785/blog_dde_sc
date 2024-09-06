@@ -60,8 +60,10 @@ class ShowFormDenuncia extends Component
 
     public function confirmValidation($value)
     {
+
         $this->formulario_denuncia_model->es_valido = $value;
         $this->formulario_denuncia_model->save();
+
         if ($value == 2) {
             session()->flash('swal', [
                 'icon' => 'success',
@@ -75,7 +77,9 @@ class ShowFormDenuncia extends Component
                 'text' => 'Formulario de Denuncia #' . $this->formulario_denuncia_model->id . ' rechazado.'
             ]);
         }
-        $this->sendEmail();
+        if ($this->is_valid_form != null) {
+            $this->sendEmail();
+        }
         return redirect()->route('show-denuncias');
     }
     public function render()

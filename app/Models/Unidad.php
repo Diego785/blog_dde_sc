@@ -11,10 +11,13 @@ class Unidad extends Model
 
     protected $fillable = [
         'nombre',
-        'logo_path',
+        'jefe',
+        'cargo',
         'objetivo',
         'mision',
         'vision',
+        'logo_path',
+        'jefe_perfil_path',
     ];
 
     //Relacion uno a muchos

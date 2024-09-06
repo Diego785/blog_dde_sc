@@ -221,7 +221,7 @@
                     <div class="page slide-page">
                         <div class="title">Datos del Denunciante:</div>
 
-                        @if ($denunciante == null)
+                        @if ($denunciante == null || $denunciante['mantener_identidad_reserva'] === '1')
 
                             <body>
                                 <div class="flex flex-col justify-center items-center m-10">

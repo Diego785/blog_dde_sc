@@ -11,16 +11,15 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('unidads', function (Blueprint $table) {
+        Schema::create('instituto_tecnico_superiors', function (Blueprint $table) {
             $table->id();
+            $table->string('dpto');
             $table->string('nombre');
-            $table->string('jefe')->nullable();
-            $table->string('cargo')->nullable();
-            $table->text('objetivo')->nullable();
-            $table->text('mision')->nullable();
-            $table->text('vision')->nullable();
-            $table->string('logo_path')->nullable();
-            $table->string('perfil_jefe_path')->nullable();
+            $table->string('provincia');
+            $table->string('municipio');
+            $table->string('dependencia');
+            $table->string('creacion');
+            $table->text('img_path')->nullable();
             $table->timestamps();
         });
     }
@@ -30,6 +29,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('unidads');
+        Schema::dropIfExists('instituto_tecnico_superiors');
     }
 };

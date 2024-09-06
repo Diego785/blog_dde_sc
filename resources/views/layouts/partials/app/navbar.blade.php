@@ -11,7 +11,7 @@
 </head>
 
 <body>
-    
+
 
 
     <header class="header">
@@ -20,7 +20,11 @@
             <div class="container">
                 <div class="header-main">
                     <div class="logo">
-                        <a href="{{route('sder.index')}}">SUBDIRECCION DE EDUCACIÓN REGULAR</a>
+                        <a href="{{ route('sder.index') }}">
+                            @if (isset($name))
+                                {{ $name }}
+                            @endif
+                        </a>
                     </div>
                     <div class="open-nav-menu">
                         <span></span>
@@ -37,26 +41,27 @@
                     <ul class="menu">
 
                         <li class="menu-item">
-                            <a href="{{route('sder.index')}}#inicio">Inicio</a>
+                            <a href="{{ route('sder.index') }}#inicio">Inicio</a>
                         </li>
                         <li class="menu-item">
-                            <a href="{{route('sder.index')}}#noticias">Noticias</a>
+                            <a href="{{ route('sder.index') }}#noticias">Noticias</a>
                         </li>
                         <li class="menu-item">
-                            <a href="{{route('sder.index')}}#questions">Preguntas Frecuentes</a>
+                            <a href="{{ route('sder.index') }}#questions">Preguntas Frecuentes</a>
                         </li>
                         <li class="menu-item">
-                            <a href="{{route('sder.index')}}#equipo">Equipo Técnico</a>
+                            <a href="{{ route('sder.index') }}#equipo">Equipo Técnico</a>
                         </li>
                         <li class="menu-item">
-                            <a href="{{route('sder.index')}}#footer">Contacto</a>
+                            <a href="{{ route('sder.index') }}#footer">Contacto</a>
                         </li>
-                        
+
                         <li class="menu-item menu-item-has-children">
-                            <a href="{{ route('show-form') }}" data-toggle="sub-menu">Formulario de Denuncias<i class="plus"></i></a>
+                            <a href="{{ route('show-form') }}" data-toggle="sub-menu">Formulario de Denuncias<i
+                                    class="plus"></i></a>
                             <ul class="sub-menu">
                                 <li class="menu-item"><a href="{{ route('show-form') }}">Nueva Denuncia</a></li>
-                                <li class="menu-item"><a  href="{{ route('show-denuncias') }}">Ver Denuncias</a></li>
+                                <li class="menu-item"><a href="{{ route('show-denuncias') }}">Ver Denuncias</a></li>
                             </ul>
                         </li>
                         <li class="menu-item">

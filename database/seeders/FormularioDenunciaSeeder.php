@@ -24,7 +24,7 @@ class FormularioDenunciaSeeder extends Seeder
             'nombre' => 'DIEGO HURTADO VARGAS',
             'carnet' => '7777326',
             'direccion' => 'Barrio 23 de Octubre',
-            'mantener_identidad_reserva' => 1,
+            'mantener_identidad_reserva' => 0,
             'correo_electronico' => 'diegohurtado2412@gmail.com',
             'telefono' => '71310964',
             'seguimiento' => 1,
@@ -69,17 +69,17 @@ class FormularioDenunciaSeeder extends Seeder
 
 
         //DENUNCIA #2
-        $denunciante2 = Denunciante::create([
-            'nombre' => 'LUIS PEREZ VELARDE',
-            'carnet' => '3902036',
-            'direccion' => 'Barrio Wapilo',
-            'mantener_identidad_reserva' => 1,
-            'correo_electronico' => 'luisperez123@gmail.com',
-            'telefono' => '78890155',
-            'seguimiento' => 0,
-        ]);
+        // $denunciante2 = Denunciante::create([
+        //     'nombre' => 'LUIS PEREZ VELARDE',
+        //     'carnet' => '3902036',
+        //     'direccion' => 'Barrio Wapilo',
+        //     'mantener_identidad_reserva' => 1,
+        //     'correo_electronico' => 'luisperez123@gmail.com',
+        //     'telefono' => '78890155',
+        //     'seguimiento' => 0,
+        // ]);
 
-        $denuncia2 =Denuncia::create([
+        $denuncia2 = Denuncia::create([
             'direccion_general' => 'Av. Moscú',
             'unidad_educativa' => 'El Carmen',
             'distrito' => 'Distrito 12',
@@ -110,14 +110,14 @@ class FormularioDenunciaSeeder extends Seeder
         FormularioDenuncia::create([
             'unidad_id' => 1,
             'denuncia_id' => $denuncia2->id,
-            'denunciante_id' => $denunciante2->id,
+            'denunciante_id' => $denunciante2?->id ?? null,
             'relacion_hecho_denuncia_id' => $relacionHechoDenuncia2->id,
         ]);
 
 
 
         //DENUNCIA #3
-        $denunciante3 =Denunciante::create([
+        $denunciante3 = Denunciante::create([
             'nombre' => 'MARIA TERESA RODRIGUEZ ZABALA',
             'carnet' => '8743229',
             'direccion' => 'Barrio La Colorada #885 Zona Este',
@@ -127,7 +127,7 @@ class FormularioDenunciaSeeder extends Seeder
             'seguimiento' => 1,
         ]);
 
-        $denuncia3 =Denuncia::create([
+        $denuncia3 = Denuncia::create([
             'direccion_general' => 'Avenida Mercosur #12',
             'unidad_educativa' => 'La Colorada',
             'distrito' => 'Distrito 1',
@@ -161,7 +161,7 @@ class FormularioDenunciaSeeder extends Seeder
             'nombre' => 'ROBERTO PACHECO VARGAS',
             'carnet' => '6789012',
             'direccion' => 'Calle Flores #789 Zona Sur',
-            'mantener_identidad_reserva' => 1,
+            'mantener_identidad_reserva' => 0,
             'correo_electronico' => 'roberto.pacheco@gmail.com',
             'telefono' => '73345678',
             'seguimiento' => 1,
@@ -206,15 +206,15 @@ class FormularioDenunciaSeeder extends Seeder
 
 
         //DENUNCIA #5
-        $denunciante5 = Denunciante::create([
-            'nombre' => 'JUAN PEREZ GARCIA',
-            'carnet' => '8743230',
-            'direccion' => 'Calle Falsa #123 Zona Norte',
-            'mantener_identidad_reserva' => 1,
-            'correo_electronico' => 'juanperez@gmail.com',
-            'telefono' => '77645455',
-            'seguimiento' => 1,
-        ]);
+        // $denunciante5 = Denunciante::create([
+        //     'nombre' => 'JUAN PEREZ GARCIA',
+        //     'carnet' => '8743230',
+        //     'direccion' => 'Calle Falsa #123 Zona Norte',
+        //     'mantener_identidad_reserva' => 1,
+        //     'correo_electronico' => 'juanperez@gmail.com',
+        //     'telefono' => '77645455',
+        //     'seguimiento' => 1,
+        // ]);
 
         $denuncia5 = Denuncia::create([
             'direccion_general' => 'Avenida Siempre Viva #456',
@@ -237,15 +237,15 @@ class FormularioDenunciaSeeder extends Seeder
         FormularioDenuncia::create([
             'unidad_id' => 1,
             'denuncia_id' => $denuncia5->id,
-            'denunciante_id' => $denunciante5->id,
+            'denunciante_id' => $denunciante5?->id ?? null,
             'relacion_hecho_denuncia_id' => $relacionHechoDenuncia5->id,
         ]);
 
 
 
 
-         // DENUNCIA #6
-         $denunciante6 = Denunciante::create([
+        // DENUNCIA #6
+        $denunciante6 = Denunciante::create([
             'nombre' => 'CARLA FERNANDEZ LOPEZ',
             'carnet' => '6543210',
             'direccion' => 'Calle Los Pinos #456 Zona Oeste',
@@ -329,15 +329,15 @@ class FormularioDenunciaSeeder extends Seeder
         ]);
 
         // DENUNCIA #8
-        $denunciante8 = Denunciante::create([
-            'nombre' => 'LAURA MENDEZ CASTRO',
-            'carnet' => '8765432',
-            'direccion' => 'Calle Los Almendros #321 Zona Centro',
-            'mantener_identidad_reserva' => 1,
-            'correo_electronico' => 'laura.mendez@gmail.com',
-            'telefono' => '72345678',
-            'seguimiento' => 1,
-        ]);
+        // $denunciante8 = Denunciante::create([
+        //     'nombre' => 'LAURA MENDEZ CASTRO',
+        //     'carnet' => '8765432',
+        //     'direccion' => 'Calle Los Almendros #321 Zona Centro',
+        //     'mantener_identidad_reserva' => 1,
+        //     'correo_electronico' => 'laura.mendez@gmail.com',
+        //     'telefono' => '72345678',
+        //     'seguimiento' => 1,
+        // ]);
 
         $denuncia8 = Denuncia::create([
             'direccion_general' => 'Avenida Los Almendros',
@@ -366,7 +366,7 @@ class FormularioDenunciaSeeder extends Seeder
         FormularioDenuncia::create([
             'unidad_id' => 1,
             'denuncia_id' => $denuncia8->id,
-            'denunciante_id' => $denunciante8->id,
+            'denunciante_id' => $denunciante8?->id ?? null,
             'relacion_hecho_denuncia_id' => $relacionHechoDenuncia8->id,
         ]);
 
@@ -464,15 +464,15 @@ class FormularioDenunciaSeeder extends Seeder
 
 
         // DENUNCIA #11
-        $denunciante11 = Denunciante::create([
-            'nombre' => 'CARLOS SANCHEZ TORRES',
-            'carnet' => '4567890',
-            'direccion' => 'Calle Bolívar #123 Zona Oeste',
-            'mantener_identidad_reserva' => 1,
-            'correo_electronico' => 'carlos.sanchez@gmail.com',
-            'telefono' => '71123456',
-            'seguimiento' => 1,
-        ]);
+        // $denunciante11 = Denunciante::create([
+        //     'nombre' => 'CARLOS SANCHEZ TORRES',
+        //     'carnet' => '4567890',
+        //     'direccion' => 'Calle Bolívar #123 Zona Oeste',
+        //     'mantener_identidad_reserva' => 1,
+        //     'correo_electronico' => 'carlos.sanchez@gmail.com',
+        //     'telefono' => '71123456',
+        //     'seguimiento' => 1,
+        // ]);
 
         $denuncia11 = Denuncia::create([
             'direccion_general' => 'Avenida Libertad',
@@ -507,7 +507,7 @@ class FormularioDenunciaSeeder extends Seeder
         FormularioDenuncia::create([
             'unidad_id' => 1,
             'denuncia_id' => $denuncia11->id,
-            'denunciante_id' => $denunciante11->id,
+            'denunciante_id' => $denunciante11?->id ?? null,
             'relacion_hecho_denuncia_id' => $relacionHechoDenuncia11->id,
         ]);
 
@@ -541,7 +541,7 @@ class FormularioDenunciaSeeder extends Seeder
             'nombre' => 'María Ortega',
             'cargo' => 'Profesora de Matemáticas',
             'denuncia_id' => $denuncia12->id,
-        ]);
+        ]); 
 
         $relacionHechoDenuncia12 = RelacionHechoDenuncia::create([
             'fecha_hecho' => Carbon::create(2024, 7, 27),
@@ -558,7 +558,5 @@ class FormularioDenunciaSeeder extends Seeder
             'denunciante_id' => $denunciante12->id,
             'relacion_hecho_denuncia_id' => $relacionHechoDenuncia12->id,
         ]);
-
-      
     }
 }
