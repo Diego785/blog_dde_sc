@@ -688,8 +688,6 @@
                                         <h5
                                             class="block text-xs italic leading-snug tracking-normal text-blue-gray-900 antialiased cursor-pointer">
                                             {{ $instituto->nombre }}
-                                            {{ $instituto->img_path }}
-                                            {{ asset($instituto->img_path) }}
                                         </h5>
 
                                     </div>

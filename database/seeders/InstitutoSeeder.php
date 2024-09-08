@@ -174,7 +174,7 @@ class InstitutoSeeder extends Seeder
             'municipio' => 'SAGRADO CORAZON',
             'dependencia' => 'FISCAL',
             'creacion' => '15/04/2015',
-            'img_path' => 'img/img-institutos/tehpaf.jpg',
+            'img_path' => 'img/img-institutos/tehpaf.png',
         ]);
         InstitutoTecnicoSuperior::create([
             'dpto' => 'SANTA CRUZ',
@@ -192,7 +192,7 @@ class InstitutoSeeder extends Seeder
             'municipio' => 'WARNES',
             'dependencia' => 'FISCAL',
             'creacion' => '03/09/2015',
-            'img_path' => 'img/img-institutos/itepw.jpg',
+            'img_path' => 'img/img-institutos/intepw.jpg',
         ]);
     }
 }
