@@ -61,12 +61,16 @@
                                     class="plus"></i></a>
                             <ul class="sub-menu">
                                 <li class="menu-item"><a href="{{ route('show-form') }}">Nueva Denuncia</a></li>
-                                <li class="menu-item"><a href="{{ route('show-denuncias') }}">Ver Denuncias</a></li>
+                                {{-- <li class="menu-item"><a href="{{ route('show-denuncias') }}">Ver Denuncias</a></li> --}}
                             </ul>
                         </li>
                         <li class="menu-item">
                             <a href="{{ route('show-bibliografia') }}">Bibliografía</a>
                         </li>
+                        <li class="menu-item">
+                            <a href="{{ route('show-resoluciones') }}">Resoluciones</a>
+                        </li>
+
                     </ul>
                 </nav>
                 <!-- navigation menu end -->

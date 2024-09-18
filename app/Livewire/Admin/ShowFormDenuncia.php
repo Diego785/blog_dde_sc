@@ -6,10 +6,12 @@ use App\Mail\SeguimientoDenunciaEmail;
 use Illuminate\Http\Request;
 use Mail;
 use Livewire\Component;
+use Twilio\Rest\Client;
 
 class ShowFormDenuncia extends Component
 {
 
+    public $show_modal_validate_form;
     public $show_modal_seguimiento_denuncia;
 
     public $formulario_denuncia_model;
@@ -23,9 +25,24 @@ class ShowFormDenuncia extends Component
     public $description = '';
     public $is_valid_form;
 
+    public $whatsapp_number = '+59178578578';
+    public $message = 'HOLAAA';
+
+    protected $rules = [
+        'title' => 'required|string',
+        'description' => 'required',
+    ];
+
+    protected $messages = [
+        'title.required' => 'El título del mensaje es requerido.',
+        'title.string' => 'El título del mensaje debe contener caracteres válidos.',
+
+        'description.required' => 'La descripción del mensaje es requerido.',
+    ];
+
+
     public function mount($formulario)
     {
-        // Eager load relationships
         $formulario = $formulario->load(['denunciante', 'denuncia', 'denuncia.personasDenunciadas', 'relacionHechoDenuncia']);
 
         $this->formulario_denuncia_model = $formulario;
@@ -41,9 +58,16 @@ class ShowFormDenuncia extends Component
         $this->relacion_hecho_denuncia = $formulario->relacionHechoDenuncia->toArray();
     }
 
-    public function openModalSeguimientoDenuncia($value)
+    public function openModalValidatingForm($value)
     {
+        $this->reset('title', 'description', 'show_modal_validate_form');
         $this->is_valid_form = $value;
+        $this->show_modal_validate_form = true;
+    }
+
+    public function openModalSeguimientoDenuncia()
+    {
+        $this->reset('title', 'description', 'show_modal_seguimiento_denuncia');
         $this->show_modal_seguimiento_denuncia = true;
     }
 
@@ -76,12 +100,63 @@ class ShowFormDenuncia extends Component
                 'title' => '¡Ups!',
                 'text' => 'Formulario de Denuncia #' . $this->formulario_denuncia_model->id . ' rechazado.'
             ]);
+        } else if ($value == 5) {
+            session()->flash('swal', [
+                'icon' => 'success',
+                'title' => '¡Bien Hecho!',
+                'text' => 'Formulario de Denuncia #' . $this->formulario_denuncia_model->id . ' ha sido finalizado correctamente.'
+            ]);
         }
-        if ($this->is_valid_form != null) {
+        if ($this->is_valid_form != null && $value != 5) {
+            $this->validate();
             $this->sendEmail();
         }
+        $this->reset('is_valid_form');
         return redirect()->route('show-denuncias');
     }
+
+    public function sendCommentSeguimiento()
+    {
+        $this->validate();
+
+        $this->show_modal_seguimiento_denuncia = false;
+        if ($this->formulario_denuncia_model != null && $this->title != null && $this->description != null) {
+            $this->sendEmail();
+        }
+
+        session()->flash('swal', [
+            'icon' => 'success',
+            'title' => '¡Bien Hecho!',
+            'text' => 'Nuevo mensaje al denunciante: ' . $this->formulario_denuncia_model->denunciante->nombre . ' enviado correctamente.'
+        ]);
+        $this->reset('title', 'description');
+
+        return redirect()->route('show-denuncias');
+    }
+
+    public function sendMessage()
+    {
+        $formattedNumber = 'whatsapp:'.$this->whatsapp_number;
+
+        try {
+            $twilioSid = config('services.twilio.sid');
+            $twilioToken = config('services.twilio.token');
+            $twilioFrom = config('services.twilio.whatsapp_from');
+
+
+            $twilio = new Client($twilioSid, $twilioToken);
+
+            $twilio->messages->create($formattedNumber, [
+                'from' => $twilioFrom,
+                'body' => $this->message,
+            ]);
+
+            session()->flash('success', 'WhatsApp message sent successfully!');
+        } catch (\Exception $e) {
+            session()->flash('error', 'Failed to send WhatsApp message: ' . $e->getMessage());
+        }
+    }
+
     public function render()
     {
         return view('livewire.admin.show-form-denuncia');

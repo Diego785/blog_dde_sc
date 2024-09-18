@@ -14,7 +14,6 @@ class ShowInstituto extends Component
 
     public function mount()
     {
-        // $this->tipos = Tipo::with('bibliografias')->get();
         $this->institutos = InstitutoTecnicoSuperior::all();
     }
 
@@ -26,19 +25,12 @@ class ShowInstituto extends Component
     protected function filterInstitutos()
     {
         if ($this->search) {
-            // $this->tipos = Tipo::whereHas('bibliografias', function ($query) {
-            //     $query->where('descripcion', 'like', '%' . $this->search . '%');
-            // })
-            // ->with(['bibliografias' => function ($query) {
-            //     $query->where('descripcion', 'like', '%' . $this->search . '%');
-            // }])->get();
             $this->institutos = InstitutoTecnicoSuperior::where('descripcion', 'like', '%' . $this->search . '%')
                                                             ->orWhere('provincia', 'like', '%' . $this->search . '%')
                                                             ->orWhere('municipio', 'like', '%' . $this->search . '%')
                                                             ->orWhere('creacion', 'like', '%' . $this->search . '%')
                                                             ->get();
         } else {
-            // $this->tipos = Tipo::with('bibliografias')->get();
             $this->institutos = InstitutoTecnicoSuperior::all();
         }
     }

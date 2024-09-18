@@ -267,172 +267,128 @@ const categories4 = [
 ];
 
 for (let i of normativas.data) {
-  //Create Card
   let card = document.createElement("div");
-  //Card should have category and should stay hidden initially
   card.classList.add("card", i.category, "hide");
-  //image div
   let imgContainer = document.createElement("div");
   imgContainer.classList.add("image-container");
-  //img tag
   let image = document.createElement("img");
   image.setAttribute("src", i.image);
   imgContainer.appendChild(image);
   card.appendChild(imgContainer);
-  //container
   let container = document.createElement("div");
   container.classList.add("container");
-  //product name
   let name = document.createElement("h5");
   name.classList.add("product-name");
   name.innerText = i.productName.toUpperCase();
   container.appendChild(name);
 
-  // Download link
   let downloadLink = document.createElement("a");
-  downloadLink.href = `pdfs/res1.pdf`; // Assuming `i.pdfFileName` has the PDF file name
+  downloadLink.href = `pdfs/res1.pdf`;
   downloadLink.download = "";
   downloadLink.classList.add("download-btn");
 
-  // Download icon
   let downloadIcon = document.createElement("i");
   downloadIcon.classList.add("fas", "fa-download");
 
-  // Append icon to link
   downloadLink.appendChild(downloadIcon);
 
-  // Append link to container
   container.appendChild(downloadLink);
 
   card.appendChild(container);
   document.getElementById("normativas").appendChild(card);
 }
 for (let i of calidadEducativa.data) {
-  //Create Card
   let card = document.createElement("div");
-  //Card should have category and should stay hidden initially
   card.classList.add("card", i.category, "hide");
-  //image div
   let imgContainer = document.createElement("div");
   imgContainer.classList.add("image-container");
-  //img tag
   let image = document.createElement("img");
   image.setAttribute("src", i.image);
   imgContainer.appendChild(image);
   card.appendChild(imgContainer);
-  //container
   let container = document.createElement("div");
   container.classList.add("container");
-  //product name
   let name = document.createElement("h5");
   name.classList.add("product-name");
   name.innerText = i.productName.toUpperCase();
   container.appendChild(name);
 
-  // Download link
   let downloadLink = document.createElement("a");
-  downloadLink.href = `pdfs/res1.pdf`; // Assuming `i.pdfFileName` has the PDF file name
+  downloadLink.href = `pdfs/res1.pdf`;
   downloadLink.download = "";
   downloadLink.classList.add("download-btn");
 
-  // Download icon
   let downloadIcon = document.createElement("i");
   downloadIcon.classList.add("fas", "fa-download");
 
-  // Append icon to link
   downloadLink.appendChild(downloadIcon);
 
-  // Append link to container
   container.appendChild(downloadLink);
 
   card.appendChild(container);
   document.getElementById("calidadEducativa").appendChild(card);
 }
 for (let i of normativasEspecificas.data) {
-  //Create Card
   let card = document.createElement("div");
-  //Card should have category and should stay hidden initially
   card.classList.add("card", i.category, "hide");
-  //image div
   let imgContainer = document.createElement("div");
   imgContainer.classList.add("image-container");
-  //img tag
   let image = document.createElement("img");
   image.setAttribute("src", i.image);
   imgContainer.appendChild(image);
   card.appendChild(imgContainer);
-  //container
   let container = document.createElement("div");
   container.classList.add("container");
-  //product name
   let name = document.createElement("h5");
   name.classList.add("product-name");
   name.innerText = i.productName.toUpperCase();
   container.appendChild(name);
-  // Download link
   let downloadLink = document.createElement("a");
-  downloadLink.href = `pdfs/res1.pdf`; // Assuming `i.pdfFileName` has the PDF file name
+  downloadLink.href = `pdfs/res1.pdf`; 
   downloadLink.download = "";
   downloadLink.classList.add("download-btn");
 
-  // Download icon
   let downloadIcon = document.createElement("i");
   downloadIcon.classList.add("fas", "fa-download");
 
-  // Append icon to link
   downloadLink.appendChild(downloadIcon);
 
-  // Append link to container
   container.appendChild(downloadLink);
 
   card.appendChild(container);
   document.getElementById("normativasEspecificas").appendChild(card);
 }
 for (let i of bibliografias.data) {
-  //Create Card
   let card = document.createElement("div");
-  //Card should have category and should stay hidden initially
   card.classList.add("card", i.category, "hide");
-  //image div
   let imgContainer = document.createElement("div");
   imgContainer.classList.add("image-container");
-  //img tag
   let image = document.createElement("img");
   image.setAttribute("src", i.image);
   imgContainer.appendChild(image);
   card.appendChild(imgContainer);
-  //container
   let container = document.createElement("div");
   container.classList.add("container");
-  //product name
   let name = document.createElement("h5");
   name.classList.add("product-name");
   name.innerText = i.productName.toUpperCase();
   container.appendChild(name);
 
-  // Download link
   let downloadLink = document.createElement("a");
-  downloadLink.href = `pdfs/res1.pdf`; // Assuming `i.pdfFileName` has the PDF file name
+  downloadLink.href = `pdfs/res1.pdf`; 
   downloadLink.download = "";
   downloadLink.classList.add("download-btn");
 
-  // Download icon
   let downloadIcon = document.createElement("i");
   downloadIcon.classList.add("fas", "fa-download");
 
-  // Append icon to link
   downloadLink.appendChild(downloadIcon);
-
-  // Append link to container
   container.appendChild(downloadLink);
   card.appendChild(container);
   document.getElementById("bibliografias").appendChild(card);
 }
 
-//parameter passed from button (Parameter same as category)
 function filterProduct(value) {
-  //Button class code
-
   let buttons = document.querySelectorAll(".button-value");
 
   buttons.forEach((button) => {
@@ -443,45 +399,19 @@ function filterProduct(value) {
     }
   });
 
-  //select all cards
   let elements = document.querySelectorAll(".card");
-  //loop through all cards
   elements.forEach((element) => {
-    //display all cards on 'all' button click
     if (value == "Todo") {
       element.classList.remove("hide");
     } else {
-      //Check if element contains category class
       if (element.classList.contains(value)) {
-        //display element based on category
         element.classList.remove("hide");
       } else {
-        //hide other elements
         element.classList.add("hide");
       }
     }
   });
 }
-
-// //Search button click
-// document.getElementById("search").addEventListener("click", () => {
-//   //initializations
-//   let searchInput = document.getElementById("search-input").value;
-//   let elements = document.querySelectorAll(".product-name");
-//   let cards = document.querySelectorAll(".card");
-
-//   //loop through all elements
-//   elements.forEach((element, index) => {
-//     //check if text includes the search value
-//     if (element.innerText.includes(searchInput.toUpperCase())) {
-//       //display matching card
-//       cards[index].classList.remove("hide");
-//     } else {
-//       //hide others
-//       cards[index].classList.add("hide");
-//     }
-//   });
-// });
 
 document.getElementById("search-input").addEventListener("keyup", (e) => {
   let searchData = e.target.value.toLowerCase();

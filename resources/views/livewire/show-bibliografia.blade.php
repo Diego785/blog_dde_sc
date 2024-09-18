@@ -618,10 +618,10 @@
                 Normativas para el Ascenso de Categoría 2024
             </p>
 
-            
+
 
             <div class="flex justify-center my-7 mx-8">
-               
+
                 <div class="relative w-96">
                     <input wire:model.live="search"
                         class="border-2 border-primary bg-red transition h-12 px-5 pr-16 rounded-md focus:outline-none w-full text-black text-lg "
@@ -703,8 +703,13 @@
                                         @foreach ($bibliografia->archivos as $archivo)
                                             <div class="px-3 pb-3">
                                                 <a target="_blank" href="{{ $archivo->path }}"
-                                                    class="py-1 block w-full cursor-pointer select-none rounded-lg bg-[#04527b] text-center align-middle font-sans text-sm font-bold uppercase text-white shadow-md shadow-pink-500/20 transition-all hover:shadow-lg hover:shadow-blue-500/40 focus:opacity-[0.85] focus:shadow-none active:opacity-[0.85] active:shadow-none disabled:pointer-events-none disabled:opacity-50 disabled:shadow-none"
+                                                    class="p-1 flex justify-center items-center gap-2 w-full cursor-pointer select-none rounded-lg bg-[#04527b] text-center align-middle font-sans text-sm font-bold uppercase text-white shadow-md shadow-pink-500/20 transition-all hover:shadow-lg hover:shadow-blue-500/40 focus:opacity-[0.85] focus:shadow-none active:opacity-[0.85] active:shadow-none disabled:pointer-events-none disabled:opacity-50 disabled:shadow-none"
                                                     type="button" data-ripple-light="true">
+                                                    @if ($archivo->observation_title != null)
+                                                        <div>
+                                                            {{ $archivo->observation_title }}
+                                                        </div>
+                                                    @endif
                                                     <i class="fa-solid fa-eye"></i>
                                                 </a>
                                             </div>

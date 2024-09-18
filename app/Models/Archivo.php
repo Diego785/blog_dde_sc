@@ -11,6 +11,7 @@ class Archivo extends Model
 
     protected $fillable = [
         'path',
+        'observation_title',
         'bibliografia_id',
     ];
 

@@ -18,7 +18,6 @@ class Personal extends Model
         'unidad_id',
     ];
 
-    //Relacion uno a muchos inversa
     public function unidad()
     {
         return $this->belongsTo(Unidad::class);

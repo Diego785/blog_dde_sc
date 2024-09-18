@@ -289,7 +289,7 @@ class FormDenuncia extends Component
                         'seguimiento' => $this->seguimiento_email_denunciante,
                     ]
                 );
-            }else{
+            } else {
                 $denunciante = null;
             }
             $denuncia = Denuncia::create(
@@ -365,9 +365,7 @@ class FormDenuncia extends Component
                 'title' => '¡Bien Hecho!',
                 'text' => 'Denuncia guardada correctamente.',
             ]);
-            
-
-            return redirect()->route('sder.index');
+            return redirect('/sder#inicio');
         } catch (\Exception $e) {
             DB::rollBack();
             $this->dispatch('swal', [

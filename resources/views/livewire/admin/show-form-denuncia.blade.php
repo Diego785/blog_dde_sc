@@ -162,11 +162,46 @@
         <!-- This is an example component -->
 
         @if ($denunciante != null)
+            <x-dialog-modal wire:model="show_modal_validate_form">
+                <x-slot name="title">
+                    Nuevos Comentarios a {{ $denunciante['correo_electronico'] }}
+                </x-slot>
+                <x-slot name="content">
+                    <x-validation-errors class="mb-4" />
+                    <div class="grid grid-cols-1 gap-6 mb-4">
+                        <div>
+                            <x-label class="mb-1">
+                                Título
+                            </x-label>
+                            <x-input wire:model="title" class="w-full text-black" placeholder="Falta de Información" />
+
+                        </div>
+                        <div>
+                            <x-label class="">
+                                Descripción
+                            </x-label>
+                            <textarea type="text" wire:model="description" class="w-full text-black" rows="3"
+                                placeholder="Se le solicita al interesado..."></textarea>
+                        </div>
+                    </div>
+                </x-slot>
+                <x-slot name="footer">
+                    <x-danger-button class="btn btn-blue mx-2"
+                        wire:click.prevent="$set('show_modal_validate_form', false)">
+                        Cerrar
+                    </x-danger-button>
+                    <x-button class="btn btn-blue mx-2" onclick="validForm({{ $is_valid_form }})">
+                        Enviar
+                    </x-button>
+                </x-slot>
+            </x-dialog-modal>
+
             <x-dialog-modal wire:model="show_modal_seguimiento_denuncia">
                 <x-slot name="title">
                     Nuevos Comentarios a {{ $denunciante['correo_electronico'] }}
                 </x-slot>
                 <x-slot name="content">
+                    <x-validation-errors class="mb-4" />
                     <div class="grid grid-cols-1 gap-6 mb-4">
                         <div>
                             <x-label class="mb-1">
@@ -189,13 +224,22 @@
                         wire:click.prevent="$set('show_modal_seguimiento_denuncia', false)">
                         Cerrar
                     </x-danger-button>
-                    <x-button class="btn btn-blue mx-2" onclick="confirmDialog({{ $is_valid_form }})">
+                    <x-button class="btn btn-blue mx-2" onclick="sendComment()">
                         Enviar
                     </x-button>
 
                 </x-slot>
             </x-dialog-modal>
         @endif
+
+
+
+        <div wire:loading wire:target="sendCommentSeguimiento" class="fixed inset-0 bg-black bg-opacity-50 z-50">
+
+            <div
+                class=" fixed top-[50%] left-[50%] w-24 h-24 border-4 border-t-4 border-blue-500 border-t-transparent rounded-full animate-spin">
+            </div>
+        </div>
 
 
 
@@ -213,8 +257,45 @@
                     class="mx-2 rounded-lg p-3 font-sans text-xs font-bold uppercase text-white shadow-md shadow-green-500/20 transition-all hover:shadow-lg hover:shadow-green-500/40 focus:opacity-[0.85] focus:shadow-none active:opacity-[0.85] active:shadow-none disabled:pointer-events-none disabled:opacity-50 disabled:shadow-none"
                     data-ripple-light="true" style="position: relative; overflow: hidden;"><i
                         class="fa-solid fa-download text-lg leading-none" aria-hidden="true"></i></a>
+                @if ($denunciante != null)
+                    <button wire:click="openModalSeguimientoDenuncia()" style="background-color: orange; width:5%;"
+                        class="mx-2 rounded-lg p-3 font-sans text-xs font-bold uppercase text-white shadow-md shadow-orange-500/20 transition-all hover:shadow-lg hover:shadow-orange-500/40 focus:opacity-[0.85] focus:shadow-none active:opacity-[0.85] active:shadow-none disabled:pointer-events-none disabled:opacity-50 disabled:shadow-none"
+                        data-ripple-light="true" style="position: relative; overflow: hidden;"><i
+                            class="fa-solid fa-message text-lg leading-none" aria-hidden="true"></i></button>
+                @endif
+
+
 
             </div>
+
+            @if (session()->has('success'))
+                <div class="alert alert-success">{{ session('success') }}</div>
+            @endif
+
+            @if (session()->has('error'))
+                <div class="alert alert-danger">{{ session('error') }}</div>
+            @endif
+
+            <form wire:submit.prevent="sendMessage">
+                <div class="mb-4">
+                    <label for="whatsapp_number">WhatsApp Number:</label>
+                    <input type="text" id="whatsapp_number" wire:model="whatsapp_number" class="form-control"
+                        placeholder="e.g., +1234567890" required>
+                    @error('whatsapp_number')
+                        <span class="text-danger">{{ $message }}</span>
+                    @enderror
+                </div>
+
+                <div class="mb-4">
+                    <label for="message">Message:</label>
+                    <textarea id="message" wire:model="message" class="form-control" placeholder="Write your message here" required></textarea>
+                    @error('message')
+                        <span class="text-danger">{{ $message }}</span>
+                    @enderror
+                </div>
+
+                <button type="submit" class="btn btn-primary">Send WhatsApp Message</button>
+            </form>
             <header>FORMULARIO DE DENUNCIA # {{ $formulario_denuncia['id'] }}</header>
             <div class="form-outer">
                 <div class="form">
@@ -493,28 +574,27 @@
 
 
                         @role('Superadministrador')
-
                             @if ($formulario_denuncia['es_valido'] == '4')
                                 <div class="flex justify-center my-5">
 
                                     @if ($denunciante != null && $denunciante['seguimiento'] === '1')
-                                        <button wire:click="openModalSeguimientoDenuncia(2)" {{-- onclick="confirmDialog(2)" --}}
+                                        <button wire:click="openModalValidatingForm(2)" {{-- onclick="validForm(2)" --}}
                                             class="middle none center mr-4 flex items-center justify-center rounded-lg bg-green-500 p-3 font-sans text-xs font-bold uppercase text-white shadow-md shadow-green-500/20 transition-all hover:shadow-lg hover:shadow-green-500/40 focus:opacity-[0.85] focus:shadow-none active:opacity-[0.85] active:shadow-none disabled:pointer-events-none disabled:opacity-50 disabled:shadow-none"
                                             data-ripple-light="true">
                                             <i class="fas fa-check text-lg leading-none"></i>
                                         </button>
-                                        <button wire:click="openModalSeguimientoDenuncia(3)" {{-- onclick="confirmDialog(3)" --}}
+                                        <button wire:click="openModalValidatingForm(3)" {{-- onclick="validForm(3)" --}}
                                             class="middle none center mr-4 flex items-center justify-center rounded-lg bg-gradient-to-tr from-red-600 to-red-400 p-3 font-sans text-xs font-bold uppercase text-white shadow-md shadow-pink-500/20 transition-all hover:shadow-lg hover:shadow-red-500/40 active:opacity-[0.85] disabled:pointer-events-none disabled:opacity-50 disabled:shadow-none"
                                             data-ripple-light="true">
                                             <i class="fas fa-x text-lg leading-none"></i>
                                         </button>
                                     @else
-                                        <button onclick="confirmDialog(2)"
+                                        <button onclick="validForm(2)"
                                             class="middle none center mr-4 flex items-center justify-center rounded-lg bg-green-500 p-3 font-sans text-xs font-bold uppercase text-white shadow-md shadow-green-500/20 transition-all hover:shadow-lg hover:shadow-green-500/40 focus:opacity-[0.85] focus:shadow-none active:opacity-[0.85] active:shadow-none disabled:pointer-events-none disabled:opacity-50 disabled:shadow-none"
                                             data-ripple-light="true">
                                             <i class="fas fa-check text-lg leading-none"></i>
                                         </button>
-                                        <button onclick="confirmDialog(3)"
+                                        <button onclick="validForm(3)"
                                             class="middle none center mr-4 flex items-center justify-center rounded-lg bg-gradient-to-tr from-red-600 to-red-400 p-3 font-sans text-xs font-bold uppercase text-white shadow-md shadow-pink-500/20 transition-all hover:shadow-lg hover:shadow-red-500/40 active:opacity-[0.85] disabled:pointer-events-none disabled:opacity-50 disabled:shadow-none"
                                             data-ripple-light="true">
                                             <i class="fas fa-x text-lg leading-none"></i>
@@ -527,17 +607,22 @@
                                 @if ($formulario_denuncia['es_valido'] == '2')
 
                                     <body>
-                                        <div class="flex flex-col justify-center items-center m-10">
+                                        <div class="flex flex-col gap-5 justify-center items-center m-10">
                                             <div
-                                                class="relative flex flex-col items-center rounded-[20px] w-[700px] max-w-[95%] mx-auto bg-green-500 bg-clip-border shadow-3xl shadow-shadow-500 dark:!bg-navy-800 dark:text-white dark:!shadow-none p-3">
+                                                class="relative flex flex-col items-center rounded-[20px] w-full mx-auto bg-orange-500 bg-clip-border shadow-3xl shadow-shadow-500 dark:!bg-navy-800 dark:text-white dark:!shadow-none p-3">
                                                 <div class="space-y-4">
                                                     <h3 class="text-xl text-white font-bold lead-xl bold">¡Formulario
-                                                        #{{ $formulario_denuncia['id'] }} Aceptado Correctamente!</h3>
-                                                    <div class="text-lg italic text-white font-light">Todos los datos
-                                                        son
-                                                        válidos.</div>
+                                                        #{{ $formulario_denuncia['id'] }} Validado Correctamente!</h3>
+                                                    <div class="text-lg italic text-white font-light">Denuncia en proceso.
+                                                    </div>
                                                 </div>
                                             </div>
+                                            <a onclick="validForm(5)"
+                                                class="mx-2 cursor-pointer bg-green-400 w-full flex justify-center gap-2 rounded-[20px] p-3 font-sans text-xs font-bold uppercase text-white shadow-md shadow-blue-500/20 transition-all hover:shadow-lg hover:shadow-green-500/40 focus:opacity-[0.85] focus:shadow-none active:opacity-[0.85] active:shadow-none disabled:pointer-events-none disabled:opacity-50 disabled:shadow-none"
+                                                data-ripple-light="true" style="position: relative; overflow: hidden;">
+                                                <div>Finalizar</div>
+                                                <i class="fa-solid fa-check text-lg leading-none" aria-hidden="true"></i>
+                                            </a>
                                         </div>
                                     </body>
                                 @elseif($formulario_denuncia['es_valido'] == '3')
@@ -545,12 +630,27 @@
                                     <body>
                                         <div class="flex flex-col justify-center items-center m-10">
                                             <div
-                                                class="relative flex flex-col items-center rounded-[20px] w-[700px] max-w-[95%] mx-auto bg-red-500 bg-clip-border shadow-3xl shadow-shadow-500 dark:!bg-navy-800 dark:text-white dark:!shadow-none p-3">
+                                                class="relative flex flex-col items-center rounded-[20px] w-full mx-auto bg-red-500 bg-clip-border shadow-3xl shadow-shadow-500 dark:!bg-navy-800 dark:text-white dark:!shadow-none p-3">
                                                 <div class="space-y-4">
                                                     <h3 class="text-xl text-white font-bold lead-xl bold">¡Formulario
                                                         #{{ $formulario_denuncia['id'] }} Rechazado!</h3>
                                                     <div class="text-lg italic text-white font-light">Contactar con el
                                                         denunciante para la verificación del caso.</div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </body>
+                                @elseif($formulario_denuncia['es_valido'] == '5')
+
+                                    <body>
+                                        <div class="flex flex-col justify-center items-center m-10">
+                                            <div
+                                                class="relative flex flex-col items-center rounded-[20px] w-full mx-auto bg-green-500 bg-clip-border shadow-3xl shadow-shadow-500 dark:!bg-navy-800 dark:text-white dark:!shadow-none p-3">
+                                                <div class="space-y-4">
+                                                    <h3 class="text-xl text-white font-bold lead-xl bold">¡Formulario
+                                                        #{{ $formulario_denuncia['id'] }} Finalizado!</h3>
+                                                    <div class="text-lg italic text-white font-light">Esta denuncia ha sido
+                                                        finalizada correctamente.</div>
                                                 </div>
                                             </div>
                                         </div>
@@ -575,25 +675,50 @@
 
     @push('js')
         <script>
-            function confirmDialog(value) {
+            function validForm(value) {
                 // event.preventDefault();
                 // if(confirm('Estas seguro que deseas eliminar la familia?')){
                 //     document.getElementById('delete-form').submit();
                 // }
                 Swal.fire({
-                    title: value ? "¿Está seguro que desea aceptar el formulario?" :
-                        "¿Está seguro que desea rechazar el formulario?",
+                    title: value == 5 ? "¿Está seguro que desea finalizar la denuncia?" : value == 2 ?
+                        "¿Está seguro que desea validar la denuncia?" : "¿Está seguro que desea rechazar la denuncia?",
                     text: "¡No podrá revertir esto!",
                     icon: "warning",
                     showCancelButton: true,
                     confirmButtonColor: "#3085d6",
                     cancelButtonColor: "#d33",
-                    confirmButtonText: value ? "¡Sí, aceptar!" : "¡Sí, rechazar!",
+                    confirmButtonText: value == 5 ? "¡Sí, finalizar!" : value == 2 ? "¡Sí, aceptar!" : "¡Sí, rechazar!",
                     cancelButtonText: "Cancelar",
                 }).then((result) => {
                     if (result.isConfirmed) {
                         // document.getElementById('delete-form').submit();
                         @this.call('confirmValidation', value);
+
+
+                    }
+                });
+            }
+
+
+            function sendComment() {
+                // event.preventDefault();
+                // if(confirm('Estas seguro que deseas eliminar la familia?')){
+                //     document.getElementById('delete-form').submit();
+                // }
+                Swal.fire({
+                    title: "¿Está seguro que desea enviar este mensaje?",
+                    text: "¡Se enviará un mensaje de seguimiento del caso al denunciante!",
+                    icon: "warning",
+                    showCancelButton: true,
+                    confirmButtonColor: "#3085d6",
+                    cancelButtonColor: "#d33",
+                    confirmButtonText: "¡Sí, enviar!",
+                    cancelButtonText: "Cancelar",
+                }).then((result) => {
+                    if (result.isConfirmed) {
+                        // document.getElementById('delete-form').submit();
+                        @this.call('sendCommentSeguimiento');
 
 
                     }

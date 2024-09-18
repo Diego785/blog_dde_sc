@@ -27,16 +27,16 @@ class ShowUsuario extends Component
     protected $rules = [
         'nombre' => 'required|string|min:3|max:50',
         'correo' => 'required|email|min:6|max:50|unique:users,email',
-        'contra' => 'required|string|min:8|max:255', // Password should have a minimum length, typically 8 characters
-        'rol' => 'required', // Assuming 'rol' is a role with predefined options
-        'unidad' => 'required', // Assuming 'rol' is a role with predefined options
+        'contra' => 'required|string|min:8|max:255',
+        'rol' => 'required', 
+        'unidad' => 'required', 
     ];
 
     protected $rules_update = [
         'nombre' => 'required|string|min:3|max:50',
         'correo' => 'required|email|min:6|max:50',
-        'rol' => 'required', // Assuming 'rol' is a role with predefined options
-        'unidad' => 'required', // Assuming 'rol' is a role with predefined options
+        'rol' => 'required', 
+        'unidad' => 'required', 
     ];
 
     protected $messages = [
@@ -112,7 +112,6 @@ class ShowUsuario extends Component
         $this->user->name = $this->nombre;
         $this->user->email = $this->correo;
         $this->user->unidad_id = $this->unidad;
-        //here how to assign one rol to update my user?
         $this->user->syncRoles($this->rol);
         $this->user->update();
         $this->reset(['show_modal_edit_user', 'nombre', 'correo', 'contra', 'rol']);

@@ -39,7 +39,7 @@ class SeguimientoDenunciaEmail extends Mailable
     public function content(): Content
     {
         return new Content(
-            view: 'admin.emails.seguimiento-denuncia', // Adjust this to the actual view name
+            view: 'admin.emails.seguimiento-denuncia', 
         );
     }
 

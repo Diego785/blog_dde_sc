@@ -141,14 +141,17 @@ class ArchivoSeeder extends Seeder
 
         Archivo::create([
             'path' => 'https://drive.google.com/file/d/1CwKzF5b9Xlw4ZaMV-rt3t7oNjGETaD77/view',
+            'observation_title' => 'Regular',
             'bibliografia_id' => $normativa_especifica8_id,
         ]);
         Archivo::create([
             'path' => 'https://drive.google.com/file/d/1_a2lquS1Kh2WO5CsEQyJY1MQkB8SpH6P/view',
+            'observation_title' => 'Alternativa y Especial',
             'bibliografia_id' => $normativa_especifica8_id,
         ]);
         Archivo::create([
             'path' => 'https://drive.google.com/file/d/1j2s-pDkufveDlg1Pd6EqlHu_z0fsT_vG/view',
+            'observation_title' => 'Superior',
             'bibliografia_id' => $normativa_especifica8_id,
         ]);
         
@@ -214,14 +217,17 @@ class ArchivoSeeder extends Seeder
 
         Archivo::create([
             'path' => 'https://drive.google.com/file/d/1EVQVuOOqO5qyuSWjdDZbOW1E58q3B5-j/view',
+            'observation_title' => 'Inicial',
             'bibliografia_id' => $pedagogico_curricular4_id,
         ]);
         Archivo::create([
             'path' => 'https://drive.google.com/file/d/1dMuYDOajEl2b0XFKVbuG4FDPkqZl7sxe/view',
+            'observation_title' => 'Primaria',
             'bibliografia_id' => $pedagogico_curricular4_id,
         ]);
         Archivo::create([
             'path' => 'https://drive.google.com/file/d/1yyJnw4TIL83nPp8XzclEAs9L_DcPU_NM/view',
+            'observation_title' => 'Secundaria',
             'bibliografia_id' => $pedagogico_curricular4_id,
         ]);
         Archivo::create([

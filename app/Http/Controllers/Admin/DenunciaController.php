@@ -24,7 +24,6 @@ class DenunciaController extends Controller
     {
         $formulario = $formulario->load(['denunciante', 'denuncia', 'denuncia.personasDenunciadas', 'relacionHechoDenuncia']);
 
-        // return view('admin.pdfs.form-denuncia', compact('formulario'));
         $pdf = Pdf::loadView('admin.pdfs.form-denuncia', compact('formulario'));
         return $pdf->download('formulario_denuncia_#' . $formulario->id . '.pdf');
     }

@@ -8,26 +8,9 @@ use App\Http\Controllers\SDER\BibliografiaController;
 use App\Http\Controllers\SDER\FormDenunciaController;
 use App\Http\Controllers\SDER\InicioController;
 use App\Http\Controllers\SDER\NoticiaController;
+use App\Http\Controllers\SDER\ResolucionController;
 use App\Http\Controllers\SES\InstitutoController;
 use Illuminate\Support\Facades\Route;
-
-// Route::get('/', function () {
-//     return view('welcome');
-// });
-
-// Route::middleware([
-//     'auth:sanctum',
-//     config('jetstream.auth_session'),
-//     'verified',
-// ])->group(function () {
-//     Route::get('/dashboard', function () {
-//         return view('dashboard');
-//     })->name('dashboard');
-// });
-
-// Route::get('/', function () {
-//     return view('app.dashboard');
-// })->name('inicio');
 
 Route::get('/', function () {
     return redirect()->route('sder.index');
@@ -47,6 +30,7 @@ Route::get('/sder/form-denuncias', [FormDenunciaController::class, 'showForm'])-
 Route::get('/sder/form-denunciados/{formulario}', [FormDenunciaController::class, 'showDenunciados'])->name('show-form.denunciados');
 
 Route::get('/sder/show-bibliografia', [BibliografiaController::class, 'showBibliografia'])->name('show-bibliografia');
+Route::get('/sder/show-resolucion', [ResolucionController::class, 'showResoluciones'])->name('show-resoluciones');
 Route::get('/ses/show-institutos', [InstitutoController::class, 'showInstitutos'])->name('show-institutos');
 
 Route::get('/sder/show-news/{noticia}/{subdireccion}', [NoticiaController::class, 'showNews'])->name('show-news');

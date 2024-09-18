@@ -39,45 +39,47 @@ class ShowDenuncia extends Component
             'relacionHechoDenuncia',
             'unidad'
         ])
-        ->where(function ($query) {
-            $query->whereHas('denunciante', function ($query) {
-                if ($this->status === '2') {
-                    $query->where('es_valido', 2); // ACEPTADO
-                } elseif ($this->status === '3') {
-                    $query->where('es_valido', 3); // RECHAZADO
-                } elseif ($this->status === '4') {
-                    $query->where('es_valido', 4); // EN ESPERA
-                } 
-                $query->where('nombre', 'like', '%' . $this->search . '%');
-            })
-            ->orWhereHas('denuncia', function ($query) {
-                if ($this->status === '2') {
-                    $query->where('es_valido', 2); // ACEPTADO
-                } elseif ($this->status === '3') {
-                    $query->where('es_valido', 3); // RECHAZADO
-                } elseif ($this->status === '4') {
-                    $query->where('es_valido', 4); // EN ESPERA
-                } 
-                $query->where('unidad_educativa', 'like', '%' . $this->search . '%');
-            });
-        })
+            ->where(function ($query) {
 
-         // Add the orderBy clause here for descending order
-    ->orderBy('id', 'desc'); // Change 'created_at' to the column you want to order by
-    
+                $query->where('id', 'like', '%' . $this->search . '%');
+                // Search in related models
+                $query->orWhereHas('denunciante', function ($query) {
+                    if ($this->status === '2') {
+                        $query->where('es_valido', 2); // ACEPTADO
+                    } elseif ($this->status === '3') {
+                        $query->where('es_valido', 3); // RECHAZADO
+                    } elseif ($this->status === '4') {
+                        $query->where('es_valido', 4); // EN ESPERA
+                    } elseif ($this->status === '5') {
+                        $query->where('es_valido', 5); // FINALIZADO
+                    }
+                    $query->where('id', 'like', '%' . $this->search . '%');
+                })
+                    ->orWhereHas('denuncia', function ($query) {
+                        if ($this->status === '2') {
+                            $query->where('es_valido', 2); // ACEPTADO
+                        } elseif ($this->status === '3') {
+                            $query->where('es_valido', 3); // RECHAZADO
+                        } elseif ($this->status === '4') {
+                            $query->where('es_valido', 4); // EN ESPERA
+                        } elseif ($this->status === '5') {
+                            $query->where('es_valido', 5); // FINALIZADO
+                        }
+                        $query->where('unidad_educativa', 'like', '%' . $this->search . '%');
+                    });
+            })
+            ->orderBy('id', 'desc');
+
         return $query;
     }
-    
+
 
 
     public function render()
     {
-        // Ensure filterFormDenuncias() returns a query builder
         $query = $this->filterFormDenuncias();
 
-        // Paginate the query results
         $form_denuncias = $query->paginate(10);
-
 
         return view('livewire.admin.show-denuncia', [
             'form_denuncias' => $form_denuncias

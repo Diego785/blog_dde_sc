@@ -62,6 +62,7 @@ class DatabaseSeeder extends Seeder
             SeaeNoticiaSeeder::class,
             SubdireccionNoticiaSeeder::class,
             InstitutoSeeder::class,
+            ResolucionSeeder::class,
         ]);
     }
 }

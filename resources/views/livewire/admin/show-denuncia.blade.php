@@ -57,9 +57,10 @@
                         wire:model.live="status" class="dark:text-gray-800">
                         <option disabled selected value="0">Selecciona un Estado</option>
                         <option value="1">Todos</option>
-                        <option value="2">Aceptado</option>
+                        <option value="2">En proceso</option>
                         <option value="3">Rechazado</option>
                         <option value="4">En espera</option>
+                        <option value="5">Finalizado</option>
                     </select>
 
 
@@ -126,7 +127,7 @@
 
                                                 @if ($form_denuncia->denunciante?->nombre != null && $form_denuncia->mantener_identidad_reserva == 0)
                                                     <td class="text-sm text-gray-900 font-light px-6 py-4">
-                                                        {{ $form_denuncia->denunciante->nombre }} 
+                                                        {{ $form_denuncia->denunciante->nombre }}
                                                     </td>
                                                 @else
                                                     <td
@@ -155,18 +156,23 @@
                                                     class="text-sm text-gray-900 font-light px-6 py-4 whitespace-nowrap">
                                                     <span
                                                         class="rounded py-1 px-3 text-xs text-white font-bold 
-                                                {{ $form_denuncia->es_valido === '2' ? 'bg-green-400' : '' }}
+                                                {{ $form_denuncia->es_valido === '2' ? 'bg-orange-400' : '' }}
                                                 {{ $form_denuncia->es_valido === '3' ? 'bg-red-400' : '' }}
                                                 {{ $form_denuncia->es_valido === '4' ? 'bg-gray-400' : '' }}
+                                                {{ $form_denuncia->es_valido === '5' ? 'bg-green-400' : '' }}
                                                 ">
                                                         @if ($form_denuncia->es_valido === '2')
-                                                            Aceptado
+                                                            En proceso
                                                         @else
                                                             @if ($form_denuncia->es_valido == '3')
                                                                 Rechazado
                                                             @else
                                                                 @if ($form_denuncia->es_valido == '4')
                                                                     En espera
+                                                                @else
+                                                                    @if ($form_denuncia->es_valido == '5')
+                                                                        Finalizado
+                                                                    @endif
                                                                 @endif
                                                             @endif
                                                         @endif

@@ -13,15 +13,15 @@
 
     <title>SDER</title>
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper/swiper-bundle.min.css" />
-    {{-- <link rel="stylesheet" href="css/estilos.css">
-    <link rel="stylesheet" href="css/equipo-tecnico.css">
-    <link rel="stylesheet" href="css/rotating-image-gallery.css">
-    <link rel="stylesheet" href="css/news.css"> --}}
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11.4.8/dist/sweetalert2.all.min.js"></script>
+
 
 
     <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@300;400;700&display=swap" rel="stylesheet">
     <link href='https://unpkg.com/boxicons@2.0.5/css/boxicons.min.css' rel='stylesheet'>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+
 
     <!-- Scripts -->
 
@@ -65,7 +65,7 @@
 
         </div>
         <div class="fab-wrapper">
-            <a href="{{route('show-form')}}" class="fab" id="fab2">
+            <a href="{{ route('show-form') }}" class="fab" id="fab2">
                 <i class="fab fa-wpforms"></i>
             </a>
             <span class="tooltip">Denunciar</span>
@@ -80,11 +80,13 @@
 
     @stack('js')
 
+
     @if (session('swal'))
         <script>
-            Swal.fire({!! json_encode(session('swal')) !!});
+            Swal.fire(@json(session('swal')));
         </script>
     @endif
+
 
     <script>
         Livewire.on('swal', data => {

@@ -15,7 +15,6 @@ class Noticia extends Model
         'fecha',
         'hora',
         'portada_path',
-        // 'enlace',
     ];
 
     public function images()

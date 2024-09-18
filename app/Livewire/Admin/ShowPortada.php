@@ -60,10 +60,7 @@ class ShowPortada extends Component
 
     public function savePortada()
     {
-        // dd('entering');
         $this->validate();
-
-        // $this->imagen_path = $this->image->store('portadas');
         $this->imagen_path = Storage::put('portadas', $this->imagen);
         $this->portada = Portada::create([
             'imagen_path' => $this->imagen_path,

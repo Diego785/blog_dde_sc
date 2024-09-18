@@ -454,34 +454,24 @@
                     window.addEventListener('scroll', () => {
                         let scrollTop = window.pageYOffset || document.documentElement.scrollTop;
 
-                        // Clear any existing timeout
                         clearTimeout(isScrolling);
 
-                        // Check if the user is scrolling up or down
                         if (scrollTop > lastScrollTop) {
-                            // Scrolling Down
                             fabContainer.style.transform = 'translateY(-50px)';
                         } else {
-                            // Scrolling Up
                             fabContainer.style.transform = 'translateY(50px)';
                         }
 
-                        // Update lastScrollTop to current scroll position
                         lastScrollTop = scrollTop;
-
-                        // Set a timeout to reset the transform after scrolling stops
                         isScrolling = setTimeout(() => {
                             fabContainer.style.transform = 'translateY(0)';
-                        }, 500); // Adjust the delay to your preference
+                        }, 500); 
                     });
                 });
             </script>
             <script>
                 function confirmDelete(id) {
-                    // event.preventDefault();
-                    // if(confirm('Estas seguro que deseas eliminar la familia?')){
-                    //     document.getElementById('delete-form').submit();
-                    // }
+                   
                     Swal.fire({
                         title: "¿Estás seguro?",
                         text: "¡No podrás revertir esto!",
