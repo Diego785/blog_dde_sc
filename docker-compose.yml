@@ -1,19 +1,22 @@
 version: '3'
+
 services:
-  webserver:
-    image: nginx:latest
-    container_name: nginx
-    volumes:
-      - /var/www/sder_blog:/var/www/sder_blog
-      - ./nginx.conf:/etc/nginx/nginx.conf
+  server:
+    build:
+      context: ./
+      dockerfile: Dockerfile
+    image: blog_sder
+    working_dir: /var/www/html/
+    restart: always
+    container_name: blog_sder
+    hostname: blog_sder
     ports:
-      - "80:80"
-      - "443:443"
-    depends_on:
-      - php-fpm
-  
-  php-fpm:
-    image: php:8.2-fpm
-    container_name: php-fpm
+      - 8000:9000
     volumes:
-      - /var/www/sder_blog:/var/www/sder_blog
+      - ./:/var/www/html/:rw
+    networks:
+      - server-network
+
+networks:
+  server-network:
+    external: true
