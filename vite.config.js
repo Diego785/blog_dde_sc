@@ -25,7 +25,7 @@ export default defineConfig({
                 'resources/js/action-buttons.js',
                 'resources/js/ascenso.js',
                 'resources/js/bootstrap.js',
-                'resources/js/crud-personas.js',
+                'resources/js/crud-persons.js',
                 'resources/js/equipo-tecnico.js',
                 'resources/js/form.js',
                 'resources/js/lightbox.js',
