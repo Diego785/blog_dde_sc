@@ -15,7 +15,7 @@
 
 
     <header class="header">
-        <div class="nav-main">
+        <div class="nav-main" style="background-image: url('{{ asset('img/fondo.jpg') }}');">
 
             <div class="container">
                 <div class="header-main">
