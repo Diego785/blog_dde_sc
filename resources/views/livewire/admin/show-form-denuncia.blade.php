@@ -268,34 +268,7 @@
 
             </div>
 
-            @if (session()->has('success'))
-                <div class="alert alert-success">{{ session('success') }}</div>
-            @endif
-
-            @if (session()->has('error'))
-                <div class="alert alert-danger">{{ session('error') }}</div>
-            @endif
-
-            <form wire:submit.prevent="sendMessage">
-                <div class="mb-4">
-                    <label for="whatsapp_number">WhatsApp Number:</label>
-                    <input type="text" id="whatsapp_number" wire:model="whatsapp_number" class="form-control"
-                        placeholder="e.g., +1234567890" required>
-                    @error('whatsapp_number')
-                        <span class="text-danger">{{ $message }}</span>
-                    @enderror
-                </div>
-
-                <div class="mb-4">
-                    <label for="message">Message:</label>
-                    <textarea id="message" wire:model="message" class="form-control" placeholder="Write your message here" required></textarea>
-                    @error('message')
-                        <span class="text-danger">{{ $message }}</span>
-                    @enderror
-                </div>
-
-                <button type="submit" class="btn btn-primary">Send WhatsApp Message</button>
-            </form>
+           
             <header>FORMULARIO DE DENUNCIA # {{ $formulario_denuncia['id'] }}</header>
             <div class="form-outer">
                 <div class="form">

@@ -25,9 +25,6 @@ class ShowFormDenuncia extends Component
     public $description = '';
     public $is_valid_form;
 
-    public $whatsapp_number = '+59178578578';
-    public $message = 'HOLAAA';
-
     protected $rules = [
         'title' => 'required|string',
         'description' => 'required',
@@ -134,28 +131,28 @@ class ShowFormDenuncia extends Component
         return redirect()->route('show-denuncias');
     }
 
-    public function sendMessage()
-    {
-        $formattedNumber = 'whatsapp:'.$this->whatsapp_number;
+    // public function sendMessage()
+    // {
+    //     $formattedNumber = 'whatsapp:'.$this->whatsapp_number;
 
-        try {
-            $twilioSid = config('services.twilio.sid');
-            $twilioToken = config('services.twilio.token');
-            $twilioFrom = config('services.twilio.whatsapp_from');
+    //     try {
+    //         $twilioSid = config('services.twilio.sid');
+    //         $twilioToken = config('services.twilio.token');
+    //         $twilioFrom = config('services.twilio.whatsapp_from');
 
 
-            $twilio = new Client($twilioSid, $twilioToken);
+    //         $twilio = new Client($twilioSid, $twilioToken);
 
-            $twilio->messages->create($formattedNumber, [
-                'from' => $twilioFrom,
-                'body' => $this->message,
-            ]);
+    //         $twilio->messages->create($formattedNumber, [
+    //             'from' => $twilioFrom,
+    //             'body' => $this->message,
+    //         ]);
 
-            session()->flash('success', 'WhatsApp message sent successfully!');
-        } catch (\Exception $e) {
-            session()->flash('error', 'Failed to send WhatsApp message: ' . $e->getMessage());
-        }
-    }
+    //         session()->flash('success', 'WhatsApp message sent successfully!');
+    //     } catch (\Exception $e) {
+    //         session()->flash('error', 'Failed to send WhatsApp message: ' . $e->getMessage());
+    //     }
+    // }
 
     public function render()
     {
