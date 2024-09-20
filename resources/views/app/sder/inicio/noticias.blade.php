@@ -22,7 +22,7 @@
                         <a href="{{ route('show-news', ['noticia' => $noticia->id, 'subdireccion' => $unidad->id]) }}">
                             <div class="card-news">
                                 <div class="card-banner">
-                                    <img class="banner-img" src='{{ asset('storage/' . $noticia->portada_path) }}'
+                                    <img class="banner-img" src='{{ asset('img/' . $noticia->portada_path) }}'
                                         alt=''>
                                 </div>
                                 <div class="card-body">
