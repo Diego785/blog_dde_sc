@@ -262,20 +262,20 @@
                                 +{{ count($noticia->images) - 3 }}
                             </div>
                             <img class="img-galeria h-full w-full object-cover"
-                                src="{{ asset('storage/' . $imagen->path) }}" alt="">
+                                src="{{ asset('img/' . $imagen->path) }}" alt="">
                         </div>
                     @else
                         @if ($loop->index < 4)
                             <div
                                 class="overflow-hidden rounded-xl {{ $loop->index == 1 || $loop->index == 2 ? 'col-span-3' : 'col-span-2' }} max-h-[10rem]">
                                 <img class="img-galeria h-full w-full object-cover"
-                                    src="{{ asset('storage/' . $imagen->path) }}" alt="">
+                                    src="{{ asset('img/' . $imagen->path) }}" alt="">
                             </div>
                         @else
                             <!-- All other images go here -->
                             <div class="full-gallery hidden overflow-hidden rounded-xl col-span-2 max-h-[10rem]">
                                 <img class="img-galeria h-full w-full object-cover"
-                                    src="{{ asset('storage/' . $imagen->path) }}" alt="">
+                                    src="{{ asset('img/' . $imagen->path) }}" alt="">
                             </div>
                         @endif
                     @endif
