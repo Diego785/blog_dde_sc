@@ -22,7 +22,7 @@ export default defineConfig({
                 'resources/css/view-resolutions.css',
                 'resources/scss/styles.scss',
                 'resources/js/app.js',
-                'resources/js/action-button.js',
+                'resources/js/action-buttons.js',
                 'resources/js/ascenso.js',
                 'resources/js/bootstrap.js',
                 'resources/js/crud-personas.js',
