@@ -6,17 +6,24 @@ export default defineConfig({
         laravel({
             input: [
                 'resources/css/app.css',
+                'resources/css/ascenso.css',
+                'resources/css/equipo-tecnico.css',
+                'resources/css/estilos.css',
+                'resources/css/footer.css',
+                'resources/css/form.css',
+                'resources/css/inicio.css',
+                'resources/css/modal.css',
+                'resources/css/nav.css',
+                'resources/css/news.css',
+                'resources/css/app.css',
+                'resources/css/preguntas.css',
+                'resources/css/slider.css',
+                'resources/css/swiper.css',
+                'resources/css/view-resolutions.css',
                 'resources/scss/styles.scss',
                 'resources/js/app.js',
             ],
             refresh: true,
         }),
-    ],
-    css: {
-        preprocessorOptions: {
-            scss: {
-                additionalData: `@import "resources/scss/styles.scss";`
-            }
-        }
-    }
+    ]
 });
