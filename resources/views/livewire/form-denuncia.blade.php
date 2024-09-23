@@ -183,12 +183,12 @@
                 Cerrar
             </x-danger-button>
             <x-button class="btn btn-blue mx-2" wire:click.prevent="addDenunciado">
-
-                @if ($editing_index !== null)
+                Agregar
+                {{-- @if ($editing_index !== null)
                     Actualizar
                 @else
                     Agregar
-                @endif
+                @endif --}}
             </x-button>
         </x-slot>
     </x-dialog-modal>
@@ -249,8 +249,11 @@
                                     <label class="subtitle mb-3 block">
                                         Apellidos y Nombres:
                                     </label>
-                                    <input wire:model="nombre_denunciante" @if($identidad_reserva_denunciante) disabled @endif placeholder="Diego Hurtado Vargas"
-                                        class="text-black w-full rounded-md border border-[#e0e0e0] {{ $identidad_reserva_denunciante ? 'bg-gray-900' : 'bg-white' }}" py-3 px-6 outline-none focus:border-[#6A64F1] focus:shadow-md" />
+                                    <input wire:model="nombre_denunciante"
+                                        @if ($identidad_reserva_denunciante) disabled @endif
+                                        placeholder="Diego Hurtado Vargas"
+                                        class="text-black w-full rounded-md border border-[#e0e0e0] {{ $identidad_reserva_denunciante ? 'bg-gray-900' : 'bg-white' }}"
+                                        py-3 px-6 outline-none focus:border-[#6A64F1] focus:shadow-md" />
                                     @error('nombre_denunciante')
                                         <div class="error">
                                             {{ $message }}
@@ -263,8 +266,10 @@
                                     <label class="subtitle mb-3 block">
                                         Carnet de Identidad:
                                     </label>
-                                    <input wire:model="carnet_denunciante" @if($identidad_reserva_denunciante) disabled @endif placeholder="1234567"
-                                        class="text-black w-full rounded-md border border-[#e0e0e0] {{ $identidad_reserva_denunciante ? 'bg-gray-900' : 'bg-white' }}" py-3 px-6 outline-none focus:border-[#6A64F1] focus:shadow-md" />
+                                    <input wire:model="carnet_denunciante"
+                                        @if ($identidad_reserva_denunciante) disabled @endif placeholder="1234567"
+                                        class="text-black w-full rounded-md border border-[#e0e0e0] {{ $identidad_reserva_denunciante ? 'bg-gray-900' : 'bg-white' }}"
+                                        py-3 px-6 outline-none focus:border-[#6A64F1] focus:shadow-md" />
                                     @error('carnet_denunciante')
                                         <div class="error">
                                             {{ $message }}
@@ -278,9 +283,10 @@
                             <label for="guest" class="subtitle mb-3 block">
                                 Domicilio:
                             </label>
-                            <input wire:model="domicilio_denunciante" @if($identidad_reserva_denunciante) disabled @endif type="text" placeholder="Barrio El Fuerte"
-                                min="0"
-                                class="text-black w-full appearance-none rounded-md border border-[#e0e0e0] {{ $identidad_reserva_denunciante ? 'bg-gray-900' : 'bg-white' }}" py-3 px-6  outline-none focus:border-[#6A64F1] focus:shadow-md" />
+                            <input wire:model="domicilio_denunciante" @if ($identidad_reserva_denunciante) disabled @endif
+                                type="text" placeholder="Barrio El Fuerte" min="0"
+                                class="text-black w-full appearance-none rounded-md border border-[#e0e0e0] {{ $identidad_reserva_denunciante ? 'bg-gray-900' : 'bg-white' }}"
+                                py-3 px-6 outline-none focus:border-[#6A64F1] focus:shadow-md" />
                             @error('domicilio_denunciante')
                                 <div class="error">
                                     {{ $message }}
@@ -318,8 +324,10 @@
                                     <label class="subtitle mb-3 block">
                                         Correo Electrónico:
                                     </label>
-                                    <input wire:model="correo_denunciante" @if($identidad_reserva_denunciante) disabled @endif placeholder="diego@gmail.com"
-                                        class="text-black w-full rounded-md border border-[#e0e0e0] {{ $identidad_reserva_denunciante ? 'bg-gray-900' : 'bg-white' }}" py-3 px-6 outline-none focus:border-[#6A64F1] focus:shadow-md" />
+                                    <input wire:model="correo_denunciante"
+                                        @if ($identidad_reserva_denunciante) disabled @endif placeholder="diego@gmail.com"
+                                        class="text-black w-full rounded-md border border-[#e0e0e0] {{ $identidad_reserva_denunciante ? 'bg-gray-900' : 'bg-white' }}"
+                                        py-3 px-6 outline-none focus:border-[#6A64F1] focus:shadow-md" />
                                     @error('correo_denunciante')
                                         <div class="error">
                                             {{ $message }}
@@ -333,8 +341,10 @@
                                     <label class="subtitle mb-3 block">
                                         Teléfono:
                                     </label>
-                                    <input placeholder="71310964" @if($identidad_reserva_denunciante) disabled @endif wire:model="telefono_denunciante"
-                                        class="text-black w-full rounded-md border border-[#e0e0e0] {{ $identidad_reserva_denunciante ? 'bg-gray-900' : 'bg-white' }}" py-3 px-6 outline-none focus:border-[#6A64F1] focus:shadow-md" />
+                                    <input placeholder="71310964" @if ($identidad_reserva_denunciante) disabled @endif
+                                        wire:model="telefono_denunciante"
+                                        class="text-black w-full rounded-md border border-[#e0e0e0] {{ $identidad_reserva_denunciante ? 'bg-gray-900' : 'bg-white' }}"
+                                        py-3 px-6 outline-none focus:border-[#6A64F1] focus:shadow-md" />
                                     @error('telefono_denunciante')
                                         <div class="error">
                                             {{ $message }}
@@ -350,17 +360,21 @@
                             </label>
                             <div class="flex items-center space-x-6">
                                 <div class="flex items-center">
-                                    <input  @if($identidad_reserva_denunciante) disabled @endif wire:model="seguimiento_email_denunciante" type="radio"
+                                    <input @if ($identidad_reserva_denunciante) disabled @endif
+                                        wire:model="seguimiento_email_denunciante" type="radio"
                                         name="opcionSeguimiento" value="true"
-                                        @if ($seguimiento_email_denunciante === true) checked @endif class="h-5 w-5 {{ $identidad_reserva_denunciante ? 'bg-gray-900' : 'bg-white' }}"" />
+                                        @if ($seguimiento_email_denunciante === true) checked @endif
+                                        class="h-5 w-5 {{ $identidad_reserva_denunciante ? 'bg-gray-900' : 'bg-white' }}"" />
                                     <label for="radioButton1" class="pl-3 text-white">
                                         Sí
                                     </label>
                                 </div>
                                 <div class="flex items-center">
-                                    <input  @if($identidad_reserva_denunciante) disabled @endif wire:model="seguimiento_email_denunciante" type="radio"
+                                    <input @if ($identidad_reserva_denunciante) disabled @endif
+                                        wire:model="seguimiento_email_denunciante" type="radio"
                                         name="opcionSeguimiento" value="false"
-                                        @if ($seguimiento_email_denunciante === false) checked @endif class="h-5 w-5 {{ $identidad_reserva_denunciante ? 'bg-gray-900' : 'bg-white' }}"" />
+                                        @if ($seguimiento_email_denunciante === false) checked @endif
+                                        class="h-5 w-5 {{ $identidad_reserva_denunciante ? 'bg-gray-900' : 'bg-white' }}"" />
                                     <label for="radioButton2" class="pl-3 text-white">
                                         No
                                     </label>
