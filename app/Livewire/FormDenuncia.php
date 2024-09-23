@@ -221,9 +221,9 @@ class FormDenuncia extends Component
 
     public function openModalAddDenunciado()
     {
-        $this->editing_index = null;
-        $this->reset('show_modal_denunciado', 'nombre', 'cargo');
-        $this->resetValidation();
+        // $this->editing_index = null;
+        // $this->reset('show_modal_denunciado', 'nombre', 'cargo');
+        // $this->resetValidation();
         $this->show_modal_denunciado = true;
     }
 
@@ -231,7 +231,7 @@ class FormDenuncia extends Component
 
     public function addDenunciado()
     {
-        $this->validate($this->rules_denunciado, $this->messages_denunciado);
+        // $this->validate($this->rules_denunciado, $this->messages_denunciado);
 
         if ($this->editing_index !== null) {
             $this->personas_denunciadas[$this->editing_index] = [
