@@ -20,7 +20,7 @@
                     <h3 style="padding: 10px 0; justify-content: space-between;" class="questions__title">¿Cómo
                         descargo los certificados digitales?
                         <span class="questions__arrow">
-                            <img src="img/arrow.svg" class="questions__img">
+                            <img src="{{asset('img/arrow.svg')}}" class="questions__img">
                         </span>
                     </h3>
 
@@ -52,7 +52,7 @@
                     <h3 style="padding: 10px 0; justify-content: space-between;" class="questions__title">¿Qué
                         servicios me ofrece la Dirección Departamental de Educación de Santa Cruz?
                         <span class="questions__arrow">
-                            <img src="img/arrow.svg" class="questions__img">
+                            <img src="{{asset('img/arrow.svg')}}" class="questions__img">
                         </span>
                     </h3>
 
@@ -161,7 +161,7 @@
                     <h3 style="padding: 10px 0; justify-content: space-between;" class="questions__title">¿Qué
                         requisitos necesito para recibir el bono Juancito Pinto?
                         <span class="questions__arrow">
-                            <img src="img/arrow.svg" class="questions__img">
+                            <img src="{{asset('img/arrow.svg')}}" class="questions__img">
                         </span>
                     </h3>
 
@@ -177,7 +177,8 @@
                     <h3 style="padding: 10px 0; justify-content: space-between;" class="questions__title">¿Quiénes
                         reciben el beneficio del Bono Juancito Pinto?
                         <span class="questions__arrow">
-                            <img src="img/arrow.svg" class="questions__img">
+                            <img src="{{asset('img/arrow.svg')}}" class="questions__img">
+
                         </span>
                     </h3>
 

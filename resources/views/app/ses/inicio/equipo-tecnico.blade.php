@@ -71,7 +71,7 @@
         </div>
 
         <div class="imagen-light" style="display: block; text-align: center; ">
-            <img src="img/close.svg" alt="" class="close">
+            <img src="{{ asset('img/close.svg') }}" alt="" class="close">
             <img src="" alt="" class="agregar-imagen">
             <p class="imagen-description"
                 style="color:white; text-align: center; justify-content: center; align-items: center;"></p>

@@ -101,11 +101,11 @@ class FormDenuncia extends Component
         'nombre_denunciante.required' => 'El nombre del denunciante es requerido.',
         'nombre_denunciante.string' => 'El nombre del denunciante solo puede contener letras.',
         'nombre_denunciante.min' => 'El nombre del denunciante debe tener mínimo 3 caracteres.',
-        'nombre_denunciante.max' => 'El nombre del denunciante debe tener máximo 10 caracteres.',
+        'nombre_denunciante.max' => 'El nombre del denunciante debe tener máximo 50 caracteres.',
 
         'carnet_denunciante.required' => 'El carnet del denunciante es requerido.',
         'carnet_denunciante.min' => 'El carnet del denunciante debe tener mínimo 6 caracteres.',
-        'carnet_denunciante.max' => 'El carnet del denunciante debe tener máximo 50 caracteres.',
+        'carnet_denunciante.max' => 'El carnet del denunciante debe tener máximo 10 caracteres.',
 
         'domicilio_denunciante.required' => 'El domicilio del denunciante es requerido.',
         'domicilio_denunciante.string' => 'El domicilio del denunciante solo puede contener letras.',

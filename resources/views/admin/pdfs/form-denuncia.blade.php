@@ -127,7 +127,7 @@
     <div class="page">
         <div class="header">
             <img src="{{ public_path('img/logo_sder.jpg') }}" style="height: 100px;" alt="Logo">
-            <h1>Formulario #{{ $formulario->id }}</h1>
+            <h1>Denuncia #{{ $formulario->id }}</h1>
             <p>Subdirección de Educación Regular de Santa Cruz</p>
             <div class="meta-info">
                 <p>Usuario: {{ auth()->user()->name }}</p>

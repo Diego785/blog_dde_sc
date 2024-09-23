@@ -152,7 +152,7 @@
             Nuevo Denunciado
         </x-slot>
         <x-slot name="content">
-            <div class="grid grid-cols-1 gap-6 mb-4">
+            {{-- <div class="grid grid-cols-1 gap-6 mb-4">
                 <div>
                     <x-label class="mb-1">
                         Nombre
@@ -176,7 +176,7 @@
                         </div>
                     @enderror
                 </div>
-            </div>
+            </div> --}}
         </x-slot>
         <x-slot name="footer">
             <x-danger-button class="btn btn-blue mx-2" wire:click.prevent="$set('show_modal_denunciado', false)">

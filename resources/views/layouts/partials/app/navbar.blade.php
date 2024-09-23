@@ -36,7 +36,7 @@
                 <!-- navigation menu start -->
                 <nav class="nav-menu">
                     <div class="close-nav-menu">
-                        <img src="img/close.svg" alt="close">
+                        <img src="{{ asset('img/close.svg') }}" alt="close">
                     </div>
                     <ul class="menu">
 
