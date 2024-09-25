@@ -335,9 +335,6 @@
 
     @stack('modals')
 
-    @livewireScripts
-
-
     <script>
         function showAllImages() {
 
