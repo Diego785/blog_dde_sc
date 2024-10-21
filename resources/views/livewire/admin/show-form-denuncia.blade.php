@@ -153,6 +153,13 @@
             .input-nombre-denunciante {
                 text-transform: uppercase;
             }
+
+            /* MAIN BUTTONS */
+            @media (min-width: 768px) {
+                #main-buttons {
+                    flex-direction: row !important;
+                }
+            }
         </style>
 
 
@@ -180,7 +187,7 @@
                             <x-label class="">
                                 Descripción
                             </x-label>
-                            <textarea type="text" wire:model="description" class="w-full text-black" rows="3"
+                            <textarea type="text" wire:model="description" class="w-full text-black rounded-md border border-[#e0e0e0] bg-white py-3 px-6 outline-none focus:border-[#6A64F1] focus:shadow-md" rows="3"
                                 placeholder="Se le solicita al interesado..."></textarea>
                         </div>
                     </div>
@@ -214,7 +221,7 @@
                             <x-label class="">
                                 Descripción
                             </x-label>
-                            <textarea type="text" wire:model="description" class="w-full text-black" rows="3"
+                            <textarea type="text" wire:model="description" class="w-full text-black rounded-md border border-[#e0e0e0] bg-white py-3 px-6 outline-none focus:border-[#6A64F1] focus:shadow-md" rows="3"
                                 placeholder="Se le solicita al interesado..."></textarea>
                         </div>
                     </div>
@@ -246,29 +253,31 @@
 
         <!-- component -->
         <div class="container-form">
-            <div class="flex">
-
-                <a href="{{ route('show-denuncias') }}" style="background-color: #04527b; width:5%;"
-                    class="mx-2 rounded-lg p-3 font-sans text-xs font-bold uppercase text-white shadow-md shadow-blue-500/20 transition-all hover:shadow-lg hover:shadow-blue-500/40 focus:opacity-[0.85] focus:shadow-none active:opacity-[0.85] active:shadow-none disabled:pointer-events-none disabled:opacity-50 disabled:shadow-none"
-                    data-ripple-light="true" style="position: relative; overflow: hidden;"><i
-                        class="fas fa-eye text-lg leading-none" aria-hidden="true"></i></a>
-                <a href="{{ route('generate-pdf', $formulario_denuncia_model->id) }}"
-                    style="background-color: green; width:5%;"
-                    class="mx-2 rounded-lg p-3 font-sans text-xs font-bold uppercase text-white shadow-md shadow-green-500/20 transition-all hover:shadow-lg hover:shadow-green-500/40 focus:opacity-[0.85] focus:shadow-none active:opacity-[0.85] active:shadow-none disabled:pointer-events-none disabled:opacity-50 disabled:shadow-none"
-                    data-ripple-light="true" style="position: relative; overflow: hidden;"><i
-                        class="fa-solid fa-download text-lg leading-none" aria-hidden="true"></i></a>
+            <div id="main-buttons" class="flex justify-center" style="flex-direction: column;">
+                <a href="{{ route('show-denuncias') }}" style="background-color: #04527b;"
+                    class="mx-2 my-2 w-full rounded-lg p-3 font-sans text-xs font-bold uppercase text-white shadow-md shadow-blue-500/20 transition-all hover:shadow-lg hover:shadow-blue-500/40 focus:opacity-[0.85] focus:shadow-none active:opacity-[0.85] active:shadow-none disabled:pointer-events-none disabled:opacity-50 disabled:shadow-none"
+                    data-ripple-light="true" style="position: relative; overflow: hidden;">
+                    Ver Denuncias
+                    <i class="fas fa-eye text-lg leading-none ml-2" aria-hidden="true"></i>
+                </a>
+                <a href="{{ route('generate-pdf', $formulario_denuncia_model->id) }}" style="background-color: red;"
+                    class="mx-2 my-2 w-full self-center rounded-lg p-3 font-sans text-xs font-bold uppercase text-white shadow-md shadow-red-500/20 transition-all hover:shadow-lg hover:shadow-red-500/40 focus:opacity-[0.85] focus:shadow-none active:opacity-[0.85] active:shadow-none disabled:pointer-events-none disabled:opacity-50 disabled:shadow-none"
+                    data-ripple-light="true" style="position: relative; overflow: hidden;">
+                    Descargar PDF
+                    <i class="fa-solid fa-file-pdf text-lg leading-none ml-2" aria-hidden="true"></i>
+                </a>
                 @if ($denunciante != null)
-                    <button wire:click="openModalSeguimientoDenuncia()" style="background-color: orange; width:5%;"
-                        class="mx-2 rounded-lg p-3 font-sans text-xs font-bold uppercase text-white shadow-md shadow-orange-500/20 transition-all hover:shadow-lg hover:shadow-orange-500/40 focus:opacity-[0.85] focus:shadow-none active:opacity-[0.85] active:shadow-none disabled:pointer-events-none disabled:opacity-50 disabled:shadow-none"
-                        data-ripple-light="true" style="position: relative; overflow: hidden;"><i
-                            class="fa-solid fa-message text-lg leading-none" aria-hidden="true"></i></button>
+                    <button wire:click="openModalSeguimientoDenuncia()" style="background-color: orange;"
+                        class="mx-2 my-2 w-full self-center rounded-lg p-3 font-sans text-xs font-bold uppercase text-white shadow-md shadow-orange-500/20 transition-all hover:shadow-lg hover:shadow-orange-500/40 focus:opacity-[0.85] focus:shadow-none active:opacity-[0.85] active:shadow-none disabled:pointer-events-none disabled:opacity-50 disabled:shadow-none"
+                        data-ripple-light="true" style="position: relative; overflow: hidden;">
+                        Enviar Comentario
+                        <i class="fa-solid fa-paper-plane text-lg leading-none ml-2" aria-hidden="true"></i>
+                    </button>
                 @endif
-
-
-
             </div>
 
-           
+
+
             <header>FORMULARIO DE DENUNCIA # {{ $formulario_denuncia['id'] }}</header>
             <div class="form-outer">
                 <div class="form">
@@ -458,7 +467,7 @@
                         <div class="field">
                             <!-- <input type="text"> -->
                             <div class="label">Descripción:</div>
-                            <textarea type="text" class="mt-6 text-lg" disabled wire:model="relacion_hecho_denuncia.descripcion_hecho"
+                            <textarea type="text" class="mt-6 text-lg text-black w-full rounded-md border border-[#e0e0e0] bg-white py-3 px-6 outline-none focus:border-[#6A64F1] focus:shadow-md" disabled wire:model="relacion_hecho_denuncia.descripcion_hecho"
                                 rows="3" placeholder="Inserte la descripción de los hechos..."></textarea>
                         </div>
 
@@ -548,29 +557,33 @@
 
                         @role('Superadministrador')
                             @if ($formulario_denuncia['es_valido'] == '4')
-                                <div class="flex justify-center my-5">
+                                <div class="flex flex-col md:flex-row justify-center my-5">
 
                                     @if ($denunciante != null && $denunciante['seguimiento'] === '1')
                                         <button wire:click="openModalValidatingForm(2)" {{-- onclick="validForm(2)" --}}
-                                            class="middle none center mr-4 flex items-center justify-center rounded-lg bg-green-500 p-3 font-sans text-xs font-bold uppercase text-white shadow-md shadow-green-500/20 transition-all hover:shadow-lg hover:shadow-green-500/40 focus:opacity-[0.85] focus:shadow-none active:opacity-[0.85] active:shadow-none disabled:pointer-events-none disabled:opacity-50 disabled:shadow-none"
+                                            class="middle none center w-full mr-4 my-2 flex items-center justify-center rounded-lg bg-green-500 p-3 font-sans text-xs font-bold uppercase text-white shadow-md shadow-green-500/20 transition-all hover:shadow-lg hover:shadow-green-500/40 focus:opacity-[0.85] focus:shadow-none active:opacity-[0.85] active:shadow-none disabled:pointer-events-none disabled:opacity-50 disabled:shadow-none"
                                             data-ripple-light="true">
-                                            <i class="fas fa-check text-lg leading-none"></i>
+                                            Validar Formulario
+                                            <i class="fas fa-check text-lg leading-none ml-2"></i>
                                         </button>
                                         <button wire:click="openModalValidatingForm(3)" {{-- onclick="validForm(3)" --}}
-                                            class="middle none center mr-4 flex items-center justify-center rounded-lg bg-gradient-to-tr from-red-600 to-red-400 p-3 font-sans text-xs font-bold uppercase text-white shadow-md shadow-pink-500/20 transition-all hover:shadow-lg hover:shadow-red-500/40 active:opacity-[0.85] disabled:pointer-events-none disabled:opacity-50 disabled:shadow-none"
+                                            class="middle none center w-full mr-4 my-2 flex items-center justify-center rounded-lg bg-gradient-to-tr from-red-600 to-red-400 p-3 font-sans text-xs font-bold uppercase text-white shadow-md shadow-pink-500/20 transition-all hover:shadow-lg hover:shadow-red-500/40 active:opacity-[0.85] disabled:pointer-events-none disabled:opacity-50 disabled:shadow-none"
                                             data-ripple-light="true">
-                                            <i class="fas fa-x text-lg leading-none"></i>
+                                            Anular Formulario
+                                            <i class="fas fa-x text-lg leading-none ml-2"></i>
                                         </button>
                                     @else
                                         <button onclick="validForm(2)"
-                                            class="middle none center mr-4 flex items-center justify-center rounded-lg bg-green-500 p-3 font-sans text-xs font-bold uppercase text-white shadow-md shadow-green-500/20 transition-all hover:shadow-lg hover:shadow-green-500/40 focus:opacity-[0.85] focus:shadow-none active:opacity-[0.85] active:shadow-none disabled:pointer-events-none disabled:opacity-50 disabled:shadow-none"
+                                            class="middle none center w-full mr-4 my-2 flex items-center justify-center rounded-lg bg-green-500 p-3 font-sans text-xs font-bold uppercase text-white shadow-md shadow-green-500/20 transition-all hover:shadow-lg hover:shadow-green-500/40 focus:opacity-[0.85] focus:shadow-none active:opacity-[0.85] active:shadow-none disabled:pointer-events-none disabled:opacity-50 disabled:shadow-none"
                                             data-ripple-light="true">
-                                            <i class="fas fa-check text-lg leading-none"></i>
+                                            Validar Formulario
+                                            <i class="fas fa-check text-lg leading-none ml-2"></i>
                                         </button>
                                         <button onclick="validForm(3)"
-                                            class="middle none center mr-4 flex items-center justify-center rounded-lg bg-gradient-to-tr from-red-600 to-red-400 p-3 font-sans text-xs font-bold uppercase text-white shadow-md shadow-pink-500/20 transition-all hover:shadow-lg hover:shadow-red-500/40 active:opacity-[0.85] disabled:pointer-events-none disabled:opacity-50 disabled:shadow-none"
+                                            class="middle none center w-full mr-4 my-2 flex items-center justify-center rounded-lg bg-gradient-to-tr from-red-600 to-red-400 p-3 font-sans text-xs font-bold uppercase text-white shadow-md shadow-pink-500/20 transition-all hover:shadow-lg hover:shadow-red-500/40 active:opacity-[0.85] disabled:pointer-events-none disabled:opacity-50 disabled:shadow-none"
                                             data-ripple-light="true">
-                                            <i class="fas fa-x text-lg leading-none"></i>
+                                            Anular Formulario
+                                            <i class="fas fa-x text-lg leading-none ml-2"></i>
                                         </button>
                                     @endif
 
@@ -591,7 +604,7 @@
                                                 </div>
                                             </div>
                                             <a onclick="validForm(5)"
-                                                class="mx-2 cursor-pointer bg-green-400 w-full flex justify-center gap-2 rounded-[20px] p-3 font-sans text-xs font-bold uppercase text-white shadow-md shadow-blue-500/20 transition-all hover:shadow-lg hover:shadow-green-500/40 focus:opacity-[0.85] focus:shadow-none active:opacity-[0.85] active:shadow-none disabled:pointer-events-none disabled:opacity-50 disabled:shadow-none"
+                                                class="mx-2 cursor-pointer bg-green-500 w-full flex justify-center gap-2 rounded-lg p-3 font-sans text-xs font-bold uppercase text-white shadow-md shadow-green-500/20 transition-all hover:shadow-lg hover:shadow-green-500/40 focus:opacity-[0.85] focus:shadow-none active:opacity-[0.85] active:shadow-none disabled:pointer-events-none disabled:opacity-50 disabled:shadow-none"
                                                 data-ripple-light="true" style="position: relative; overflow: hidden;">
                                                 <div>Finalizar</div>
                                                 <i class="fa-solid fa-check text-lg leading-none" aria-hidden="true"></i>

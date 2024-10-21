@@ -67,7 +67,6 @@ class ShowUsuario extends Component
 
     public function openModalAddUser()
     {
-        dd('entering');
         $this->reset(['nombre', 'correo', 'contra', 'rol', 'show_modal_add_user']);
         $this->resetValidation();
         $this->show_modal_add_user = true;

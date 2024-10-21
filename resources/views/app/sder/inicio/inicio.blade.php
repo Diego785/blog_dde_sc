@@ -74,7 +74,7 @@
     
 
 
-    <section class="contenedor" id="servicio">
+    <section class="contenedor w-full" id="servicio">
         <div class="contenedor-servicio">
 
             <div class="tilt-box-wrap"

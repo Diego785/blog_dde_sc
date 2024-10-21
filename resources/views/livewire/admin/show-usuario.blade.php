@@ -431,8 +431,8 @@
 
             <div class="fab-wrapper">
                 <button wire:click="openModalAddUser()"
-                    class="fab {{ $show_modal_add_user ? 'bg-gray-500 cursor-not-allowed' : 'bg-[#25D366] hover:bg-[#1DA851]' }} transition-colors duration-200"
-                    id="fab1" {{ $show_modal_add_user ? 'disabled' : '' }}>
+                    class="fab {{ $show_modal_add_user || $show_modal_edit_user ? 'bg-gray-500 cursor-not-allowed' : 'bg-[#25D366] hover:bg-[#1DA851]' }} transition-colors duration-200"
+                    id="fab1" {{ $show_modal_add_user || $show_modal_edit_user ? 'disabled' : '' }}>
                     <i class="fab fa-plus"></i>
                 </button>
                 <span class="tooltip">Crear Usuario</span>
@@ -465,13 +465,13 @@
                         lastScrollTop = scrollTop;
                         isScrolling = setTimeout(() => {
                             fabContainer.style.transform = 'translateY(0)';
-                        }, 500); 
+                        }, 500);
                     });
                 });
             </script>
             <script>
                 function confirmDelete(id) {
-                   
+
                     Swal.fire({
                         title: "¿Estás seguro?",
                         text: "¡No podrás revertir esto!",

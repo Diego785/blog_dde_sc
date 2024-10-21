@@ -54,8 +54,8 @@
                     </li>
 
                     <li class="card">
-                        <div class="img"><img src="" class="img-galeria" draggable="false"></div>
-                        <h2>Lic. Sherla Rosario Sequeli Potosi</h2>
+                        <div class="img"><img src="{{ asset('img/img-profiles/cherla.jpg') }}" class="img-galeria" draggable="false"></div>
+                        <h2>Lic. Cherla Rosario Sequeli Potosi</h2>
                         <span>Técnica de Educación Secundaria Comunitaria Vocacional</span>
                     </li>
 

@@ -221,9 +221,9 @@ class FormDenuncia extends Component
 
     public function openModalAddDenunciado()
     {
-        // $this->editing_index = null;
-        // $this->reset('show_modal_denunciado', 'nombre', 'cargo');
-        // $this->resetValidation();
+        $this->editing_index = null;
+        $this->reset('show_modal_denunciado', 'nombre', 'cargo');
+        $this->resetValidation();
         $this->show_modal_denunciado = true;
     }
 

@@ -147,12 +147,12 @@
         }
     </style>
 
-    <x-dialog-modal wire:model="show_modal_denunciado">
+    <x-dialog-modal wire:model.live="show_modal_denunciado">
         <x-slot name="title">
             Nuevo Denunciado
         </x-slot>
         <x-slot name="content">
-            {{-- <div class="grid grid-cols-1 gap-6 mb-4">
+            <div class="grid grid-cols-1 gap-6 mb-4">
                 <div>
                     <x-label class="mb-1">
                         Nombre
@@ -176,27 +176,26 @@
                         </div>
                     @enderror
                 </div>
-            </div> --}}
+            </div>
         </x-slot>
         <x-slot name="footer">
             <x-danger-button class="btn btn-blue mx-2" wire:click.prevent="$set('show_modal_denunciado', false)">
                 Cerrar
             </x-danger-button>
             <x-button class="btn btn-blue mx-2" wire:click.prevent="addDenunciado">
-                Agregar
-                {{-- @if ($editing_index !== null)
+                @if ($editing_index !== null)
                     Actualizar
                 @else
                     Agregar
-                @endif --}}
+                @endif
             </x-button>
         </x-slot>
     </x-dialog-modal>
 
     <div class="fab-container">
         <div class="fab-wrapper">
-            <button type="button" wire:click="openModalAddDenunciado()"
-                style="display: flex; align-items: center; background-color:#4CAF50" class="fab">
+            <button type="button" wire:click="openModalAddDenunciado()" {{ $show_modal_denunciado ? 'disabled' : '' }}
+                class="fab {{ $show_modal_denunciado ? 'bg-gray-500 cursor-not-allowed' : 'bg-[#25D366] hover:bg-[#1DA851]' }} flex items-center">
                 <i class="fa-solid fa-plus"></i>
             </button>
             <span class="tooltip">Agregar Denunciado</span>
@@ -208,15 +207,12 @@
         <div class="flex">
 
 
-            <a href="{{ route('sder.index') }}" style="background-color: #04527b; width:5%;"
+            <a href="{{ route('sder.index') }}" style="background-color: #04527b; width:50px;"
                 class="mx-2 item-center middle none center flex justify-center rounded-lg p-3 font-sans text-xs font-bold uppercase text-white shadow-md shadow-blue-500/20 transition-all hover:shadow-lg hover:shadow-blue-500/40 focus:opacity-[0.85] focus:shadow-none active:opacity-[0.85] active:shadow-none disabled:pointer-events-none disabled:opacity-50 disabled:shadow-none"
                 data-ripple-light="true" style="position: relative; overflow: hidden;"><i
                     class="fas fa-home text-lg leading-none" aria-hidden="true"></i></a>
 
-            <button onclick="confirmDenuncia()" style="background-color: #4CAF50; width:5%;"
-                class="mx-2 item-center middle none center flex justify-center rounded-lg p-3 font-sans text-xs font-bold uppercase text-white shadow-md shadow-green-500/20 transition-all hover:shadow-lg hover:shadow-green-500/40 focus:opacity-[0.85] focus:shadow-none active:opacity-[0.85] active:shadow-none disabled:pointer-events-none disabled:opacity-50 disabled:shadow-none"
-                data-ripple-light="true" style="position: relative; overflow: hidden;"><i
-                    class="fa-solid fa-check text-lg leading-none" aria-hidden="true"></i></button>
+
 
         </div>
 
@@ -678,7 +674,7 @@
                                                     <div class="m-2">
                                                         <button
                                                             wire:click="openModalEditDenunciado({{ $loop->index }})"
-                                                            class="flex p-2.5 bg-yellow-500 rounded-xl hover:rounded-3xl hover:bg-yellow-600 transition-all duration-300 text-white">
+                                                            class="flex p-2.5 bg-blue-500 rounded-xl hover:rounded-3xl hover:bg-blue-600 transition-all duration-300 text-white">
                                                             <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6"
                                                                 fill="none" viewBox="0 0 24 24"
                                                                 stroke="currentColor" stroke-width="2">
@@ -741,6 +737,12 @@
             </body>
         @endif
 
+
+        <button onclick="confirmDenuncia()"
+            class="w-full bg-red-600 mx-2 item-center middle none center flex justify-center rounded-lg p-3 font-sans text-xs font-bold uppercase text-white shadow-md shadow-red-500/20 transition-all hover:shadow-lg hover:shadow-red-500/40 focus:opacity-[0.85] focus:shadow-none active:opacity-[0.85] active:shadow-none disabled:pointer-events-none disabled:opacity-50 disabled:shadow-none"
+            data-ripple-light="true" style="position: relative; overflow: hidden;">
+            Enviar Formulario
+            <i class="fa-solid fa-paper-plane text-lg leading-none ml-2" aria-hidden="true"></i></button>
     </div>
 
     @push('js')
