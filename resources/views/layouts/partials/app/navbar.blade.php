@@ -57,10 +57,10 @@
                         </li>
 
                         <li class="menu-item menu-item-has-children">
-                            <a href="{{ route('show-form') }}" data-toggle="sub-menu">Formulario de Denuncias<i
+                            <a href="{{ route('show-form') }}" data-toggle="sub-menu">Denuncias<i
                                     class="plus"></i></a>
                             <ul class="sub-menu">
-                                <li class="menu-item"><a href="{{ route('show-form') }}">Nueva Denuncia</a></li>
+                                <li class="menu-item"><a href="{{ route('show-form') }}">Nueva Denuncia en Educación Regular</a></li>
                                 {{-- <li class="menu-item"><a href="{{ route('show-denuncias') }}">Ver Denuncias</a></li> --}}
                             </ul>
                         </li>

@@ -196,13 +196,13 @@ class FormDenuncia extends Component
     public function updatedIdentidadReservaDenunciante($value)
     {
         $this->identidad_reserva_denunciante = filter_var($value, FILTER_VALIDATE_BOOLEAN);
-        if ($this->identidad_reserva_denunciante) {
-            $this->nombre_denunciante = "";
-            $this->carnet_denunciante = "";
-            $this->domicilio_denunciante = "";
-            $this->correo_denunciante = "";
-            $this->telefono_denunciante = "";
-        }
+        // if ($this->identidad_reserva_denunciante) {
+        //     $this->nombre_denunciante = "";
+        //     $this->carnet_denunciante = "";
+        //     $this->domicilio_denunciante = "";
+        //     $this->correo_denunciante = "";
+        //     $this->telefono_denunciante = "";
+        // }
     }
     public function updatedSeguimientoEmailDenunciante($value)
     {
@@ -266,32 +266,48 @@ class FormDenuncia extends Component
     public function saveDenuncia()
     {
 
-        if ($this->identidad_reserva_denunciante) {
-            $this->validate($this->rules_identidad_reserva, $this->messages_identidad_reserva);
-        } else {
-            $this->validate();
-        }
+        $this->validate($this->rules_identidad_reserva, $this->messages_identidad_reserva);
+
+
+        // if ($this->identidad_reserva_denunciante) {
+        //     $this->validate($this->rules_identidad_reserva, $this->messages_identidad_reserva);
+        // } else {
+        //     $this->validate();
+        // }
 
 
         try {
             DB::beginTransaction();
 
-            if ($this->identidad_reserva_denunciante == false) {
+            // if ($this->identidad_reserva_denunciante == false) {
 
-                $denunciante = Denunciante::create(
-                    [
-                        'nombre' =>   strtoupper($this->nombre_denunciante),
-                        'carnet' => $this->carnet_denunciante,
-                        'direccion' => $this->domicilio_denunciante,
-                        'mantener_identidad_reserva' => $this->identidad_reserva_denunciante,
-                        'correo_electronico' => $this->correo_denunciante,
-                        'telefono' => $this->telefono_denunciante,
-                        'seguimiento' => $this->seguimiento_email_denunciante,
-                    ]
-                );
-            } else {
-                $denunciante = null;
-            }
+            //     $denunciante = Denunciante::create(
+            //         [
+            //             'nombre' =>   strtoupper($this->nombre_denunciante),
+            //             'carnet' => $this->carnet_denunciante,
+            //             'direccion' => $this->domicilio_denunciante,
+            //             'mantener_identidad_reserva' => $this->identidad_reserva_denunciante,
+            //             'correo_electronico' => $this->correo_denunciante,
+            //             'telefono' => $this->telefono_denunciante,
+            //             'seguimiento' => $this->seguimiento_email_denunciante,
+            //         ]
+            //     );
+            // } else {
+            //     $denunciante = null;
+            // }
+
+            
+            $denunciante = Denunciante::create(
+                [
+                    'nombre' =>   strtoupper($this->nombre_denunciante),
+                    'carnet' => $this->carnet_denunciante,
+                    'direccion' => $this->domicilio_denunciante,
+                    'mantener_identidad_reserva' => $this->identidad_reserva_denunciante,
+                    'correo_electronico' => $this->correo_denunciante,
+                    'telefono' => $this->telefono_denunciante,
+                    'seguimiento' => $this->seguimiento_email_denunciante,
+                ]
+            );
             $denuncia = Denuncia::create(
                 [
                     'direccion_general' => $this->direccion_general,
@@ -318,7 +334,7 @@ class FormDenuncia extends Component
                     'denuncia_id' => $denuncia->id,
                     'denunciante_id' => $denunciante?->id,
                     'relacion_hecho_denuncia_id' => $relacion->id,
-                    'es_valido' => 4,
+                    // 'es_valido' => 4,
                 ]
             );
 

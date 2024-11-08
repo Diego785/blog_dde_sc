@@ -138,7 +138,7 @@
 
         <div class="content">
 
-            @if ($formulario->denunciante != null)
+            @if ($formulario->denunciante->mantener_identidad_reserva === 0)
                 <div class="field-group">
                     <h1>DENUNCIANTE</h1>
                     <label>Nombre:</label>
@@ -162,16 +162,12 @@
 
                 <div class="field-group">
                     <label>Identidad en reserva:</label>
-                    @if ($formulario->denunciante->mantener_identidad_reserva === '1')
-                        <p>Sí</p>
-                    @else
-                        <p>No</p>
-                    @endif
+                    <p>No</p>
                 </div>
 
                 <div class="field-group">
                     <label>Seguimiento:</label>
-                    @if ($formulario->denunciante->seguimiento === '1')
+                    @if ($formulario->denunciante->seguimiento === 1)
                         <p>Sí</p>
                     @else
                         <p>No</p>

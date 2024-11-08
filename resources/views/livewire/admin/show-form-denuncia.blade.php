@@ -168,76 +168,75 @@
         <!-- component -->
         <!-- This is an example component -->
 
-        @if ($denunciante != null)
-            <x-dialog-modal wire:model="show_modal_validate_form">
-                <x-slot name="title">
-                    Nuevos Comentarios a {{ $denunciante['correo_electronico'] }}
-                </x-slot>
-                <x-slot name="content">
-                    <x-validation-errors class="mb-4" />
-                    <div class="grid grid-cols-1 gap-6 mb-4">
-                        <div>
-                            <x-label class="mb-1">
-                                Título
-                            </x-label>
-                            <x-input wire:model="title" class="w-full text-black" placeholder="Falta de Información" />
+        <x-dialog-modal wire:model="show_modal_validate_form">
+            <x-slot name="title">
+                Nuevos Comentarios a {{ $denunciante['correo_electronico'] }}
+            </x-slot>
+            <x-slot name="content">
+                <x-validation-errors class="mb-4" />
+                <div class="grid grid-cols-1 gap-6 mb-4">
+                    <div>
+                        <x-label class="mb-1">
+                            Título
+                        </x-label>
+                        <x-input wire:model="title" class="w-full text-black" placeholder="Falta de Información" />
 
-                        </div>
-                        <div>
-                            <x-label class="">
-                                Descripción
-                            </x-label>
-                            <textarea type="text" wire:model="description" class="w-full text-black rounded-md border border-[#e0e0e0] bg-white py-3 px-6 outline-none focus:border-[#6A64F1] focus:shadow-md" rows="3"
-                                placeholder="Se le solicita al interesado..."></textarea>
-                        </div>
                     </div>
-                </x-slot>
-                <x-slot name="footer">
-                    <x-danger-button class="btn btn-blue mx-2"
-                        wire:click.prevent="$set('show_modal_validate_form', false)">
-                        Cerrar
-                    </x-danger-button>
-                    <x-button class="btn btn-blue mx-2" onclick="validForm({{ $is_valid_form }})">
-                        Enviar
-                    </x-button>
-                </x-slot>
-            </x-dialog-modal>
-
-            <x-dialog-modal wire:model="show_modal_seguimiento_denuncia">
-                <x-slot name="title">
-                    Nuevos Comentarios a {{ $denunciante['correo_electronico'] }}
-                </x-slot>
-                <x-slot name="content">
-                    <x-validation-errors class="mb-4" />
-                    <div class="grid grid-cols-1 gap-6 mb-4">
-                        <div>
-                            <x-label class="mb-1">
-                                Título
-                            </x-label>
-                            <x-input wire:model="title" class="w-full text-black" placeholder="Falta de Información" />
-
-                        </div>
-                        <div>
-                            <x-label class="">
-                                Descripción
-                            </x-label>
-                            <textarea type="text" wire:model="description" class="w-full text-black rounded-md border border-[#e0e0e0] bg-white py-3 px-6 outline-none focus:border-[#6A64F1] focus:shadow-md" rows="3"
-                                placeholder="Se le solicita al interesado..."></textarea>
-                        </div>
+                    <div>
+                        <x-label class="">
+                            Descripción
+                        </x-label>
+                        <textarea type="text" wire:model="description"
+                            class="w-full text-black rounded-md border border-[#e0e0e0] bg-white py-3 px-6 outline-none focus:border-[#6A64F1] focus:shadow-md"
+                            rows="3" placeholder="Se le solicita al interesado..."></textarea>
                     </div>
-                </x-slot>
-                <x-slot name="footer">
-                    <x-danger-button class="btn btn-blue mx-2"
-                        wire:click.prevent="$set('show_modal_seguimiento_denuncia', false)">
-                        Cerrar
-                    </x-danger-button>
-                    <x-button class="btn btn-blue mx-2" onclick="sendComment()">
-                        Enviar
-                    </x-button>
+                </div>
+            </x-slot>
+            <x-slot name="footer">
+                <x-danger-button class="btn btn-blue mx-2" wire:click.prevent="$set('show_modal_validate_form', false)">
+                    Cerrar
+                </x-danger-button>
+                <x-button class="btn btn-blue mx-2" onclick="validForm({{ $is_valid_form }})">
+                    Enviar
+                </x-button>
+            </x-slot>
+        </x-dialog-modal>
 
-                </x-slot>
-            </x-dialog-modal>
-        @endif
+        <x-dialog-modal wire:model="show_modal_seguimiento_denuncia">
+            <x-slot name="title">
+                Nuevos Comentarios a {{ $denunciante['correo_electronico'] }}
+            </x-slot>
+            <x-slot name="content">
+                <x-validation-errors class="mb-4" />
+                <div class="grid grid-cols-1 gap-6 mb-4">
+                    <div>
+                        <x-label class="mb-1">
+                            Título
+                        </x-label>
+                        <x-input wire:model="title" class="w-full text-black" placeholder="Falta de Información" />
+
+                    </div>
+                    <div>
+                        <x-label class="">
+                            Descripción
+                        </x-label>
+                        <textarea type="text" wire:model="description"
+                            class="w-full text-black rounded-md border border-[#e0e0e0] bg-white py-3 px-6 outline-none focus:border-[#6A64F1] focus:shadow-md"
+                            rows="3" placeholder="Se le solicita al interesado..."></textarea>
+                    </div>
+                </div>
+            </x-slot>
+            <x-slot name="footer">
+                <x-danger-button class="btn btn-blue mx-2"
+                    wire:click.prevent="$set('show_modal_seguimiento_denuncia', false)">
+                    Cerrar
+                </x-danger-button>
+                <x-button class="btn btn-blue mx-2" onclick="sendComment()">
+                    Enviar
+                </x-button>
+
+            </x-slot>
+        </x-dialog-modal>
 
 
 
@@ -266,14 +265,12 @@
                     Descargar PDF
                     <i class="fa-solid fa-file-pdf text-lg leading-none ml-2" aria-hidden="true"></i>
                 </a>
-                @if ($denunciante != null)
-                    <button wire:click="openModalSeguimientoDenuncia()" style="background-color: orange;"
-                        class="mx-2 my-2 w-full self-center rounded-lg p-3 font-sans text-xs font-bold uppercase text-white shadow-md shadow-orange-500/20 transition-all hover:shadow-lg hover:shadow-orange-500/40 focus:opacity-[0.85] focus:shadow-none active:opacity-[0.85] active:shadow-none disabled:pointer-events-none disabled:opacity-50 disabled:shadow-none"
-                        data-ripple-light="true" style="position: relative; overflow: hidden;">
-                        Enviar Comentario
-                        <i class="fa-solid fa-paper-plane text-lg leading-none ml-2" aria-hidden="true"></i>
-                    </button>
-                @endif
+                <button wire:click="openModalSeguimientoDenuncia()" style="background-color: orange;"
+                    class="mx-2 my-2 w-full self-center rounded-lg p-3 font-sans text-xs font-bold uppercase text-white shadow-md shadow-orange-500/20 transition-all hover:shadow-lg hover:shadow-orange-500/40 focus:opacity-[0.85] focus:shadow-none active:opacity-[0.85] active:shadow-none disabled:pointer-events-none disabled:opacity-50 disabled:shadow-none"
+                    data-ripple-light="true" style="position: relative; overflow: hidden;">
+                    Enviar Comentario
+                    <i class="fa-solid fa-paper-plane text-lg leading-none ml-2" aria-hidden="true"></i>
+                </button>
             </div>
 
 
@@ -284,7 +281,7 @@
                     <div class="page slide-page">
                         <div class="title">Datos del Denunciante:</div>
 
-                        @if ($denunciante == null || $denunciante['mantener_identidad_reserva'] === '1')
+                        {{-- @if ($denunciante == null || $denunciante['mantener_identidad_reserva'] === 1)
 
                             <body>
                                 <div class="flex flex-col justify-center items-center m-10">
@@ -297,7 +294,7 @@
                                     </div>
                                 </div>
                             </body>
-                        @else
+                        @else --}}
                             <div class="field">
                                 <div class="label">Apellidos y Nombres:</div>
                                 <input disabled wire:model="denunciante.nombre" type="text"
@@ -325,14 +322,14 @@
                                     style="margin-top: 30px; display: flex; justify-content: space-around; width: 100%;">
                                     <label class="custom-radio">
                                         <input disabled
-                                            {{ $denunciante['mantener_identidad_reserva'] === '1' ? 'checked' : '' }}
+                                            {{ $denunciante['mantener_identidad_reserva'] === 1 ? 'checked' : '' }}
                                             type="radio" name="opcionIdentidad" value="true">
                                         <span class="radiomark"></span>
                                         <h5 class="label-text">Sí</h5>
                                     </label>
                                     <label class="custom-radio">
                                         <input disabled
-                                            {{ $denunciante['mantener_identidad_reserva'] === '0' ? 'checked' : '' }}
+                                            {{ $denunciante['mantener_identidad_reserva'] === 0 ? 'checked' : '' }}
                                             type="radio" name="opcionIdentidad" value="false">
                                         <span class="radiomark"></span>
                                         <h5 class="label-text">No</h5>
@@ -372,13 +369,13 @@
                                 <div
                                     style="margin-top: 30px; display: flex; justify-content: space-around; width: 100%;">
                                     <label class="custom-radio">
-                                        <input disabled {{ $denunciante['seguimiento'] === '1' ? 'checked' : '' }}
+                                        <input disabled {{ $denunciante['seguimiento'] === 1 ? 'checked' : '' }}
                                             type="radio" name="opcionSeguimiento" value="true">
                                         <span class="radiomark"></span>
                                         <h5 class="label-text">Sí</h5>
                                     </label>
                                     <label class="custom-radio">
-                                        <input disabled {{ $denunciante['seguimiento'] === '0' ? 'checked' : '' }}
+                                        <input disabled {{ $denunciante['seguimiento'] === 0 ? 'checked' : '' }}
                                             type="radio" name="opcionSeguimiento" value="false">
                                         <span class="radiomark"></span>
                                         <h5 class="label-text">No</h5>
@@ -386,7 +383,7 @@
                                 </div>
 
                             </div>
-                        @endif
+                        {{-- @endif --}}
 
 
 
@@ -467,8 +464,10 @@
                         <div class="field">
                             <!-- <input type="text"> -->
                             <div class="label">Descripción:</div>
-                            <textarea type="text" class="mt-6 text-lg text-black w-full rounded-md border border-[#e0e0e0] bg-white py-3 px-6 outline-none focus:border-[#6A64F1] focus:shadow-md" disabled wire:model="relacion_hecho_denuncia.descripcion_hecho"
-                                rows="3" placeholder="Inserte la descripción de los hechos..."></textarea>
+                            <textarea type="text"
+                                class="mt-6 text-lg text-black w-full rounded-md border border-[#e0e0e0] bg-white py-3 px-6 outline-none focus:border-[#6A64F1] focus:shadow-md"
+                                disabled wire:model="relacion_hecho_denuncia.descripcion_hecho" rows="3"
+                                placeholder="Inserte la descripción de los hechos..."></textarea>
                         </div>
 
 

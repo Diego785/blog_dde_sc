@@ -54,7 +54,7 @@
                 border: 1px solid lightgrey;
                 border-radius: 5px;
                 padding-left: 15px;"
-                        wire:model.live="status" class="dark:text-gray-800">
+                        wire:model.live="status" class="text-gray-800">
                         <option disabled selected value="0">Selecciona un Estado</option>
                         <option value="1">Todos</option>
                         <option value="2">En proceso</option>

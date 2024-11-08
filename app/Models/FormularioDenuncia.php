@@ -14,7 +14,7 @@ class FormularioDenuncia extends Model
         'denuncia_id',
         'denunciante_id',
         'relacion_hecho_denuncia_id',
-        'es_valido',
+        // 'es_valido',
     ];
 
     public function unidad(){

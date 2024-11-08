@@ -69,15 +69,15 @@ class FormularioDenunciaSeeder extends Seeder
 
 
         //DENUNCIA #2
-        // $denunciante2 = Denunciante::create([
-        //     'nombre' => 'LUIS PEREZ VELARDE',
-        //     'carnet' => '3902036',
-        //     'direccion' => 'Barrio Wapilo',
-        //     'mantener_identidad_reserva' => 1,
-        //     'correo_electronico' => 'luisperez123@gmail.com',
-        //     'telefono' => '78890155',
-        //     'seguimiento' => 0,
-        // ]);
+        $denunciante2 = Denunciante::create([
+            'nombre' => 'LUIS PEREZ VELARDE',
+            'carnet' => '3902036',
+            'direccion' => 'Barrio Wapilo',
+            'mantener_identidad_reserva' => 1,
+            'correo_electronico' => 'luisperez123@gmail.com',
+            'telefono' => '78890155',
+            'seguimiento' => 0,
+        ]);
 
         $denuncia2 = Denuncia::create([
             'direccion_general' => 'Av. Moscú',
@@ -206,15 +206,15 @@ class FormularioDenunciaSeeder extends Seeder
 
 
         //DENUNCIA #5
-        // $denunciante5 = Denunciante::create([
-        //     'nombre' => 'JUAN PEREZ GARCIA',
-        //     'carnet' => '8743230',
-        //     'direccion' => 'Calle Falsa #123 Zona Norte',
-        //     'mantener_identidad_reserva' => 1,
-        //     'correo_electronico' => 'juanperez@gmail.com',
-        //     'telefono' => '77645455',
-        //     'seguimiento' => 1,
-        // ]);
+        $denunciante5 = Denunciante::create([
+            'nombre' => 'JUAN PEREZ GARCIA',
+            'carnet' => '8743230',
+            'direccion' => 'Calle Falsa #123 Zona Norte',
+            'mantener_identidad_reserva' => 1,
+            'correo_electronico' => 'juanperez@gmail.com',
+            'telefono' => '77645455',
+            'seguimiento' => 1,
+        ]);
 
         $denuncia5 = Denuncia::create([
             'direccion_general' => 'Avenida Siempre Viva #456',
@@ -329,15 +329,15 @@ class FormularioDenunciaSeeder extends Seeder
         ]);
 
         // DENUNCIA #8
-        // $denunciante8 = Denunciante::create([
-        //     'nombre' => 'LAURA MENDEZ CASTRO',
-        //     'carnet' => '8765432',
-        //     'direccion' => 'Calle Los Almendros #321 Zona Centro',
-        //     'mantener_identidad_reserva' => 1,
-        //     'correo_electronico' => 'laura.mendez@gmail.com',
-        //     'telefono' => '72345678',
-        //     'seguimiento' => 1,
-        // ]);
+        $denunciante8 = Denunciante::create([
+            'nombre' => 'LAURA MENDEZ CASTRO',
+            'carnet' => '8765432',
+            'direccion' => 'Calle Los Almendros #321 Zona Centro',
+            'mantener_identidad_reserva' => 1,
+            'correo_electronico' => 'laura.mendez@gmail.com',
+            'telefono' => '72345678',
+            'seguimiento' => 1,
+        ]);
 
         $denuncia8 = Denuncia::create([
             'direccion_general' => 'Avenida Los Almendros',
@@ -464,15 +464,15 @@ class FormularioDenunciaSeeder extends Seeder
 
 
         // DENUNCIA #11
-        // $denunciante11 = Denunciante::create([
-        //     'nombre' => 'CARLOS SANCHEZ TORRES',
-        //     'carnet' => '4567890',
-        //     'direccion' => 'Calle Bolívar #123 Zona Oeste',
-        //     'mantener_identidad_reserva' => 1,
-        //     'correo_electronico' => 'carlos.sanchez@gmail.com',
-        //     'telefono' => '71123456',
-        //     'seguimiento' => 1,
-        // ]);
+        $denunciante11 = Denunciante::create([
+            'nombre' => 'CARLOS SANCHEZ TORRES',
+            'carnet' => '4567890',
+            'direccion' => 'Calle Bolívar #123 Zona Oeste',
+            'mantener_identidad_reserva' => 1,
+            'correo_electronico' => 'carlos.sanchez@gmail.com',
+            'telefono' => '71123456',
+            'seguimiento' => 1,
+        ]);
 
         $denuncia11 = Denuncia::create([
             'direccion_general' => 'Avenida Libertad',
