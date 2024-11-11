@@ -417,7 +417,7 @@ opacity:0.5;
 	}
 	.header .menu > .menu-item-has-children > a{
 		display: flex;
-		justify-content: space-between;
+		justify-content: center;
 		align-items: center;
 	}
 	.header .menu > .menu-item > a{

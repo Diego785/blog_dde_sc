@@ -81,9 +81,21 @@
     @stack('js')
 
 
-    @if (session('swal'))
+    {{-- @if (session('swal'))
         <script>
             Swal.fire(@json(session('swal')));
+        </script>
+    @endif --}}
+
+    @if (session('swal'))
+        <script>
+            document.addEventListener('DOMContentLoaded', function() {
+                Swal.fire(@json(session('swal'))).then(() => {
+                    @php
+                        session()->forget('swal'); // Clear the session
+                    @endphp
+                });
+            });
         </script>
     @endif
 

@@ -7,6 +7,7 @@ use App\Models\Denunciante;
 use App\Models\FormularioDenuncia;
 use App\Models\PersonaDenunciada;
 use App\Models\RelacionHechoDenuncia;
+use Carbon\Carbon;
 use Illuminate\Support\Facades\DB;
 use Livewire\Component;
 
@@ -46,8 +47,8 @@ class FormDenuncia extends Component
     public $hora;
     public $lugar;
     public $descripcion;
-    public $fecha_denuncia;
-    public $hora_denuncia;
+    // public $fecha_denuncia;
+    // public $hora_denuncia;
 
     //LISTENERS
     protected $listeners = ['openDenunciadoModal' => 'openModalAddDenunciado'];
@@ -71,24 +72,8 @@ class FormDenuncia extends Component
         'hora' => 'required|date_format:H:i',
         'lugar' => 'required|string',
         'descripcion' => 'required|string|max:255',
-        'fecha_denuncia' => 'required|date',
-        'hora_denuncia' => 'required|date_format:H:i'
-
-    ];
-    protected $rules_identidad_reserva = [
-        'direccion_general' => 'required|string',
-        'unidad_educativa' => 'required|string',
-        'distrito' => 'required|string',
-        'zona' => 'required|string',
-        'barrio' => 'required|string',
-        'referencia' => 'required|string',
-
-        'fecha' => 'required|date',
-        'hora' => 'required|date_format:H:i',
-        'lugar' => 'required|string',
-        'descripcion' => 'required|string|max:255',
-        'fecha_denuncia' => 'required|date',
-        'hora_denuncia' => 'required|date_format:H:i'
+        // 'fecha_denuncia' => 'required|date',
+        // 'hora_denuncia' => 'required|date_format:H:i'
     ];
 
     protected $rules_denunciado = [
@@ -134,49 +119,10 @@ class FormDenuncia extends Component
         'descripcion.required' => 'La descripción del hecho es requerida.',
         'descripcion.string' => 'La descripción del hecho debe contener solo letras o números.',
         'descripcion.max' => 'La descripción debe tener un máximo de 255 caracteres.',
-        'fecha_denuncia.required' => 'La fecha de la denuncia es requerida.',
-        'fecha_denuncia.date' => 'La fecha de la denuncia debe tener un formato válido.',
-        'hora_denuncia.required' => 'La hora de la denuncia es requerida.',
-        'hora_denuncia.date_format' => 'La hora de la denuncia debe tener un formato válido.',
-
-    ];
-
-    protected $messages_identidad_reserva = [
-        'carnet_denunciante.required' => 'El carnet del denunciante es requerido.',
-        'carnet_denunciante.min' => 'El carnet del denunciante debe tener mínimo 6 caracteres.',
-        'carnet_denunciante.max' => 'El carnet del denunciante debe tener máximo 50 caracteres.',
-
-        'domicilio_denunciante.required' => 'El domicilio del denunciante es requerido.',
-        'domicilio_denunciante.string' => 'El domicilio del denunciante solo puede contener letras.',
-        'domicilio_denunciante.min' => 'El domicilio del denunciante debe tener mínimo 5 caracteres.',
-        'domicilio_denunciante.max' => 'El domicilio del denunciante debe tener máximo 255 caracteres.',
-
-        'correo_denunciante.required' => 'El correo es requerido.',
-        'correo_denunciante.email' => 'El correo debe ser un correo electrónico válido.',
-
-        'telefono_denunciante.required' => 'El teléfono es requerido.',
-        'telefono_denunciante.string' => 'El teléfono debe contener solo caracteres numéricos.',
-
-
-        'direccion_general.required' => 'El nombre de la Dirección General es requerida.',
-        'unidad_educativa.required' => 'El nombre de la Unidad Educativa es requerida.',
-        'distrito.required' => 'El nombre del Distrito es requerido.',
-        'zona.required' => 'El nombre de la Zona es requerido.',
-        'barrio.required' => 'El nombre del barrio es requerido.',
-        'referencia.required' => 'La referencia es requerida.',
-
-        'fecha.required' => 'La fecha del hecho es requerida.',
-        'fecha.date' => 'La fecha del hecho debe tener un formato válido.',
-        'hora.required' => 'La hora del hecho es requerida.',
-        'hora.date_format' => 'La hora del hecho debe tener un formato válido.',
-        'lugar.required' => 'El nombre del lugar es requerido.',
-        'descripcion.required' => 'La descripción del hecho es requerida.',
-        'descripcion.string' => 'La descripción del hecho debe contener solo letras o números.',
-        'descripcion.max' => 'La descripción debe tener un máximo de 255 caracteres.',
-        'fecha_denuncia.required' => 'La fecha de la denuncia es requerida.',
-        'fecha_denuncia.date' => 'La fecha de la denuncia debe tener un formato válido.',
-        'hora_denuncia.required' => 'La hora de la denuncia es requerida.',
-        'hora_denuncia.date_format' => 'La hora de la denuncia debe tener un formato válido.',
+        // 'fecha_denuncia.required' => 'La fecha de la denuncia es requerida.',
+        // 'fecha_denuncia.date' => 'La fecha de la denuncia debe tener un formato válido.',
+        // 'hora_denuncia.required' => 'La hora de la denuncia es requerida.',
+        // 'hora_denuncia.date_format' => 'La hora de la denuncia debe tener un formato válido.',
 
     ];
 
@@ -188,6 +134,63 @@ class FormDenuncia extends Component
         'cargo.string' => 'El cargo del denunciado solo debe contener caracteres válidos.',
         'cargo.max' => 'El cargo del denunciado es muy largo.',
     ];
+
+    // protected $rules_identidad_reserva = [
+    //     'direccion_general' => 'required|string',
+    //     'unidad_educativa' => 'required|string',
+    //     'distrito' => 'required|string',
+    //     'zona' => 'required|string',
+    //     'barrio' => 'required|string',
+    //     'referencia' => 'required|string',
+
+    //     'fecha' => 'required|date',
+    //     'hora' => 'required|date_format:H:i',
+    //     'lugar' => 'required|string',
+    //     'descripcion' => 'required|string|max:255',
+    //     'fecha_denuncia' => 'required|date',
+    //     'hora_denuncia' => 'required|date_format:H:i'
+    // ];
+
+    // protected $messages_identidad_reserva = [
+    //     'carnet_denunciante.required' => 'El carnet del denunciante es requerido.',
+    //     'carnet_denunciante.min' => 'El carnet del denunciante debe tener mínimo 6 caracteres.',
+    //     'carnet_denunciante.max' => 'El carnet del denunciante debe tener máximo 50 caracteres.',
+
+    //     'domicilio_denunciante.required' => 'El domicilio del denunciante es requerido.',
+    //     'domicilio_denunciante.string' => 'El domicilio del denunciante solo puede contener letras.',
+    //     'domicilio_denunciante.min' => 'El domicilio del denunciante debe tener mínimo 5 caracteres.',
+    //     'domicilio_denunciante.max' => 'El domicilio del denunciante debe tener máximo 255 caracteres.',
+
+    //     'correo_denunciante.required' => 'El correo es requerido.',
+    //     'correo_denunciante.email' => 'El correo debe ser un correo electrónico válido.',
+
+    //     'telefono_denunciante.required' => 'El teléfono es requerido.',
+    //     'telefono_denunciante.string' => 'El teléfono debe contener solo caracteres numéricos.',
+
+
+    //     'direccion_general.required' => 'El nombre de la Dirección General es requerida.',
+    //     'unidad_educativa.required' => 'El nombre de la Unidad Educativa es requerida.',
+    //     'distrito.required' => 'El nombre del Distrito es requerido.',
+    //     'zona.required' => 'El nombre de la Zona es requerido.',
+    //     'barrio.required' => 'El nombre del barrio es requerido.',
+    //     'referencia.required' => 'La referencia es requerida.',
+
+    //     'fecha.required' => 'La fecha del hecho es requerida.',
+    //     'fecha.date' => 'La fecha del hecho debe tener un formato válido.',
+    //     'hora.required' => 'La hora del hecho es requerida.',
+    //     'hora.date_format' => 'La hora del hecho debe tener un formato válido.',
+    //     'lugar.required' => 'El nombre del lugar es requerido.',
+    //     'descripcion.required' => 'La descripción del hecho es requerida.',
+    //     'descripcion.string' => 'La descripción del hecho debe contener solo letras o números.',
+    //     'descripcion.max' => 'La descripción debe tener un máximo de 255 caracteres.',
+    //     // 'fecha_denuncia.required' => 'La fecha de la denuncia es requerida.',
+    //     // 'fecha_denuncia.date' => 'La fecha de la denuncia debe tener un formato válido.',
+    //     // 'hora_denuncia.required' => 'La hora de la denuncia es requerida.',
+    //     // 'hora_denuncia.date_format' => 'La hora de la denuncia debe tener un formato válido.',
+
+    // ];
+
+
 
     public function mount() {}
 
@@ -231,7 +234,8 @@ class FormDenuncia extends Component
 
     public function addDenunciado()
     {
-        // $this->validate($this->rules_denunciado, $this->messages_denunciado);
+        $this->validate($this->rules_denunciado, $this->messages_denunciado);
+        // $this->validate();
 
         if ($this->editing_index !== null) {
             $this->personas_denunciadas[$this->editing_index] = [
@@ -266,7 +270,7 @@ class FormDenuncia extends Component
     public function saveDenuncia()
     {
 
-        $this->validate($this->rules_identidad_reserva, $this->messages_identidad_reserva);
+        $this->validate();
 
 
         // if ($this->identidad_reserva_denunciante) {
@@ -296,7 +300,7 @@ class FormDenuncia extends Component
             //     $denunciante = null;
             // }
 
-            
+
             $denunciante = Denunciante::create(
                 [
                     'nombre' =>   strtoupper($this->nombre_denunciante),
@@ -320,12 +324,14 @@ class FormDenuncia extends Component
             );
             $relacion = RelacionHechoDenuncia::create(
                 [
-                    'fecha_hecho' => $this->fecha,
-                    'hora_hecho' => $this->hora,
+                    'fecha_hecho' => Carbon::parse($this->fecha, 'America/La_Paz')->toDateString(),
+                    'hora_hecho' => Carbon::parse($this->hora, 'America/La_Paz')->toTimeString(),
+                
                     'lugar_hecho' => $this->lugar,
                     'descripcion_hecho' => $this->descripcion,
-                    'fecha_denuncia' => $this->fecha_denuncia,
-                    'hora_denuncia' => $this->hora_denuncia,
+                
+                    'fecha_denuncia' => Carbon::now('America/La_Paz')->toDateString(),  // Current date in GMT-4
+                    'hora_denuncia' => Carbon::now('America/La_Paz')->toTimeString(),   // Current time in GMT-4
                 ]
             );
             $formulario = FormularioDenuncia::create(
@@ -370,8 +376,6 @@ class FormDenuncia extends Component
                 'hora',
                 'lugar',
                 'descripcion',
-                'fecha_denuncia',
-                'hora_denuncia',
             );
 
             // $formulario = FormularioDenuncia::find(1); //agregar un formulario para las pruebas

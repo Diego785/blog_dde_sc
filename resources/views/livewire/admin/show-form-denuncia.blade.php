@@ -554,18 +554,18 @@
 
 
 
-                        @role('Superadministrador')
+                        {{-- @role('Superadministrador')
                             @if ($formulario_denuncia['es_valido'] == '4')
                                 <div class="flex flex-col md:flex-row justify-center my-5">
 
                                     @if ($denunciante != null && $denunciante['seguimiento'] === '1')
-                                        <button wire:click="openModalValidatingForm(2)" {{-- onclick="validForm(2)" --}}
+                                        <button wire:click="openModalValidatingForm(2)"
                                             class="middle none center w-full mr-4 my-2 flex items-center justify-center rounded-lg bg-green-500 p-3 font-sans text-xs font-bold uppercase text-white shadow-md shadow-green-500/20 transition-all hover:shadow-lg hover:shadow-green-500/40 focus:opacity-[0.85] focus:shadow-none active:opacity-[0.85] active:shadow-none disabled:pointer-events-none disabled:opacity-50 disabled:shadow-none"
                                             data-ripple-light="true">
                                             Validar Formulario
                                             <i class="fas fa-check text-lg leading-none ml-2"></i>
                                         </button>
-                                        <button wire:click="openModalValidatingForm(3)" {{-- onclick="validForm(3)" --}}
+                                        <button wire:click="openModalValidatingForm(3)" 
                                             class="middle none center w-full mr-4 my-2 flex items-center justify-center rounded-lg bg-gradient-to-tr from-red-600 to-red-400 p-3 font-sans text-xs font-bold uppercase text-white shadow-md shadow-pink-500/20 transition-all hover:shadow-lg hover:shadow-red-500/40 active:opacity-[0.85] disabled:pointer-events-none disabled:opacity-50 disabled:shadow-none"
                                             data-ripple-light="true">
                                             Anular Formulario
@@ -642,7 +642,7 @@
                                     </body>
                                 @endif
                             @endif
-                        @endrole
+                        @endrole --}}
 
 
                     </div>

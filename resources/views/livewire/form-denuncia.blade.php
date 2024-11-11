@@ -594,7 +594,7 @@
 
                             </div>
                         </div>
-                        <div class="-mx-3 flex flex-wrap">
+                        {{-- <div class="-mx-3 flex flex-wrap">
                             <div class="w-full px-3 sm:w-1/2">
                                 <div class="mb-5">
                                     <label class="subtitle mb-3 block">
@@ -623,7 +623,7 @@
                                     @enderror
                                 </div>
                             </div>
-                        </div>
+                        </div> --}}
 
 
                     </div>

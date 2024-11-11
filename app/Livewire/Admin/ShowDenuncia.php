@@ -89,27 +89,27 @@ class ShowDenuncia extends Component
                 // $query->where('id', 'like', '%' . $this->search . '%');
                 // Search in related models
                 $query->orWhereHas('denunciante', function ($query) {
-                    if ($this->status === '2') {
-                        $query->where('es_valido', 2); // ACEPTADO
-                    } elseif ($this->status === '3') {
-                        $query->where('es_valido', 3); // RECHAZADO
-                    } elseif ($this->status === '4') {
-                        $query->where('es_valido', 4); // EN ESPERA
-                    } elseif ($this->status === '5') {
-                        $query->where('es_valido', 5); // FINALIZADO
-                    }
+                    // if ($this->status === '2') {
+                    //     $query->where('es_valido', 2); // ACEPTADO
+                    // } elseif ($this->status === '3') {
+                    //     $query->where('es_valido', 3); // RECHAZADO
+                    // } elseif ($this->status === '4') {
+                    //     $query->where('es_valido', 4); // EN ESPERA
+                    // } elseif ($this->status === '5') {
+                    //     $query->where('es_valido', 5); // FINALIZADO
+                    // }
                     $query->where('id', 'like', '%' . $this->search . '%');
                 })
                     ->orWhereHas('denuncia', function ($query) {
-                        if ($this->status === '2') {
-                            $query->where('es_valido', 2); // ACEPTADO
-                        } elseif ($this->status === '3') {
-                            $query->where('es_valido', 3); // RECHAZADO
-                        } elseif ($this->status === '4') {
-                            $query->where('es_valido', 4); // EN ESPERA
-                        } elseif ($this->status === '5') {
-                            $query->where('es_valido', 5); // FINALIZADO
-                        }
+                        // if ($this->status === '2') {
+                        //     $query->where('es_valido', 2); // ACEPTADO
+                        // } elseif ($this->status === '3') {
+                        //     $query->where('es_valido', 3); // RECHAZADO
+                        // } elseif ($this->status === '4') {
+                        //     $query->where('es_valido', 4); // EN ESPERA
+                        // } elseif ($this->status === '5') {
+                        //     $query->where('es_valido', 5); // FINALIZADO
+                        // }
                         $query->where('unidad_educativa', 'like', '%' . $this->search . '%');
                     });
             })

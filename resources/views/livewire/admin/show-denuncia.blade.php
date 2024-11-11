@@ -46,7 +46,7 @@
 
 
                 </div>
-                <div class="relative w-52">
+                {{-- <div class="relative w-52">
 
 
                     <select
@@ -64,7 +64,7 @@
                     </select>
 
 
-                </div>
+                </div> --}}
             </div>
 
 
@@ -109,9 +109,9 @@
                                             <th scope="col" class="text-sm font-medium text-gray-900 px-6 py-4">
                                                 Denunciados
                                             </th>
-                                            <th scope="col" class="text-sm font-medium text-gray-900 px-6 py-4">
+                                            {{-- <th scope="col" class="text-sm font-medium text-gray-900 px-6 py-4">
                                                 Estado
-                                            </th>
+                                            </th> --}}
                                             <th scope="col" class="text-sm font-medium text-gray-900 px-6 py-4">
                                                 Acciones
                                             </th>
@@ -152,7 +152,7 @@
                                                     class="text-sm text-gray-900 font-light px-6 py-4 whitespace-nowrap">
                                                     {{ count($form_denuncia->denuncia->personasDenunciadas) }}
                                                 </td>
-                                                <td
+                                                {{-- <td
                                                     class="text-sm text-gray-900 font-light px-6 py-4 whitespace-nowrap">
                                                     <span
                                                         class="rounded py-1 px-3 text-xs text-white font-bold 
@@ -177,7 +177,7 @@
                                                             @endif
                                                         @endif
                                                     </span>
-                                                </td>
+                                                </td> --}}
                                                 <td>
                                                     <div class='flex items-center justify-center'>
                                                         <div class="m-2">
