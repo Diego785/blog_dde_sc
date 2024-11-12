@@ -73,12 +73,13 @@
     </div>
     @include('layouts.partials.app.footer')
 
-    @stack('modals')
+    {{-- @stack('modals')
 
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
-    @livewireScripts
 
-    @stack('js')
+    @stack('js') --}}
+
+    @livewireScripts
 
 
     {{-- @if (session('swal'))
@@ -91,9 +92,8 @@
         <script>
             document.addEventListener('DOMContentLoaded', function() {
                 Swal.fire(@json(session('swal'))).then(() => {
-                    @php
-                        session()->forget('swal'); // Clear the session
-                    @endphp
+                    // Redirect to the same page to clear the session
+                    window.location.href = "{{ url()->current() }}";
                 });
             });
         </script>

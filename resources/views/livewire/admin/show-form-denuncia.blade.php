@@ -183,7 +183,7 @@
 
                     </div>
                     <div>
-                        <x-label class="">
+                        <x-label class="mb-1">
                             Descripción
                         </x-label>
                         <textarea type="text" wire:model="description"
@@ -221,7 +221,7 @@
                             Descripción
                         </x-label>
                         <textarea type="text" wire:model="description"
-                            class="w-full text-black rounded-md border border-[#e0e0e0] bg-white py-3 px-6 outline-none focus:border-[#6A64F1] focus:shadow-md"
+                            class="w-full text-black rounded-md border border-[#e0e0e0] bg-white outline-none focus:border-[#6A64F1] focus:shadow-md"
                             rows="3" placeholder="Se le solicita al interesado..."></textarea>
                     </div>
                 </div>
@@ -295,94 +295,92 @@
                                 </div>
                             </body>
                         @else --}}
+                        <div class="field">
+                            <div class="label">Apellidos y Nombres:</div>
+                            <input disabled wire:model="denunciante.nombre" type="text"
+                                class="input-nombre-denunciante">
+                        </div>
+
+
+                        <div class="field" style="display: flex; align-items: center;">
                             <div class="field">
-                                <div class="label">Apellidos y Nombres:</div>
-                                <input disabled wire:model="denunciante.nombre" type="text"
-                                    class="input-nombre-denunciante">
+                                <div class="label">CI:</div>
+                                <input disabled wire:model="denunciante.carnet" type="text">
                             </div>
+                        </div>
 
 
-                            <div class="field" style="display: flex; align-items: center;">
-                                <div class="field">
-                                    <div class="label">CI:</div>
-                                    <input disabled wire:model="denunciante.carnet" type="text">
-                                </div>
+                        <div class="field">
+                            <div class="label">Domicilio:</div>
+                            <input disabled wire:model="denunciante.direccion" type="text" />
+                        </div>
+                        <div class="field">
+                            <div class="label">
+                                ¿Desea mantener su identidad en reserva?:</div>
+
+                            <div style="margin-top: 30px; display: flex; justify-content: space-around; width: 100%;">
+                                <label class="custom-radio">
+                                    <input disabled
+                                        {{ $denunciante['mantener_identidad_reserva'] === 1 ? 'checked' : '' }}
+                                        type="radio" name="opcionIdentidad" value="true">
+                                    <span class="radiomark"></span>
+                                    <h5 class="label-text">Sí</h5>
+                                </label>
+                                <label class="custom-radio">
+                                    <input disabled
+                                        {{ $denunciante['mantener_identidad_reserva'] === 0 ? 'checked' : '' }}
+                                        type="radio" name="opcionIdentidad" value="false">
+                                    <span class="radiomark"></span>
+                                    <h5 class="label-text">No</h5>
+                                </label>
                             </div>
+                        </div>
+                        <div style="display: flex; align-items: center;">
 
 
-                            <div class="field">
-                                <div class="label">Domicilio:</div>
-                                <input disabled wire:model="denunciante.direccion" type="text" />
-                            </div>
-                            <div class="field">
-                                <div class="label">
-                                    ¿Desea mantener su identidad en reserva?:</div>
-
-                                <div
-                                    style="margin-top: 30px; display: flex; justify-content: space-around; width: 100%;">
-                                    <label class="custom-radio">
-                                        <input disabled
-                                            {{ $denunciante['mantener_identidad_reserva'] === 1 ? 'checked' : '' }}
-                                            type="radio" name="opcionIdentidad" value="true">
-                                        <span class="radiomark"></span>
-                                        <h5 class="label-text">Sí</h5>
-                                    </label>
-                                    <label class="custom-radio">
-                                        <input disabled
-                                            {{ $denunciante['mantener_identidad_reserva'] === 0 ? 'checked' : '' }}
-                                            type="radio" name="opcionIdentidad" value="false">
-                                        <span class="radiomark"></span>
-                                        <h5 class="label-text">No</h5>
-                                    </label>
-                                </div>
-                            </div>
-                            <div style="display: flex; align-items: center;">
-
-
-                                <div class="field" style="padding-right: 5px;">
-                                    <div class="label">Correo Electrónico:</div>
-                                    <div class="w-full block">
-                                        <input disabled wire:model="denunciante.correo_electronico" type="text">
-
-                                    </div>
+                            <div class="field" style="padding-right: 5px;">
+                                <div class="label">Correo Electrónico:</div>
+                                <div class="w-full block">
+                                    <input disabled wire:model="denunciante.correo_electronico" type="text">
 
                                 </div>
 
-
-                                <div class="field" style="padding-left: 5px;">
-                                    <div class="label">Teléfono:</div>
+                            </div>
 
 
-                                    <div class="w-full block">
-                                        <input disabled wire:model="denunciante.telefono" type="text">
+                            <div class="field" style="padding-left: 5px;">
+                                <div class="label">Teléfono:</div>
 
-                                    </div>
-                                    <!-- <input type="text"> -->
+
+                                <div class="w-full block">
+                                    <input disabled wire:model="denunciante.telefono" type="text">
 
                                 </div>
-                            </div>
-                            <div class="field">
-                                <div class="label"
-                                    style="text-align: start; padding-bottom: 100px; margin-bottom: 100px;">
-                                    Seguimiento por Email/Teléfono:</div>
-
-                                <div
-                                    style="margin-top: 30px; display: flex; justify-content: space-around; width: 100%;">
-                                    <label class="custom-radio">
-                                        <input disabled {{ $denunciante['seguimiento'] === 1 ? 'checked' : '' }}
-                                            type="radio" name="opcionSeguimiento" value="true">
-                                        <span class="radiomark"></span>
-                                        <h5 class="label-text">Sí</h5>
-                                    </label>
-                                    <label class="custom-radio">
-                                        <input disabled {{ $denunciante['seguimiento'] === 0 ? 'checked' : '' }}
-                                            type="radio" name="opcionSeguimiento" value="false">
-                                        <span class="radiomark"></span>
-                                        <h5 class="label-text">No</h5>
-                                    </label>
-                                </div>
+                                <!-- <input type="text"> -->
 
                             </div>
+                        </div>
+                        <div class="field">
+                            <div class="label"
+                                style="text-align: start; padding-bottom: 100px; margin-bottom: 100px;">
+                                Seguimiento por Email/Teléfono:</div>
+
+                            <div style="margin-top: 30px; display: flex; justify-content: space-around; width: 100%;">
+                                <label class="custom-radio">
+                                    <input disabled {{ $denunciante['seguimiento'] === 1 ? 'checked' : '' }}
+                                        type="radio" name="opcionSeguimiento" value="true">
+                                    <span class="radiomark"></span>
+                                    <h5 class="label-text">Sí</h5>
+                                </label>
+                                <label class="custom-radio">
+                                    <input disabled {{ $denunciante['seguimiento'] === 0 ? 'checked' : '' }}
+                                        type="radio" name="opcionSeguimiento" value="false">
+                                    <span class="radiomark"></span>
+                                    <h5 class="label-text">No</h5>
+                                </label>
+                            </div>
+
+                        </div>
                         {{-- @endif --}}
 
 
@@ -437,7 +435,7 @@
                         <div class="title">Relación de los hechos en que se basa la denuncia:</div>
                         <div style="display: flex; align-items: center;">
                             <div class="field" style="padding-right: 5px;">
-                                <div class="label">Fecha:</div>
+                                <div class="label">Fecha del Hecho:</div>
                                 <div class="block w-full">
 
                                     <input disabled wire:model="relacion_hecho_denuncia.fecha_hecho" type="date">
@@ -446,7 +444,7 @@
 
                             </div>
                             <div class="field" style="padding-left: 5px;">
-                                <div class="label">Hora:</div>
+                                <div class="label">Hora del Hecho:</div>
 
                                 <div class="block w-full">
 
@@ -465,7 +463,7 @@
                             <!-- <input type="text"> -->
                             <div class="label">Descripción:</div>
                             <textarea type="text"
-                                class="mt-6 text-lg text-black w-full rounded-md border border-[#e0e0e0] bg-white py-3 px-6 outline-none focus:border-[#6A64F1] focus:shadow-md"
+                                class="mt-6 text-lg text-black w-full rounded-md border border-[#e0e0e0] bg-white py-3 outline-none focus:border-[#6A64F1] focus:shadow-md"
                                 disabled wire:model="relacion_hecho_denuncia.descripcion_hecho" rows="3"
                                 placeholder="Inserte la descripción de los hechos..."></textarea>
                         </div>
@@ -491,47 +489,49 @@
                         </div>
                         <div class="title"> Denunciados:</div>
 
-                        <!-- component -->
-                        <div class="flex flex-col">
-                            <div class="overflow-x-auto sm:mx-0.5 lg:mx-0.5">
-                                <div class="py-2 inline-block min-w-full ">
-                                    <div class="overflow-hidden">
-                                        <table class="min-w-full">
-                                            <thead class="bg-white border-b">
-                                                <tr>
-                                                    {{-- <th scope="col"
+
+                        @if (count($denuncia['personas_denunciadas']) > 0)
+                            <!-- component -->
+                            <div class="flex flex-col">
+                                <div class="overflow-x-auto sm:mx-0.5 lg:mx-0.5">
+                                    <div class="py-2 inline-block min-w-full ">
+                                        <div class="overflow-hidden">
+                                            <table class="min-w-full">
+                                                <thead class="bg-white border-b">
+                                                    <tr>
+                                                        {{-- <th scope="col"
                                         class="text-sm font-medium text-gray-900 px-6 py-4 text-left">
                                         #
                                     </th> --}}
-                                                    <th scope="col"
-                                                        class="text-sm font-medium text-gray-900 px-6 py-4">
-                                                        Nombre
-                                                    </th>
-                                                    <th scope="col"
-                                                        class="text-sm font-medium text-gray-900 px-6 py-4">
-                                                        Cargo
-                                                    </th>
-
-                                                </tr>
-                                            </thead>
-                                            <tbody>
-
-                                                @foreach ($denuncia['personas_denunciadas'] as $persona)
-                                                    <tr
-                                                        class="{{ $loop->even ? 'bg-white' : 'bg-gray-100' }} border-b">
-                                                        {{-- <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900">1</td> --}}
-                                                        <td
-                                                            class="text-sm text-gray-900 font-light px-6 py-4 whitespace-nowrap">
-                                                            {{ $persona['nombre'] }}
-                                                        </td>
-                                                        <td
-                                                            class="text-sm text-gray-900 font-light px-6 py-4 whitespace-nowrap">
-                                                            {{ $persona['cargo'] }}
-                                                        </td>
+                                                        <th scope="col"
+                                                            class="text-sm font-medium text-gray-900 px-6 py-4">
+                                                            Nombre
+                                                        </th>
+                                                        <th scope="col"
+                                                            class="text-sm font-medium text-gray-900 px-6 py-4">
+                                                            Cargo
+                                                        </th>
 
                                                     </tr>
-                                                @endforeach
-                                                {{-- <tr class="bg-white border-b">
+                                                </thead>
+                                                <tbody>
+
+                                                    @foreach ($denuncia['personas_denunciadas'] as $persona)
+                                                        <tr
+                                                            class="{{ $loop->even ? 'bg-white' : 'bg-gray-100' }} border-b">
+                                                            {{-- <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900">1</td> --}}
+                                                            <td
+                                                                class="text-sm text-gray-900 font-light px-6 py-4 whitespace-nowrap">
+                                                                {{ $persona['nombre'] }}
+                                                            </td>
+                                                            <td
+                                                                class="text-sm text-gray-900 font-light px-6 py-4 whitespace-nowrap">
+                                                                {{ $persona['cargo'] }}
+                                                            </td>
+
+                                                        </tr>
+                                                    @endforeach
+                                                    {{-- <tr class="bg-white border-b">
                                     <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900">2</td>
                                     <td class="text-sm text-gray-900 font-light px-6 py-4 whitespace-nowrap">
                                         Jacob
@@ -544,12 +544,20 @@
                                     </td>
                                 </tr> --}}
 
-                                            </tbody>
-                                        </table>
+                                                </tbody>
+                                            </table>
+                                        </div>
                                     </div>
                                 </div>
                             </div>
-                        </div>
+                        @else
+                            <div
+                                class="max-w-lg mx-auto mt-4 p-4 bg-blue-100 border border-blue-400 text-blue-700 rounded-md">
+                                <strong class="font-bold">Información:</strong>
+                                <span class="block sm:inline">No se han registrado personas denunciadas.
+                            </div>
+                        @endif
+
 
 
 
@@ -660,30 +668,30 @@
 
     @push('js')
         <script>
-            function validForm(value) {
-                // event.preventDefault();
-                // if(confirm('Estas seguro que deseas eliminar la familia?')){
-                //     document.getElementById('delete-form').submit();
-                // }
-                Swal.fire({
-                    title: value == 5 ? "¿Está seguro que desea finalizar la denuncia?" : value == 2 ?
-                        "¿Está seguro que desea validar la denuncia?" : "¿Está seguro que desea rechazar la denuncia?",
-                    text: "¡No podrá revertir esto!",
-                    icon: "warning",
-                    showCancelButton: true,
-                    confirmButtonColor: "#3085d6",
-                    cancelButtonColor: "#d33",
-                    confirmButtonText: value == 5 ? "¡Sí, finalizar!" : value == 2 ? "¡Sí, aceptar!" : "¡Sí, rechazar!",
-                    cancelButtonText: "Cancelar",
-                }).then((result) => {
-                    if (result.isConfirmed) {
-                        // document.getElementById('delete-form').submit();
-                        @this.call('confirmValidation', value);
+            // function validForm(value) {
+            //     // event.preventDefault();
+            //     // if(confirm('Estas seguro que deseas eliminar la familia?')){
+            //     //     document.getElementById('delete-form').submit();
+            //     // }
+            //     Swal.fire({
+            //         title: value == 5 ? "¿Está seguro que desea finalizar la denuncia?" : value == 2 ?
+            //             "¿Está seguro que desea validar la denuncia?" : "¿Está seguro que desea rechazar la denuncia?",
+            //         text: "¡No podrá revertir esto!",
+            //         icon: "warning",
+            //         showCancelButton: true,
+            //         confirmButtonColor: "#3085d6",
+            //         cancelButtonColor: "#d33",
+            //         confirmButtonText: value == 5 ? "¡Sí, finalizar!" : value == 2 ? "¡Sí, aceptar!" : "¡Sí, rechazar!",
+            //         cancelButtonText: "Cancelar",
+            //     }).then((result) => {
+            //         if (result.isConfirmed) {
+            //             // document.getElementById('delete-form').submit();
+            //             @this.call('confirmValidation', value);
 
 
-                    }
-                });
-            }
+            //         }
+            //     });
+            // }
 
 
             function sendComment() {

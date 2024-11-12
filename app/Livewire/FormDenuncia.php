@@ -4,17 +4,24 @@ namespace App\Livewire;
 
 use App\Models\Denuncia;
 use App\Models\Denunciante;
+use App\Models\Distrito;
 use App\Models\FormularioDenuncia;
 use App\Models\PersonaDenunciada;
 use App\Models\RelacionHechoDenuncia;
 use Carbon\Carbon;
 use Illuminate\Support\Facades\DB;
 use Livewire\Component;
+use Livewire\WithFileUploads;
 
 class FormDenuncia extends Component
 {
 
+    use WithFileUploads;
+
     public $show_modal_denunciado = false;
+    public $distritos;
+    public $images = []; // Holds uploaded images
+    public $fullscreenImage = null; // Holds the index of the fullscreen image
 
 
     //DENUNCIANTE
@@ -30,7 +37,7 @@ class FormDenuncia extends Component
     //DENUNCIA
     public $direccion_general;
     public $unidad_educativa;
-    public $distrito;
+    public $distrito = "";
     public $zona;
     public $barrio;
     public $referencia;
@@ -192,7 +199,28 @@ class FormDenuncia extends Component
 
 
 
-    public function mount() {}
+    public function mount()
+    {
+        $this->distritos = Distrito::all();
+    }
+
+      // Triggered when files are uploaded
+      public function updatedImages()
+      {
+          // Add the new images to the existing array, making sure to preserve older images
+          $this->images = array_merge($this->images, $this->images);
+      }
+
+    public function saveImages()
+    {
+        foreach ($this->images as $image) {
+            // Store image in 'images' folder
+            $image->store('images');
+        }
+
+        // Optionally clear the images after saving
+        // $this->images = [];
+    }
 
 
 
@@ -326,10 +354,10 @@ class FormDenuncia extends Component
                 [
                     'fecha_hecho' => Carbon::parse($this->fecha, 'America/La_Paz')->toDateString(),
                     'hora_hecho' => Carbon::parse($this->hora, 'America/La_Paz')->toTimeString(),
-                
+
                     'lugar_hecho' => $this->lugar,
                     'descripcion_hecho' => $this->descripcion,
-                
+
                     'fecha_denuncia' => Carbon::now('America/La_Paz')->toDateString(),  // Current date in GMT-4
                     'hora_denuncia' => Carbon::now('America/La_Paz')->toTimeString(),   // Current time in GMT-4
                 ]

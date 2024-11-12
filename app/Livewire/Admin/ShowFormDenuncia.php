@@ -70,47 +70,50 @@ class ShowFormDenuncia extends Component
 
     public function sendEmail()
     {
+
         $details = [
             'id' => $this->formulario_denuncia_model->id,
             'title' => $this->title,
             'body' => $this->description
         ];
+        // dd($this->denunciante['correo_electronico']);
+
 
         Mail::to($this->denunciante['correo_electronico'])->send(new SeguimientoDenunciaEmail($details));
     }
 
-    public function confirmValidation($value)
-    {
+    // public function confirmValidation($value)
+    // {
 
-        $this->formulario_denuncia_model->es_valido = $value;
-        $this->formulario_denuncia_model->save();
+    //     $this->formulario_denuncia_model->es_valido = $value;
+    //     $this->formulario_denuncia_model->save();
 
-        if ($value == 2) {
-            session()->flash('swal', [
-                'icon' => 'success',
-                'title' => '¡Bien Hecho!',
-                'text' => 'Formulario de Denuncia #' . $this->formulario_denuncia_model->id . ' aceptado correctamente.'
-            ]);
-        } else if ($value == 3) {
-            session()->flash('swal', [
-                'icon' => 'error',
-                'title' => '¡Ups!',
-                'text' => 'Formulario de Denuncia #' . $this->formulario_denuncia_model->id . ' rechazado.'
-            ]);
-        } else if ($value == 5) {
-            session()->flash('swal', [
-                'icon' => 'success',
-                'title' => '¡Bien Hecho!',
-                'text' => 'Formulario de Denuncia #' . $this->formulario_denuncia_model->id . ' ha sido finalizado correctamente.'
-            ]);
-        }
-        if ($this->is_valid_form != null && $value != 5) {
-            $this->validate();
-            $this->sendEmail();
-        }
-        $this->reset('is_valid_form');
-        return redirect()->route('show-denuncias');
-    }
+    //     if ($value == 2) {
+    //         session()->flash('swal', [
+    //             'icon' => 'success',
+    //             'title' => '¡Bien Hecho!',
+    //             'text' => 'Formulario de Denuncia #' . $this->formulario_denuncia_model->id . ' aceptado correctamente.'
+    //         ]);
+    //     } else if ($value == 3) {
+    //         session()->flash('swal', [
+    //             'icon' => 'error',
+    //             'title' => '¡Ups!',
+    //             'text' => 'Formulario de Denuncia #' . $this->formulario_denuncia_model->id . ' rechazado.'
+    //         ]);
+    //     } else if ($value == 5) {
+    //         session()->flash('swal', [
+    //             'icon' => 'success',
+    //             'title' => '¡Bien Hecho!',
+    //             'text' => 'Formulario de Denuncia #' . $this->formulario_denuncia_model->id . ' ha sido finalizado correctamente.'
+    //         ]);
+    //     }
+    //     if ($this->is_valid_form != null && $value != 5) {
+    //         $this->validate();
+    //         $this->sendEmail();
+    //     }
+    //     $this->reset('is_valid_form');
+    //     return redirect()->route('show-denuncias');
+    // }
 
     public function sendCommentSeguimiento()
     {

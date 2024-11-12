@@ -35,11 +35,11 @@
                         <h2>Lic. Jessica Kamy Menacho Ramos</h2>
                         <span>Técnica de Educación Primaria Comunitaria Vocacional</span>
                     </li>
-                    {{-- <li class="card">
-                        <div class="img"><img src="img/img-4.jpg" alt="img" draggable="false"></div>
-                        <h2>Lic. Ronald Ruben Colque Choque</h2>
-                        <span>Técnica de Educación Primaria Comunitaria Vocacional</span>
-                    </li> --}}
+                    <li class="card">
+                        <div class="img"><img src="" class="img-galeria" draggable="false"></div>
+                        <h2>Lic. Edwin Rios Peñaranda</h2>
+                        <span>Técnico de Educación Primaria Comunitaria Vocacional</span>
+                    </li>
                     <li class="card">
                         <div class="img"><img src="{{ asset('img/img-profiles/gloria.jpg') }}" class="img-galeria"
                                 draggable="false"></div>
@@ -70,12 +70,7 @@
 
         </div>
 
-        <div class="imagen-light" style="display: block; text-align: center; ">
-            <img src="{{ asset('img/close.svg') }}" alt="" class="close">
-            <img src="" alt="" class="agregar-imagen">
-            <p class="imagen-description"
-                style="color:white; text-align: center; justify-content: center; align-items: center;"></p>
-        </div>
+        
     </section>
 
 

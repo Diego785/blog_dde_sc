@@ -147,6 +147,8 @@
         }
     </style>
 
+
+
     <x-dialog-modal wire:model.live="show_modal_denunciado">
         <x-slot name="title">
             Nuevo Denunciado
@@ -194,6 +196,7 @@
 
     <div class="fab-container">
         <div class="fab-wrapper">
+
             <button type="button" wire:click="openModalAddDenunciado()" {{ $show_modal_denunciado ? 'disabled' : '' }}
                 class="fab {{ $show_modal_denunciado ? 'bg-gray-500 cursor-not-allowed' : 'bg-[#25D366] hover:bg-[#1DA851]' }} flex items-center">
                 <i class="fa-solid fa-user-plus"></i>
@@ -201,10 +204,14 @@
             <span class="tooltip">Agregar Denunciado</span>
         </div>
         <div class="fab-wrapper">
-            <button type="button" wire:click="openModalAddDenunciado()" {{ $show_modal_denunciado ? 'disabled' : '' }}
+
+            <input type="file" wire:model="images" id="file-upload" class="hidden" multiple accept="image/*" />
+
+            <button type="button" onclick="document.getElementById('file-upload').click()"
                 class="fab {{ $show_modal_denunciado ? 'bg-gray-500 cursor-not-allowed' : 'bg-[#25D366] hover:bg-[#1DA851]' }} flex items-center">
                 <i class="fa-solid fa-folder-plus"></i>
             </button>
+
             <span class="tooltip">Anexar Documento</span>
         </div>
     </div>
@@ -360,21 +367,17 @@
                             </label>
                             <div class="flex items-center space-x-6">
                                 <div class="flex items-center">
-                                    <input 
-                                        wire:model="seguimiento_email_denunciante" type="radio"
+                                    <input wire:model="seguimiento_email_denunciante" type="radio"
                                         name="opcionSeguimiento" value="true"
-                                        @if ($seguimiento_email_denunciante === true) checked @endif
-                                        class="h-5 w-5 bg-white" />
+                                        @if ($seguimiento_email_denunciante === true) checked @endif class="h-5 w-5 bg-white" />
                                     <label for="radioButton1" class="pl-3 text-white">
                                         Sí
                                     </label>
                                 </div>
                                 <div class="flex items-center">
-                                    <input 
-                                        wire:model="seguimiento_email_denunciante" type="radio"
+                                    <input wire:model="seguimiento_email_denunciante" type="radio"
                                         name="opcionSeguimiento" value="false"
-                                        @if ($seguimiento_email_denunciante === false) checked @endif
-                                        class="h-5 w-5 bg-white" />
+                                        @if ($seguimiento_email_denunciante === false) checked @endif class="h-5 w-5 bg-white" />
                                     <label for="radioButton2" class="pl-3 text-white">
                                         No
                                     </label>
@@ -446,10 +449,22 @@
                             <div class="w-full px-3 sm:w-1/2">
                                 <div class="mb-5">
                                     <label class="subtitle mb-3 block">
-                                        Distrito:
+                                        Distrito Educativo:
                                     </label>
-                                    <input wire:model="distrito" placeholder="Distrito 1"
-                                        class="text-black w-full rounded-md border border-[#e0e0e0] bg-white py-3 px-6 outline-none focus:border-[#6A64F1] focus:shadow-md" />
+                                    <select
+                                        style="width: 100%;
+                            border: 1px solid lightgrey;
+                            border-radius: 5px;
+                            padding-left: 15px;"
+                                        wire:model.live="distrito" class="text-gray-800">
+                                        <option disabled selected value="">Selecciona un Distrito</option>
+
+                                        @foreach ($distritos as $distrito_object)
+                                            <option value="{{ $distrito_object->nombre }}">
+                                                {{ $distrito_object->nombre }}</option>
+                                        @endforeach
+
+                                    </select>
                                     @error('distrito')
                                         <div class="error">
                                             {{ $message }}
@@ -741,6 +756,32 @@
             </body>
         @endif
 
+        <div class="p-4">
+
+
+            <!-- Display a preview of all uploaded images in a grid -->
+            <div class="grid grid-cols-3 gap-4">
+                @foreach ($images as $key => $image)
+                    <div class="relative group">
+                        <!-- Image preview -->
+                        <img src="{{ $image->temporaryUrl() }}" class="w-full h-32 object-cover cursor-pointer"
+                            alt="Uploaded Image" wire:click="$set('fullscreenImage', {{ $key }})">
+                    </div>
+                @endforeach
+            </div>
+
+            <!-- Fullscreen Image Modal with Dark Background -->
+            @if ($fullscreenImage !== null)
+                <div class="fixed inset-0 bg-black bg-opacity-75 flex items-center justify-center z-50"
+                    wire:click="$set('fullscreenImage', null)">
+                    <img src="{{ $images[$fullscreenImage]->temporaryUrl() }}" class="max-h-screen max-w-screen"
+                        alt="Fullscreen Image">
+                </div>
+            @endif
+
+        </div>
+
+
 
         <button onclick="confirmDenuncia()"
             class="w-full bg-red-600 mx-2 item-center middle none center flex justify-center rounded-lg p-3 font-sans text-xs font-bold uppercase text-white shadow-md shadow-red-500/20 transition-all hover:shadow-lg hover:shadow-red-500/40 focus:opacity-[0.85] focus:shadow-none active:opacity-[0.85] active:shadow-none disabled:pointer-events-none disabled:opacity-50 disabled:shadow-none"
@@ -749,7 +790,16 @@
             <i class="fa-solid fa-paper-plane text-lg leading-none ml-2" aria-hidden="true"></i></button>
     </div>
 
+
+
     @push('js')
+        <script>
+            document.addEventListener('keydown', (e) => {
+                if (e.key === 'Escape') {
+                    Livewire.emit('fullscreenImage', null); // Close modal on 'Esc'
+                }
+            });
+        </script>
         <script>
             function confirmDenuncia() {
                 // event.preventDefault();
