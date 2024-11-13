@@ -101,6 +101,9 @@
                                                 Denunciante
                                             </th>
                                             <th scope="col" class="text-sm font-medium text-gray-900 px-6 py-4">
+                                                Distrito Educativo
+                                            </th>
+                                            <th scope="col" class="text-sm font-medium text-gray-900 px-6 py-4">
                                                 Unidad Educativa
                                             </th>
                                             <th scope="col" class="text-sm font-medium text-gray-900 px-6 py-4">
@@ -138,6 +141,10 @@
                                                         </span>
                                                     </td>
                                                 @endif
+
+                                                <td class="text-sm text-gray-900 font-light px-6 py-4 whitespace-nowrap">
+                                                    {{ $form_denuncia->denuncia->distrito }}
+                                                </td>
 
 
                                                 <td class="text-sm text-gray-900 font-light px-6 py-4">

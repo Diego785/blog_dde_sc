@@ -32,4 +32,9 @@ class FormularioDenuncia extends Model
     public function relacionHechoDenuncia(){
         return $this->belongsTo(RelacionHechoDenuncia::class,'relacion_hecho_denuncia_id');
     }
+
+    public function anexosDenuncias()
+    {
+        return $this->hasMany(FormularioDenuncia::class, 'formulario_denuncia_id');
+    }
 }
