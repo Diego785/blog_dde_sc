@@ -32,7 +32,7 @@
             }
 
             .container-form header {
-                font-size: 24px;
+                font-size: 36px;
                 font-weight: 700;
             }
 
@@ -56,9 +56,11 @@
 
             .form-outer .form .page .title {
                 text-align: left;
-                font-size: 20px;
-                font-weight: 500;
+                font-size: 24px;
+                font-weight: 700;
+                margin: 5px 0;
                 color: white;
+                text-transform: uppercase;
             }
 
             .form-outer .form .page .field {
@@ -558,6 +560,38 @@
                             </div>
                         @endif
 
+
+                        <div class="title"> Anexos:</div>
+
+                        @if (count($docs) > 0)
+                            <div class="my-4">
+
+                                <ul class="list-disc list-inside mt-2 space-y-1">
+                                    @foreach ($docs as $doc)
+                                        <li class="flex justify-between items-center bg-gray-100 p-2 rounded-lg">
+                                            <span class="text-gray-800">{{ $doc['nombre'] }}</span>
+                                            <div>
+                                                <a href="{{ Storage::url($doc['path']) }}" target="_blank"
+                                                    class="px-2 text-blue-500 hover:underline">
+                                                    <i class="fas fa-eye"></i>
+                                                </a>
+                                                {{-- <button type="button" wire:click="removeDoc('{{ $doc['path'] }}')"
+                                                class="px-2 text-red-500 hover:text-red-700">
+                                                <i class="fas fa-trash"></i>
+                                            </button> --}}
+                                            </div>
+
+                                        </li>
+                                    @endforeach
+                                </ul>
+                            </div>
+                        @else
+                            <div
+                                class="max-w-lg mx-auto mt-4 p-4 bg-blue-100 border border-blue-400 text-blue-700 rounded-md">
+                                <strong class="font-bold">Información:</strong>
+                                <span class="block sm:inline">No se han registrado documentos anexados.
+                            </div>
+                        @endif
 
 
 

@@ -3,6 +3,7 @@
 namespace App\Livewire\Admin;
 
 use App\Mail\SeguimientoDenunciaEmail;
+use App\Models\AnexoDenuncia;
 use Illuminate\Http\Request;
 use Mail;
 use Livewire\Component;
@@ -19,6 +20,8 @@ class ShowFormDenuncia extends Component
     public $denunciante;
     public $denuncia;
     public $relacion_hecho_denuncia;
+    
+    public $docs;
 
     //EMAIL
     public $title = '';
@@ -53,6 +56,9 @@ class ShowFormDenuncia extends Component
         $this->relacion_hecho_denuncia->hora_denuncia = substr($this->relacion_hecho_denuncia->hora_denuncia, 0, 5);
 
         $this->relacion_hecho_denuncia = $formulario->relacionHechoDenuncia->toArray();
+
+        $this->docs = $formulario->anexosDenuncias->toArray();
+        // $this->docs = AnexoDenuncia::all();
     }
 
     public function openModalValidatingForm($value)
@@ -66,6 +72,17 @@ class ShowFormDenuncia extends Component
     {
         $this->reset('title', 'description', 'show_modal_seguimiento_denuncia');
         $this->show_modal_seguimiento_denuncia = true;
+    }
+
+    public function removeDoc($docPath)
+    {
+        // Delete the file from the 'public' disk (public/storage/docs)
+        if (\Storage::disk('public')->exists($docPath)) {
+            \Storage::disk('public')->delete($docPath);
+        }
+
+        // Remove the document from the docs array
+        $this->docs = array_filter($this->docs, fn($doc) => $doc['path'] !== $docPath);
     }
 
     public function sendEmail()

@@ -35,6 +35,6 @@ class FormularioDenuncia extends Model
 
     public function anexosDenuncias()
     {
-        return $this->hasMany(FormularioDenuncia::class, 'formulario_denuncia_id');
+        return $this->hasMany(AnexoDenuncia::class, 'formulario_denuncia_id');
     }
 }
