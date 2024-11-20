@@ -20,7 +20,7 @@ class FormDenuncia extends Component
 
     public $show_modal_denunciado = false;
 
-    
+
 
     public $docs = [];
     public $newDoc;
@@ -111,7 +111,7 @@ class FormDenuncia extends Component
         'correo_denunciante.email' => 'El correo debe ser un correo electrónico válido.',
 
         'telefono_denunciante.required' => 'El teléfono es requerido.',
-        'telefono_denunciante.string' => 'El teléfono debe contener solo caracteres numéricos.',
+        'telefono_denunciante.integer' => 'El teléfono debe contener solo caracteres numéricos.',
 
 
         'direccion_general.required' => 'El nombre de la Dirección General es requerida.',
@@ -145,66 +145,11 @@ class FormDenuncia extends Component
         'cargo.max' => 'El cargo del denunciado es muy largo.',
     ];
 
-    // protected $rules_identidad_reserva = [
-    //     'direccion_general' => 'required|string',
-    //     'unidad_educativa' => 'required|string',
-    //     'distrito' => 'required|string',
-    //     'zona' => 'required|string',
-    //     'barrio' => 'required|string',
-    //     'referencia' => 'required|string',
 
-    //     'fecha' => 'required|date',
-    //     'hora' => 'required|date_format:H:i',
-    //     'lugar' => 'required|string',
-    //     'descripcion' => 'required|string|max:255',
-    //     'fecha_denuncia' => 'required|date',
-    //     'hora_denuncia' => 'required|date_format:H:i'
-    // ];
-
-    // protected $messages_identidad_reserva = [
-    //     'carnet_denunciante.required' => 'El carnet del denunciante es requerido.',
-    //     'carnet_denunciante.min' => 'El carnet del denunciante debe tener mínimo 6 caracteres.',
-    //     'carnet_denunciante.max' => 'El carnet del denunciante debe tener máximo 50 caracteres.',
-
-    //     'domicilio_denunciante.required' => 'El domicilio del denunciante es requerido.',
-    //     'domicilio_denunciante.string' => 'El domicilio del denunciante solo puede contener letras.',
-    //     'domicilio_denunciante.min' => 'El domicilio del denunciante debe tener mínimo 5 caracteres.',
-    //     'domicilio_denunciante.max' => 'El domicilio del denunciante debe tener máximo 255 caracteres.',
-
-    //     'correo_denunciante.required' => 'El correo es requerido.',
-    //     'correo_denunciante.email' => 'El correo debe ser un correo electrónico válido.',
-
-    //     'telefono_denunciante.required' => 'El teléfono es requerido.',
-    //     'telefono_denunciante.string' => 'El teléfono debe contener solo caracteres numéricos.',
-
-
-    //     'direccion_general.required' => 'El nombre de la Dirección General es requerida.',
-    //     'unidad_educativa.required' => 'El nombre de la Unidad Educativa es requerida.',
-    //     'distrito.required' => 'El nombre del Distrito es requerido.',
-    //     'zona.required' => 'El nombre de la Zona es requerido.',
-    //     'barrio.required' => 'El nombre del barrio es requerido.',
-    //     'referencia.required' => 'La referencia es requerida.',
-
-    //     'fecha.required' => 'La fecha del hecho es requerida.',
-    //     'fecha.date' => 'La fecha del hecho debe tener un formato válido.',
-    //     'hora.required' => 'La hora del hecho es requerida.',
-    //     'hora.date_format' => 'La hora del hecho debe tener un formato válido.',
-    //     'lugar.required' => 'El nombre del lugar es requerido.',
-    //     'descripcion.required' => 'La descripción del hecho es requerida.',
-    //     'descripcion.string' => 'La descripción del hecho debe contener solo letras o números.',
-    //     'descripcion.max' => 'La descripción debe tener un máximo de 255 caracteres.',
-    //     // 'fecha_denuncia.required' => 'La fecha de la denuncia es requerida.',
-    //     // 'fecha_denuncia.date' => 'La fecha de la denuncia debe tener un formato válido.',
-    //     // 'hora_denuncia.required' => 'La hora de la denuncia es requerida.',
-    //     // 'hora_denuncia.date_format' => 'La hora de la denuncia debe tener un formato válido.',
-
-    // ];
 
 
     public function mount()
     {
-        // Load existing documents from the database
-        // $this->docs = Document::all()->toArray();
         $this->distritos = Distrito::all();
     }
 
@@ -215,33 +160,29 @@ class FormDenuncia extends Component
     public function addDoc()
     {
         $this->validate([
-            'newDoc' => 'required|file|max:10240', // max 10MB
+            'newDoc' => 'required|file|max:10240', 
         ], [
             'newDoc.required' => 'Por favor, seleccione un documento para cargar.',
             'newDoc.file' => 'El archivo seleccionado debe ser un documento válido.',
             'newDoc.max' => 'El archivo no debe exceder los 10 MB de tamaño.',
         ]);
 
-        // Save the uploaded document in a temporary path
+
         $filePath = $this->newDoc->store('anexos_denuncias', 'public');
 
-        // Add to the docs list
         $this->docs[] = [
             'name' => $this->newDoc->getClientOriginalName(),
             'path' => $filePath,
         ];
-
         $this->reset('newDoc');
     }
 
     public function removeDoc($docPath)
     {
-        // Delete the file from the 'public' disk (public/storage/docs)
         if (\Storage::disk('public')->exists($docPath)) {
             \Storage::disk('public')->delete($docPath);
         }
 
-        // Remove the document from the docs array
         $this->docs = array_filter($this->docs, fn($doc) => $doc['path'] !== $docPath);
     }
 
@@ -251,13 +192,6 @@ class FormDenuncia extends Component
     public function updatedIdentidadReservaDenunciante($value)
     {
         $this->identidad_reserva_denunciante = filter_var($value, FILTER_VALIDATE_BOOLEAN);
-        // if ($this->identidad_reserva_denunciante) {
-        //     $this->nombre_denunciante = "";
-        //     $this->carnet_denunciante = "";
-        //     $this->domicilio_denunciante = "";
-        //     $this->correo_denunciante = "";
-        //     $this->telefono_denunciante = "";
-        // }
     }
     public function updatedSeguimientoEmailDenunciante($value)
     {
@@ -287,7 +221,6 @@ class FormDenuncia extends Component
     public function addDenunciado()
     {
         $this->validate($this->rules_denunciado, $this->messages_denunciado);
-        // $this->validate();
 
         if ($this->editing_index !== null) {
             $this->personas_denunciadas[$this->editing_index] = [

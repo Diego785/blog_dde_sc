@@ -198,8 +198,8 @@
 
         <div class="fab-wrapper">
 
-            <button type="button" wire:click="openModalAddDenunciado()" {{ $show_modal_denunciado ? 'disabled' : '' }}
-                class="fab {{ $show_modal_denunciado ? 'bg-gray-500 cursor-not-allowed' : 'bg-[#25D366] hover:bg-[#1DA851]' }} flex items-center">
+            <button type="button" wire:click="openModalAddDenunciado()" :disabled="$wire.show_modal_denunciado"
+                class="fab disabled:bg-gray-500 disabled:cursor-not-allowed bg-[#25D366] hover:bg-[#1DA851] flex items-center">
                 <i class="fa-solid fa-user-plus"></i>
             </button>
             <span class="tooltip">Agregar Denunciado</span>
@@ -772,10 +772,26 @@
 
         <!-- File Upload Form -->
         <form wire:submit.prevent="addDoc" class="flex items-center space-x-2">
-            <input type="file" wire:model="newDoc"
-                class="w-full border border-gray-300 rounded-lg p-2 focus:ring focus:ring-blue-200">
+            <input type="file" wire:model="newDoc" id="fileInput" class="hidden">
 
-            <button type="submit" class="px-4 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700">
+            <div class="flex items-center w-full border border-gray-300 p-2 focus:ring focus:ring-blue-200 rounded-lg">
+
+                <button type="button" onclick="document.getElementById('fileInput').click()"
+                    class="flex items-start px-4 py-2 bg-amber-600 text-white rounded-lg hover:bg-amber-700 focus:outline-none ">
+                    Seleccionar Documento
+                </button>
+
+                @if ($newDoc)
+                    <span class="text-lg text-white ml-2">{{ $newDoc->getClientOriginalName() }}</span>
+                @else
+                    <span class="text-md text-gray-400 ml-2">Seleccione un archivo</span>
+                @endif
+
+
+            </div>
+
+            <button type="submit" :disabled="!$wire.newDoc"
+                class="px-4 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700 disabled:bg-gray-400 disabled:cursor-not-allowed">
                 Agregar Documento
             </button>
         </form>
@@ -786,7 +802,7 @@
         @enderror
 
         <!-- Document List -->
-        <div class="my-4">
+        <div style="margin: 15px 0;">
 
             <ul class="list-disc list-inside mt-2 space-y-1">
                 @foreach ($docs as $doc)
