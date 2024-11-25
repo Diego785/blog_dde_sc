@@ -100,7 +100,7 @@
                     <strong>{{$unidad->objetivo}}</strong>
                 </div>
             </div>
-            <div class="checklist-servicio">
+            {{-- <div class="checklist-servicio">
                 <div class="service">
                     <h3 class="n-service"><span class="number">1</span>Misión</h3>
                     <p style="font-style: italic;">
@@ -115,7 +115,7 @@
                         desarrollando saberes y conocimientos que contribuyan al crecimiento y estabilidad económica
                         de la sociedad.</p>
                 </div>
-            </div>
+            </div> --}}
         </div>
     </section>
 

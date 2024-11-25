@@ -30,7 +30,7 @@
 
 </head>
 
-<body>
+<body style="background-image: url('{{ asset('img/chakana-background.png') }}');">
     <header class="header" id="home">
 
 
