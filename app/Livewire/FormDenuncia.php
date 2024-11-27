@@ -160,29 +160,41 @@ class FormDenuncia extends Component
     public function addDoc()
     {
         $this->validate([
-            'newDoc' => 'required|file|max:10240', 
+            'newDoc' => 'required|file|max:10240',
         ], [
             'newDoc.required' => 'Por favor, seleccione un documento para cargar.',
             'newDoc.file' => 'El archivo seleccionado debe ser un documento válido.',
             'newDoc.max' => 'El archivo no debe exceder los 10 MB de tamaño.',
-        ]);
+        ]);                                       
+
+        // Get the original filename
+        $fileName = $this->newDoc->getClientOriginalName();
+
+        // dd($this->newDoc->getClientOriginalName());
+        // dd($this->$fileName);
 
 
-        $filePath = $this->newDoc->store('anexos_denuncias', 'public');
+        // Move the file to the public folder
+        $this->newDoc->move(public_path('anexos_denuncias'), $this->newDoc->getClientOriginalName());
 
         $this->docs[] = [
             'name' => $this->newDoc->getClientOriginalName(),
-            'path' => $filePath,
+            'path' => 'anexos_denuncias/' . $this->newDoc->getClientOriginalName(),
         ];
         $this->reset('newDoc');
     }
 
     public function removeDoc($docPath)
     {
-        if (\Storage::disk('public')->exists($docPath)) {
-            \Storage::disk('public')->delete($docPath);
+        // Get the full path to the file in the public folder
+        $fullPath = public_path($docPath);
+
+        // Check if the file exists and delete it
+        if (file_exists($fullPath)) {
+            unlink($fullPath);
         }
 
+        // Remove the document from the docs array
         $this->docs = array_filter($this->docs, fn($doc) => $doc['path'] !== $docPath);
     }
 
