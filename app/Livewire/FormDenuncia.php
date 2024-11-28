@@ -165,21 +165,14 @@ class FormDenuncia extends Component
             'newDoc.required' => 'Por favor, seleccione un documento para cargar.',
             'newDoc.file' => 'El archivo seleccionado debe ser un documento válido.',
             'newDoc.max' => 'El archivo no debe exceder los 10 MB de tamaño.',
-        ]);                                       
+        ]);
 
-        // Get the original filename
-        $fileName = $this->newDoc->getClientOriginalName();
-
-        // dd($this->newDoc->getClientOriginalName());
-        // dd($this->$fileName);
-
-
-        // Move the file to the public folder
-        $this->newDoc->move(public_path('anexos_denuncias'), $this->newDoc->getClientOriginalName());
+        // Save the file in the `public/anexos_denuncias` directory.
+        $path = $this->newDoc->storeAs('anexos_denuncias', $this->newDoc->getClientOriginalName(), 'public');
 
         $this->docs[] = [
             'name' => $this->newDoc->getClientOriginalName(),
-            'path' => 'anexos_denuncias/' . $this->newDoc->getClientOriginalName(),
+            'path' => $path,
         ];
         $this->reset('newDoc');
     }
