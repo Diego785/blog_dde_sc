@@ -11,6 +11,7 @@ use App\Models\PersonaDenunciada;
 use App\Models\RelacionHechoDenuncia;
 use Carbon\Carbon;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Storage;
 use Livewire\Component;
 use Livewire\WithFileUploads;
 
@@ -155,40 +156,46 @@ class FormDenuncia extends Component
 
 
 
-
-
     public function addDoc()
     {
+        // Validate the uploaded file
         $this->validate([
-            'newDoc' => 'required|file|max:10240',
+            'newDoc' => 'required|file|max:10240', // Max 10 MB
         ], [
             'newDoc.required' => 'Por favor, seleccione un documento para cargar.',
             'newDoc.file' => 'El archivo seleccionado debe ser un documento válido.',
             'newDoc.max' => 'El archivo no debe exceder los 10 MB de tamaño.',
         ]);
 
-        // Define the destination path in the `public/anexos_denuncias` directory.
-        $destinationPath = public_path('anexos_denuncias');
+        try {
+            // Define the directory inside the 'public' disk
+            $relativePath = 'anexos_denuncias';
 
-        // Ensure the directory exists (create it if it doesn't).
-        if (!file_exists($destinationPath)) {
-            mkdir($destinationPath, 0755, true);
+            // Generate a unique file name
+            $fileExtension = $this->newDoc->getClientOriginalExtension(); // File extension
+            $fileName = uniqid('doc_') . '.' . $fileExtension; // Example: doc_abc123.pdf
+
+            // Save the file to the 'public' disk (anexos_denuncias folder)
+            $filePath = $this->newDoc->storeAs($relativePath, $fileName, 'public');
+
+            // Save file details to the `$docs` array for display or later use
+            $this->docs[] = [
+                'name' => $fileName,
+                'path' => Storage::disk('public')->url($filePath), // Public URL for the file
+            ];
+
+            // Reset the file input field
+            $this->reset('newDoc');
+
+            // Optionally log success
+            \Log::info("Archivo subido exitosamente: {$fileName}");
+        } catch (\Exception $e) {
+            // Handle errors gracefully
+            \Log::error("Error al cargar el archivo: " . $e->getMessage());
+            $this->addError('newDoc', 'Hubo un error al cargar el documento. Intente nuevamente.');
         }
-
-        // Generate a new file name (e.g., `uniqueid.extension`).
-        $fileExtension = $this->newDoc->getClientOriginalExtension(); // Get file extension.
-        $fileName = uniqid('doc_') . '.' . $fileExtension; // Example: doc_64a9e2f12d5c3.jpg
-
-        // Move the uploaded file to the destination path with the new name.
-        $this->newDoc->move($destinationPath, $fileName);
-
-        // Save file details in `$docs` array for display purposes.
-        $this->docs[] = [
-            'name' => $fileName,
-            'path' => 'anexos_denuncias/' . $fileName, // Relative path for accessing the file.
-        ];
-        $this->reset('newDoc');
     }
+
 
     public function removeDoc($docPath)
     {

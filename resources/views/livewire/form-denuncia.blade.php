@@ -813,6 +813,7 @@
                                 class="px-2 text-blue-500 hover:underline">
                                 <i class="fas fa-eye"></i>
                             </a>
+                            
                             <button type="button" wire:click="removeDoc('{{ $doc['path'] }}')"
                                 class="px-2 text-red-500 hover:text-red-700">
                                 <i class="fas fa-trash"></i>
