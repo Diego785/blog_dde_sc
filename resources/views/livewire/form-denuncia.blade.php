@@ -147,6 +147,11 @@
         }
     </style>
 
+<div wire:loading.flex class="fixed inset-0 bg-gray-800 bg-opacity-75 z-50 items-center justify-center">
+    <div class="animate-spin rounded-full h-16 w-16 border-t-4 border-b-4 border-blue-500"></div>
+</div>
+
+
 
 
     <x-dialog-modal wire:model.live="show_modal_denunciado">
@@ -262,7 +267,7 @@
                             <div class="w-full px-3 sm:w-1/2">
                                 <div class="mb-5">
                                     <label class="subtitle mb-3 block">
-                                        Apellidos y Nombres:
+                                        Nombres y Apellidos:
                                     </label>
                                     <input wire:model="nombre_denunciante" {{-- @if ($identidad_reserva_denunciante) disabled @endif --}}
                                         placeholder="Diego Hurtado Vargas" {{-- class="text-black w-full rounded-md border border-[#e0e0e0] {{ $identidad_reserva_denunciante ? 'bg-gray-900' : 'bg-white' }}" --}}
