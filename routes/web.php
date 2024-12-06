@@ -21,8 +21,8 @@ Route::get('/dashboard', function () {
 });
 
 Route::get('/sder', [InicioController::class,'indexSder'])->name('sder.index');
-Route::get('/seae', [InicioController::class,'indexSeae'])->name('seae.index');
-Route::get('/ses', [InicioController::class,'indexSes'])->name('ses.index');
+// Route::get('/seae', [InicioController::class,'indexSeae'])->name('seae.index');
+// Route::get('/ses', [InicioController::class,'indexSes'])->name('ses.index');
 
 
 

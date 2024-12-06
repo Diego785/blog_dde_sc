@@ -11,6 +11,7 @@ use App\Models\PersonaDenunciada;
 use App\Models\RelacionHechoDenuncia;
 use Carbon\Carbon;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Storage;
 use Livewire\Component;
 use Livewire\WithFileUploads;
 
@@ -155,34 +156,58 @@ class FormDenuncia extends Component
 
 
 
-
-
     public function addDoc()
     {
+        // Validate the uploaded file
         $this->validate([
-            'newDoc' => 'required|file|max:10240', 
+            'newDoc' => 'required|file|max:10240', // Max 10 MB
         ], [
             'newDoc.required' => 'Por favor, seleccione un documento para cargar.',
             'newDoc.file' => 'El archivo seleccionado debe ser un documento válido.',
             'newDoc.max' => 'El archivo no debe exceder los 10 MB de tamaño.',
         ]);
 
+        try {
+            // Define the directory inside the 'public' disk
+            $relativePath = 'anexos_denuncias';
 
-        $filePath = $this->newDoc->store('anexos_denuncias', 'public');
+            // Generate a unique file name
+            $fileExtension = $this->newDoc->getClientOriginalExtension(); // File extension
+            $fileName = uniqid('doc_') . '.' . $fileExtension; // Example: doc_abc123.pdf
 
-        $this->docs[] = [
-            'name' => $this->newDoc->getClientOriginalName(),
-            'path' => $filePath,
-        ];
-        $this->reset('newDoc');
+            // Save the file to the 'public' disk (anexos_denuncias folder)
+            $filePath = $this->newDoc->storeAs($relativePath, $fileName, 'public');
+
+            // Save file details to the `$docs` array for display or later use
+            $this->docs[] = [
+                'name' => $fileName,
+                'path' => Storage::disk('public')->url($filePath), // Public URL for the file
+            ];
+
+            // Reset the file input field
+            $this->reset('newDoc');
+
+            // Optionally log success
+            \Log::info("Archivo subido exitosamente: {$fileName}");
+        } catch (\Exception $e) {
+            // Handle errors gracefully
+            \Log::error("Error al cargar el archivo: " . $e->getMessage());
+            $this->addError('newDoc', 'Hubo un error al cargar el documento. Intente nuevamente.');
+        }
     }
+
 
     public function removeDoc($docPath)
     {
-        if (\Storage::disk('public')->exists($docPath)) {
-            \Storage::disk('public')->delete($docPath);
+        // Get the full path to the file in the public folder
+        $fullPath = public_path($docPath);
+
+        // Check if the file exists and delete it
+        if (file_exists($fullPath)) {
+            unlink($fullPath);
         }
 
+        // Remove the document from the docs array
         $this->docs = array_filter($this->docs, fn($doc) => $doc['path'] !== $docPath);
     }
 

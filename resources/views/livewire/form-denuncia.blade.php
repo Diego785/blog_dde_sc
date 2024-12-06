@@ -814,10 +814,11 @@
                     <li class="flex justify-between items-center bg-gray-100 p-2 rounded-lg">
                         <span>{{ $doc['name'] }}</span>
                         <div>
-                            <a href="{{ Storage::url($doc['path']) }}" target="_blank"
+                            <a href="{{ asset($doc['path']) }}" target="_blank"
                                 class="px-2 text-blue-500 hover:underline">
                                 <i class="fas fa-eye"></i>
                             </a>
+                            
                             <button type="button" wire:click="removeDoc('{{ $doc['path'] }}')"
                                 class="px-2 text-red-500 hover:text-red-700">
                                 <i class="fas fa-trash"></i>
