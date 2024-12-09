@@ -14,6 +14,7 @@ use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Storage;
 use Livewire\Component;
 use Livewire\WithFileUploads;
+use Illuminate\Support\Facades\File;
 
 class FormDenuncia extends Component
 {
@@ -172,8 +173,11 @@ class FormDenuncia extends Component
             $relativePath = 'anexos_denuncias';
 
             // Generate a unique file name
-            $fileExtension = $this->newDoc->getClientOriginalExtension(); // File extension
-            $fileName = uniqid('doc_') . '.' . $fileExtension; // Example: doc_abc123.pdf
+            // $fileExtension = $this->newDoc->getClientOriginalExtension(); // File extension
+            // Use the original file name
+            $fileName = $this->newDoc->getClientOriginalName(); // Original file name, e.g., "document.pdf"
+            // dd($this->newDoc);
+            // $fileName = uniqid('doc_') . '.' . $fileExtension; // Example: doc_abc123.pdf
 
             // Save the file to the 'public' disk (anexos_denuncias folder)
             $filePath = $this->newDoc->storeAs($relativePath, $fileName, 'public');
@@ -330,20 +334,48 @@ class FormDenuncia extends Component
                 ]);
             }
 
+            // // Save documents in the specific directory for the Formulario ID
+            // foreach ($this->docs as $doc) {
+            //     $newPath = 'anexos_denuncias/' . $formulario->id . '/' . basename($doc['path']);
+
+            //     // Move the document to the specific folder for the Formulario ID
+            //     \Storage::disk('public')->move($doc['path'], $newPath);
+
+            //     // Save to the anexo_denuncias table
+            //     AnexoDenuncia::create([
+            //         'nombre' => $doc['name'],
+            //         'path' => $newPath,
+            //         'formulario_denuncia_id' => $formulario->id,
+            //     ]);
+            // }
+
+
             // Save documents in the specific directory for the Formulario ID
             foreach ($this->docs as $doc) {
-                $newPath = 'anexos_denuncias/' . $formulario->id . '/' . basename($doc['path']);
+                // Extract the base name of the file (e.g., "filename.extension")
+                $fileName = basename($doc['path']);
 
-                // Move the document to the specific folder for the Formulario ID
-                \Storage::disk('public')->move($doc['path'], $newPath);
+                // Define the current and new file paths
+                $currentPath = public_path('anexos_denuncias/' . $fileName); // Current path
+                $newDirectory = public_path('anexos_denuncias/' . $formulario->id); // New directory
+                $newPath = $newDirectory . '/' . $fileName; // Full new path
+
+                // Ensure the new directory exists
+                if (!File::exists($newDirectory)) {
+                    File::makeDirectory($newDirectory, 0755, true); // Create the directory
+                }
+
+                // Move the file to the new directory
+                File::move($currentPath, $newPath);
 
                 // Save to the anexo_denuncias table
                 AnexoDenuncia::create([
-                    'nombre' => $doc['name'],
-                    'path' => $newPath,
-                    'formulario_denuncia_id' => $formulario->id,
+                    'nombre' => $doc['name'], // Original file name
+                    'path' => 'anexos_denuncias/' . $formulario->id . '/' . $fileName, // Relative path
+                    'formulario_denuncia_id' => $formulario->id, // Associate with Formulario ID
                 ]);
             }
+
 
             DB::commit();
 

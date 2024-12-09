@@ -27,7 +27,7 @@
                 DENUNCIAS
             </h2>
 
-            <div class="flex justify-between my-7 mx-8">
+            <div class="flex justify-center my-7 mx-8">
 
                 <div class="relative w-96">
                     <input wire:model.live="search"
