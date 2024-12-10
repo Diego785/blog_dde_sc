@@ -13,4 +13,9 @@ class Tecnico extends Model
         'nombre',
         'cargo',
     ]; 
+
+    public function formularios()
+    {
+        return $this->hasMany(FormularioDenuncia::class, 'tecnico_id');
+    }
 }

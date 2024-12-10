@@ -17,6 +17,8 @@ return new class extends Migration
             $table->foreignId('denuncia_id')->constrained();
             $table->foreignId('denunciante_id')->nullable()->constrained();
             $table->foreignId('relacion_hecho_denuncia_id')->constrained();
+            $table->foreignId('tecnico_id')->nullable()->constrained();
+            $table->string('estado_actual')->nullable();
             $table->unsignedSmallInteger('es_valido')->nullable()->default(4);
             $table->timestamps();
         });

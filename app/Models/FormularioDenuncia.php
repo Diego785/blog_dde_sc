@@ -14,7 +14,8 @@ class FormularioDenuncia extends Model
         'denuncia_id',
         'denunciante_id',
         'relacion_hecho_denuncia_id',
-        // 'es_valido',
+        'tecnico_encargado_id',
+        'estado_actual',
     ];
 
     public function unidad(){
@@ -31,6 +32,10 @@ class FormularioDenuncia extends Model
 
     public function relacionHechoDenuncia(){
         return $this->belongsTo(RelacionHechoDenuncia::class,'relacion_hecho_denuncia_id');
+    }
+
+    public function tecnico(){
+        return $this->belongsTo(Tecnico::class, 'tecnico_id');
     }
 
     public function anexosDenuncias()

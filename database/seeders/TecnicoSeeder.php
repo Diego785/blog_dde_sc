@@ -25,11 +25,6 @@ class TecnicoSeeder extends Seeder
                 'imagen' => null, // No image provided
             ],
             [
-                'nombre' => 'Lic. Jessica Kamy Menacho Ramos',
-                'cargo' => 'Técnica de Educación Primaria Comunitaria Vocacional',
-                'imagen' => null, // No image provided
-            ],
-            [
                 'nombre' => 'Lic. Edwin Rios Peñaranda',
                 'cargo' => 'Técnico de Educación Primaria Comunitaria Vocacional',
                 'imagen' => null, // No image provided

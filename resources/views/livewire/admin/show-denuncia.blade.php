@@ -32,7 +32,7 @@
                 <div class="relative w-96">
                     <input wire:model.live="search"
                         class="border-2 border-primary bg-red transition h-12 px-5 pr-16 rounded-md focus:outline-none w-full text-black text-lg "
-                        type="search" name="search" placeholder="Buscar..." />
+                        type="search" name="search" placeholder="Buscar con código o UE..." />
 
                     <button class="absolute right-2 top-3 mr-4">
                         <svg class="text-black h-6 w-6 fill-current" xmlns="http://www.w3.org/2000/svg"
@@ -101,16 +101,17 @@
                                                 Denunciante
                                             </th>
                                             <th scope="col" class="text-sm font-medium text-gray-900 px-6 py-4">
-                                                Distrito Educativo
-                                            </th>
-                                            <th scope="col" class="text-sm font-medium text-gray-900 px-6 py-4">
                                                 Unidad Educativa
                                             </th>
                                             <th scope="col" class="text-sm font-medium text-gray-900 px-6 py-4">
-                                                Descripción
+                                                Distrito Educativo
+                                            </th>
+
+                                            <th scope="col" class="text-sm font-medium text-gray-900 px-6 py-4">
+                                                Técnico Asignado
                                             </th>
                                             <th scope="col" class="text-sm font-medium text-gray-900 px-6 py-4">
-                                                Denunciados
+                                                Estado Actual
                                             </th>
                                             {{-- <th scope="col" class="text-sm font-medium text-gray-900 px-6 py-4">
                                                 Estado
@@ -128,37 +129,66 @@
                                                     {{ $form_denuncia->id }}
                                                 </td>
 
-                                                @if ($form_denuncia->denunciante?->nombre != null && $form_denuncia->mantener_identidad_reserva == 0)
-                                                    <td class="text-sm text-gray-900 font-light px-6 py-4">
-                                                        {{ $form_denuncia->denunciante->nombre }}
-                                                    </td>
-                                                @else
-                                                    <td
-                                                        class="text-sm text-gray-900 font-light px-6 py-4 whitespace-nowrap">
-                                                        <span
-                                                            class="rounded py-1 px-3 text-xs text-white font-bold bg-gray-400">
-                                                            Anónimo
-                                                        </span>
-                                                    </td>
-                                                @endif
-
-                                                <td class="text-sm text-gray-900 font-light px-6 py-4 whitespace-nowrap">
-                                                    {{ $form_denuncia->denuncia->distrito }}
+                                                <td class="text-sm text-gray-900 font-light px-6 py-4">
+                                                    {{ $form_denuncia->denunciante->nombre }}
                                                 </td>
 
 
                                                 <td class="text-sm text-gray-900 font-light px-6 py-4">
                                                     {{ $form_denuncia->denuncia->unidad_educativa }}
                                                 </td>
-
-                                                <td class="text-sm text-gray-900 font-light px-6 py-4 italic">
-                                                    {{ \Illuminate\Support\Str::limit($form_denuncia->relacionHechoDenuncia->descripcion_hecho, 100) }}
-                                                </td>
-
                                                 <td
                                                     class="text-sm text-gray-900 font-light px-6 py-4 whitespace-nowrap">
-                                                    {{ count($form_denuncia->denuncia->personasDenunciadas) }}
+                                                    {{ $form_denuncia->denuncia->distrito }}
                                                 </td>
+
+                                                @if ($form_denuncia->tecnico)
+                                                    <td
+                                                        class="text-sm text-gray-900 font-light px-6 py-4 italic">
+                                                        {{ $form_denuncia->tecnico?->nombre }}
+                                                    </td>
+                                                @else
+                                                    <td
+                                                        class="text-sm text-gray-900 font-light px-6 py-4 whitespace-nowrap">
+                                                        <span
+                                                            class="rounded py-1 px-3 text-xs text-white font-bold bg-gray-400">
+                                                            Sin Técnico
+                                                        </span>
+                                                    </td>
+                                                @endif
+
+                                                @if ($form_denuncia->estado_actual)
+                                                    <td
+                                                        class="text-sm text-gray-900 font-light px-6 py-4 whitespace-nowrap">
+                                                       
+                                                            <span
+                                                            class="rounded py-1 px-3 text-xs text-white font-bold
+                                                            
+                                                           {{ $form_denuncia->estado_actual === 'Finalizado' ? 'bg-green-400' : 'bg-orange-400' }} 
+                                                            ">
+                                                            {{ $form_denuncia->estado_actual }}
+                                                        </span>
+                                                    </td>
+                                                @else
+                                                    <td
+                                                        class="text-sm text-gray-900 font-light px-6 py-4 whitespace-nowrap">
+                                                        <span
+                                                        class="rounded py-1 px-3 text-xs text-white font-bold bg-gray-400">
+
+                                                            Sin Estado
+                                                        </span>
+                                                    </td>
+                                                @endif
+
+
+                                                {{-- <td class="text-sm text-gray-900 font-light px-6 py-4 italic">
+                                                    {{ \Illuminate\Support\Str::limit($form_denuncia->relacionHechoDenuncia->descripcion_hecho, 100) }}
+                                                </td> --}}
+
+                                                {{-- <td
+                                                    class="text-sm text-gray-900 font-light px-6 py-4 whitespace-nowrap">
+                                                    {{ count($form_denuncia->denuncia->personasDenunciadas) }}
+                                                </td> --}}
                                                 {{-- <td
                                                     class="text-sm text-gray-900 font-light px-6 py-4 whitespace-nowrap">
                                                     <span

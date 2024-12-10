@@ -4,6 +4,7 @@ namespace App\Livewire\Admin;
 
 use App\Mail\SeguimientoDenunciaEmail;
 use App\Models\AnexoDenuncia;
+use App\Models\Tecnico;
 use Illuminate\Http\Request;
 use Mail;
 use Livewire\Component;
@@ -22,6 +23,11 @@ class ShowFormDenuncia extends Component
     public $relacion_hecho_denuncia;
     
     public $docs;
+
+    public $tecnicos;
+    public $tecnico_asignado;
+
+    public $estado_actual;
 
     //EMAIL
     public $title = '';
@@ -58,7 +64,41 @@ class ShowFormDenuncia extends Component
         $this->relacion_hecho_denuncia = $formulario->relacionHechoDenuncia->toArray();
 
         $this->docs = $formulario->anexosDenuncias->toArray();
-        // $this->docs = AnexoDenuncia::all();
+
+
+        $this->tecnicos = Tecnico::all();
+        $this->tecnico_asignado = $formulario->tecnico_id ?? "";
+        $this->estado_actual = $formulario->estado_actual ?? "";
+    }
+
+    public function updatedTecnicoAsignado()
+    {
+
+
+        $this->formulario_denuncia_model->tecnico_id = $this->tecnico_asignado;
+
+        $this->formulario_denuncia_model->update();
+
+        $this->dispatch('swal', [
+            'icon' => 'success',
+            'title' => '¡Bien Hecho!',
+            'text' => 'Técnico asignado correctamente: ' . $this->formulario_denuncia_model->tecnico->nombre
+        ]);
+    }
+
+    public function updatedEstadoActual()
+    {
+
+
+        $this->formulario_denuncia_model->estado_actual = $this->estado_actual;
+
+        $this->formulario_denuncia_model->update();
+
+        $this->dispatch('swal', [
+            'icon' => 'success',
+            'title' => '¡Bien Hecho!',
+            'text' => 'Estado del caso actualizado correctamente: ' . $this->formulario_denuncia_model->estado_actual
+        ]);
     }
 
     public function openModalValidatingForm($value)

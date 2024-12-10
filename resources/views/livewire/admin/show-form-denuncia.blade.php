@@ -247,6 +247,8 @@
 
 
 
+
+
         <div wire:loading wire:target="sendCommentSeguimiento" class="fixed inset-0 bg-black bg-opacity-50 z-50">
 
             <div
@@ -279,6 +281,55 @@
                     <i class="fa-solid fa-paper-plane text-lg leading-none ml-2" aria-hidden="true"></i>
                 </button>
             </div>
+
+
+
+            <div class="-mx-3 flex flex-wrap">
+                <div class="w-full px-3 sm:w-1/2">
+                    <div class="mb-5">
+                        <label class="label">
+                            Técnico a Cargo:
+                        </label>
+                        <select
+                            style="width: 100%;
+                border: 1px solid lightgrey;
+                border-radius: 5px;
+                padding-left: 15px;"
+                            wire:model.live="tecnico_asignado" class="text-gray-800">
+                            <option disabled selected value="">Sin Técnico Asignado</option>
+
+                            @foreach ($tecnicos as $tecnico)
+                                <option value="{{ $tecnico->id }}">
+                                    {{ $tecnico->nombre }}</option>
+                            @endforeach
+
+                        </select>
+                    </div>
+                </div>
+                <div class="w-full px-3 sm:w-1/2">
+                    <div class="mb-5">
+                        <label class="label">
+                            Estado actual de la denuncia:
+                        </label>
+                        <select
+                            style="width: 100%;
+                border: 1px solid lightgrey;
+                border-radius: 5px;
+                padding-left: 15px;"
+                            wire:model.live="estado_actual" class="text-gray-800">
+                            <option disabled selected value="">Sin Estado Asignado</option>
+                            <option value="En Regular">En Regular</option>
+                            <option value="En Jurídica">En Jurídica</option>
+                            <option value="En la Dirección Departamental">En la Dirección Departamental</option>
+                            <option value="En Transparencia">En Transparencia</option>
+                            <option value="En el Distrito">En el Distrito</option>
+                            <option value="Finalizado">Finalizado</option>
+
+                        </select>
+                    </div>
+                </div>
+            </div>
+
 
 
 
