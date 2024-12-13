@@ -21,8 +21,8 @@
 
             <div class="contact-info">
 
-                <p><i style="padding-right: 5px;" class="fas fa-map-marker-alt"></i>Calle La Paz # 766, entre Saavedra y, Santa Cruz de la
-                    Sierra<br>Santa Cruz, Bolivia</p>
+                <a href="https://maps.app.goo.gl/KF9BUEZFepc5iHCF7"><i style="padding-right: 5px; color: white;" class="fas fa-map-marker-alt"></i>Calle La Paz # 766, entre Saavedra y, Santa Cruz de la
+                    Sierra<br>Santa Cruz, Bolivia</a>
                 <p><i style="padding-right: 5px;" class="fas fa-phone"></i><a class="link-footer" href="tel:1234567890">68884508</a></p>
                 <p><i style="padding-right: 5px;" class="fas fa-envelope"></i><a class="link-footer"
                         href="subregular@gmail.com.bo">subregular@santacruz-dde.edu.bo</a></p>

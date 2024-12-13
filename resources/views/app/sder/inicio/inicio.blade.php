@@ -51,7 +51,7 @@
         <div class="contenedor-servicio">
 
             <div class="tilt-box-wrap"
-                style="padding: 15px; display: flex; align-items: center; justify-content: center;">
+                style="display: flex; align-items: center; justify-content: center;">
                 <span class="t_over"></span>
                 <span class="t_over"></span>
                 <span class="t_over"></span>

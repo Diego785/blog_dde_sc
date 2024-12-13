@@ -13,11 +13,10 @@
 
 
 .contenedor {
-  width: 90%;
-  max-width: 1200px;
+  width: 100%;
+  /* max-width: 1200px; */
   overflow: hidden;
   margin: auto;
-  padding: 25px;
 }
 
 .name-sub{
