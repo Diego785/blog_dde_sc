@@ -313,8 +313,8 @@ class NoticiaSeeder extends Seeder
 
         //NOTICIA 09/12/2024 - 8
         self::$sder_new8 = Noticia::create([
-            'titulo' => "🇧🇴🇧🇴🇧🇴🇧🇴¡𝙁𝙚𝙡𝙞𝙘𝙞𝙙𝙖𝙙𝙚𝙨 𝙖 𝙣𝙪𝙚𝙨𝙩𝙧𝙤𝙨 𝙖𝙩𝙡𝙚𝙩𝙖𝙨! 🇧🇴🇧🇴🇧🇴🇧🇴",
-            'descripcion' => "🇧🇴🇧🇴🇧🇴🇧🇴¡𝙁𝙚𝙡𝙞𝙘𝙞𝙙𝙖𝙙𝙚𝙨 𝙖 𝙣𝙪𝙚𝙨𝙩𝙧𝙤𝙨 𝙖𝙩𝙡𝙚𝙩𝙖𝙨! 🇧🇴🇧🇴🇧🇴🇧🇴
+            'titulo' => "¡𝙁𝙚𝙡𝙞𝙘𝙞𝙙𝙖𝙙𝙚𝙨 𝙖 𝙣𝙪𝙚𝙨𝙩𝙧𝙤𝙨 𝙖𝙩𝙡𝙚𝙩𝙖𝙨!",
+            'descripcion' => "¡𝙁𝙚𝙡𝙞𝙘𝙞𝙙𝙖𝙙𝙚𝙨 𝙖 𝙣𝙪𝙚𝙨𝙩𝙧𝙤𝙨 𝙖𝙩𝙡𝙚𝙩𝙖𝙨!
 Queremos expresar nuestro más sincero agradecimiento y reconocimiento a todos nuestros atletas que han clasificado en la fase departamental de los Juegos Deportivos Estudiantiles 12-14 años y que, con esfuerzo y dedicación, han pasado a la fase nacional que se desarolló en la ciudad de Sucre del 06 al 09 de diciembre de 2024. ⚽🏀
  Agradecemos profundamente su esfuerzo, disciplina y el compromiso demostrado para representar a nuestro departamento en este evento tan importante, donde estudiantes de todo el país se dierón cita para competir y compartir experiencias.
 Gracias también a las Unidades Educativas que han apoyado a sus atletas, brindando todo lo necesario para su preparación. Este es solo el inicio de un gran camino para cada uno de nuestros deportistas.

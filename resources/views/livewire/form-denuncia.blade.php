@@ -19,6 +19,7 @@
 
         .container-form {
             min-height: 100vh;
+            min-width: 100%;
             height: 100%;
             /* background-color: #152e4d; */
             background: url('{{ asset('img/bg.png') }}'), -webkit-linear-gradient(bottom, #0250c5, #152e4d);
@@ -776,13 +777,13 @@
 
 
         <!-- File Upload Form -->
-        <form wire:submit.prevent="addDoc" class="flex items-center space-x-2">
+        <form wire:submit.prevent="addDoc" class="block items-center space-y-2">
             <input type="file" wire:model="newDoc" id="fileInput" class="hidden">
 
             <div class="flex items-center w-full border border-gray-300 p-2 focus:ring focus:ring-blue-200 rounded-lg">
 
                 <button type="button" onclick="document.getElementById('fileInput').click()"
-                    class="flex items-start px-4 py-2 bg-amber-600 text-white rounded-lg hover:bg-amber-700 focus:outline-none ">
+                    class="flex items-start px-2 py-1 bg-amber-600 text-white rounded-lg hover:bg-amber-700 focus:outline-none ">
                     Seleccionar Documento
                 </button>
 
@@ -796,7 +797,7 @@
             </div>
 
             <button type="submit" :disabled="!$wire.newDoc"
-                class="px-4 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700 disabled:bg-gray-400 disabled:cursor-not-allowed">
+                class=" bg-blue-600 px-2 py-1 text-white rounded-lg hover:bg-blue-700 disabled:bg-gray-400 disabled:cursor-not-allowed">
                 Agregar Documento
             </button>
         </form>
@@ -833,7 +834,7 @@
 
 
         <button onclick="confirmDenuncia()"
-            class="w-full bg-red-600 mx-2 item-center middle none center flex justify-center rounded-lg p-3 font-sans text-xs font-bold uppercase text-white shadow-md shadow-red-500/20 transition-all hover:shadow-lg hover:shadow-red-500/40 focus:opacity-[0.85] focus:shadow-none active:opacity-[0.85] active:shadow-none disabled:pointer-events-none disabled:opacity-50 disabled:shadow-none"
+            class="w-full bg-red-600 mt-8 mx-2 item-center middle none center flex justify-center rounded-lg p-3 font-sans text-xs font-bold uppercase text-white shadow-md shadow-red-500/20 transition-all hover:shadow-lg hover:shadow-red-500/40 focus:opacity-[0.85] focus:shadow-none active:opacity-[0.85] active:shadow-none disabled:pointer-events-none disabled:opacity-50 disabled:shadow-none"
             data-ripple-light="true" style="position: relative; overflow: hidden;">
             Enviar Formulario
             <i class="fa-solid fa-paper-plane text-lg leading-none ml-2" aria-hidden="true"></i></button>
