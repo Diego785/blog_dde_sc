@@ -13,21 +13,14 @@
     <!--=============== HEADER ===============-->
     <div class="slider">
 
-        {{-- <div class="myslide fade">
-            <img class="img-slider" src="{{ asset('img/banner1.jpg') }}">
-        </div> --}}
-        <a href="https://evento.minedu.gob.bo/evento/311">
-            <div class="myslide fade">
-                <img class="img-slider" src="{{ asset('img/img-banners/banner1.jpg') }}">
-            </div>
-        </a>
-        <a href="https://www.minedu.gob.bo/index.php?option=com_content&view=article&id=7476&catid=91&Itemid=933">
-            <div class="myslide fade">
-                <img class="img-slider" src="{{ asset('img/img-banners/banner2.jpg') }}">
-            </div>
-        </a>
 
-
+        @foreach ($portadas as $portada)
+            <a href="{{ $portada->url }}">
+                <div class="myslide fade">
+                    <img class="img-slider" src="{{ asset($portada->imagen_path) }}">
+                </div>
+            </a>
+        @endforeach
         <div class="myslide fade">
             <div class="txt iframe-container">
                 <iframe id="video"
@@ -37,88 +30,17 @@
                     referrerpolicy="no-referrer" allowfullscreen></iframe>
             </div>
         </div>
-        <a href="https://www.minedu.gob.bo/files/publicaciones/veaye/dgea/Lista_de_centros_de_capacitacion.pdf">
-            <div class="myslide fade">
-                <img class="img-slider" src="{{ asset('img/img-banners/banner3.jpg') }}">
-            </div>
-        </a>
-        <a href="https://red.minedu.gob.bo/textosAprendizaje">
-            <div class="myslide fade">
-                <img class="img-slider" src="{{ asset('img/img-banners/banner14.jpg') }}">
-            </div>
-        </a>
-        <a href="https://www.minedu.gob.bo/index.php?option=com_content&view=article&id=7067&catid=90&Itemid=933">
-            <div class="myslide fade">
-                <img class="img-slider" src="{{ asset('img/img-banners/banner16.jpg') }}">
-            </div>
-        </a>
 
-        {{-- <div class="myslide fade">
-            <img class="img-slider" src="{{ asset('img/img-banners/banner5.jpg') }}">
-        </div>
-        <div class="myslide fade">
-            <img class="img-slider" src="{{ asset('img/img-banners/banner6.png') }}">
-        </div>
-        <div class="myslide fade">
-            <img class="img-slider" src="{{ asset('img/img-banners/banner7.jpg') }}">
-        </div>
-        <div class="myslide fade">
-            <img class="img-slider" src="{{ asset('img/img-banners/banner8.jpg') }}">
-        </div>
-        <div class="myslide fade">
-            <img class="img-slider" src="{{ asset('img/img-banners/banner9.jpg') }}">
-        </div>
-        <div class="myslide fade">
-            <img class="img-slider" src="{{ asset('img/img-banners/banner10.jpg') }}">
-        </div>
-        <div class="myslide fade">
-            <img class="img-slider" src="{{ asset('img/img-banners/banner11.jpg') }}">
-        </div>
-        <div class="myslide fade">
-            <img class="img-slider" src="{{ asset('img/img-banners/banner12.jpg') }}">
-        </div>
-        <div class="myslide fade">
-            <img class="img-slider" src="{{ asset('img/img-banners/banner13.png') }}">
-        </div>
-        <div class="myslide fade">
-            <img class="img-slider" src="{{ asset('img/img-banners/banner14.jpg') }}">
-        </div>
-        <div class="myslide fade">
-            <img class="img-slider" src="{{ asset('img/img-banners/banner15.jpg') }}">
-        </div>
-        <div class="myslide fade">
-            <img class="img-slider" src="{{ asset('img/img-banners/banner16.jpg') }}">
-        </div>
-        <div class="myslide fade">
-            <img class="img-slider" src="{{ asset('img/img-banners/banner17.jpg') }}">
-        </div>
-        <div class="myslide fade">
-            <img class="img-slider" src="{{ asset('img/img-banners/banner18.jpeg') }}">
-        </div> --}}
+
         <div class="prev" onclick="plusSlides(-1)">&#10094;</div>
         <div class="next" onclick="plusSlides(1)">&#10095;</div>
 
         <div class="dotsbox" style="text-align:center">
-            <span class="dot" onclick="currentSlide(1)"></span>
-            <span class="dot" onclick="currentSlide(2)"></span>
-            <span class="dot" onclick="currentSlide(3)"></span>
-            <span class="dot" onclick="currentSlide(4)"></span>
-            <span class="dot" onclick="currentSlide(5)"></span>
-            <span class="dot" onclick="currentSlide(6)"></span>
-            {{-- <span class="dot" onclick="currentSlide(7)"></span>
-            <span class="dot" onclick="currentSlide(8)"></span>
-            <span class="dot" onclick="currentSlide(9)"></span>
-            <span class="dot" onclick="currentSlide(10)"></span>
-            <span class="dot" onclick="currentSlide(11)"></span>
-            <span class="dot" onclick="currentSlide(12)"></span>
-            <span class="dot" onclick="currentSlide(13)"></span>
-            <span class="dot" onclick="currentSlide(14)"></span>
-            <span class="dot" onclick="currentSlide(15)"></span>
-            <span class="dot" onclick="currentSlide(16)"></span>
-            <span class="dot" onclick="currentSlide(17)"></span>
-            <span class="dot" onclick="currentSlide(18)"></span>
-            <span class="dot" onclick="currentSlide(19)"></span>
-            <span class="dot" onclick="currentSlide(20)"></span> --}}
+            @foreach ($portadas as $index => $portada)
+                <span class="dot" onclick="currentSlide({{ $index + 1 }})"></span>
+            @endforeach
+            {{-- If there's an additional slide for the video --}}
+            <span class="dot" onclick="currentSlide({{ count($portadas) + 1 }})"></span>
         </div>
     </div>
     <script>

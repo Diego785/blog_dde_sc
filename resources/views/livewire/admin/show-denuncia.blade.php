@@ -32,7 +32,7 @@
                 <div class="relative w-96">
                     <input wire:model.live="search"
                         class="border-2 border-primary bg-red transition h-12 px-5 pr-16 rounded-md focus:outline-none w-full text-black text-lg "
-                        type="search" name="search" placeholder="Buscar con código o UE..." />
+                        type="search" name="search" placeholder="Buscar por código o UE..." />
 
                     <button class="absolute right-2 top-3 mr-4">
                         <svg class="text-black h-6 w-6 fill-current" xmlns="http://www.w3.org/2000/svg"

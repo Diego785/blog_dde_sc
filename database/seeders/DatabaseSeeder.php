@@ -59,12 +59,14 @@ class DatabaseSeeder extends Seeder
             BibliografiaSeeder::class,
             ArchivoSeeder::class,
             NoticiaSeeder::class,
-            SeaeNoticiaSeeder::class,
-            SubdireccionNoticiaSeeder::class,
+            // SeaeNoticiaSeeder::class,
+            // SubdireccionNoticiaSeeder::class,
             InstitutoSeeder::class,
             ResolucionSeeder::class,
             DistritoSeeder::class,
             TecnicoSeeder::class,
+            PortadaSeeder::class,
+            ActividadSeeder::class,
         ]);
     }
 }

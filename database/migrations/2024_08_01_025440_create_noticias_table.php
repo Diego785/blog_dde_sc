@@ -18,7 +18,7 @@ return new class extends Migration
             $table->date('fecha');
             $table->time('hora');
             $table->text('portada_path');
-            // $table->text('enlace');
+            $table->foreignId('unidad_id')->constrained();
             $table->timestamps();
         });
     }

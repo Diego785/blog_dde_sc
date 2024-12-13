@@ -262,20 +262,20 @@
                                 +{{ count($noticia->images) - 3 }}
                             </div>
                             <img class="img-galeria h-full w-full object-cover"
-                                src="{{ asset('img/' . $imagen->path) }}" alt="">
+                                src="{{ asset($imagen->path) }}" alt="">
                         </div>
                     @else
                         @if ($loop->index < 4)
                             <div
                                 class="overflow-hidden rounded-xl {{ $loop->index == 1 || $loop->index == 2 ? 'col-span-3' : 'col-span-2' }} max-h-[10rem]">
                                 <img class="img-galeria h-full w-full object-cover"
-                                    src="{{ asset('img/' . $imagen->path) }}" alt="">
+                                    src="{{ asset($imagen->path) }}" alt="">
                             </div>
                         @else
                             <!-- All other images go here -->
                             <div class="full-gallery hidden overflow-hidden rounded-xl col-span-2 max-h-[10rem]">
                                 <img class="img-galeria h-full w-full object-cover"
-                                    src="{{ asset('img/' . $imagen->path) }}" alt="">
+                                    src="{{ asset($imagen->path) }}" alt="">
                             </div>
                         @endif
                     @endif
@@ -290,12 +290,7 @@
                 <img src="" alt="" class="agregar-imagen" style="max-height: 100vh;">
                 <p class="imagen-description" style="color:white; text-align: center;"></p>
             </div>
-            <div class="imagen-light" style="display: block; text-align: center; ">
-                <img src="{{ asset('img/close.svg') }}" alt="" class="close">
-                <img src="" alt="" class="agregar-imagen">
-                <p class="imagen-description"
-                    style="color:white; text-align: center; justify-content: center; align-items: center;"></p>
-            </div>
+           
 
 
             <p class="description-viewresolution" style="margin-top: 30px;">

@@ -14,8 +14,9 @@ return new class extends Migration
         Schema::create('portadas', function (Blueprint $table) {
             $table->id();
             $table->string('imagen_path');
-            $table->string('titulo');
-            $table->datetime('fecha_inicio');
+            $table->text('url');
+            $table->string('titulo')->nullable();
+            $table->datetime('fecha_inicio')->nullable();
             $table->datetime('fecha_fin')->nullable();
             $table->boolean('esta_activo')->default(true);
             $table->string('orden')->default(0);

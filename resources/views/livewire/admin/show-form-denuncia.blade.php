@@ -379,14 +379,14 @@
                             <div style="margin-top: 30px; display: flex; justify-content: space-around; width: 100%;">
                                 <label class="custom-radio">
                                     <input disabled
-                                        {{ $denunciante['mantener_identidad_reserva'] === '1' ? 'checked' : '' }}
+                                        {{ $denunciante['mantener_identidad_reserva'] === 1 ? 'checked' : '' }}
                                         type="radio" name="opcionIdentidad" value="true">
                                     <span class="radiomark"></span>
                                     <h5 class="label-text">Sí</h5>
                                 </label>
                                 <label class="custom-radio">
                                     <input disabled
-                                        {{ $denunciante['mantener_identidad_reserva'] === '0' ? 'checked' : '' }}
+                                        {{ $denunciante['mantener_identidad_reserva'] === 0 ? 'checked' : '' }}
                                         type="radio" name="opcionIdentidad" value="false">
                                     <span class="radiomark"></span>
                                     <h5 class="label-text">No</h5>
@@ -425,13 +425,13 @@
 
                             <div style="margin-top: 30px; display: flex; justify-content: space-around; width: 100%;">
                                 <label class="custom-radio">
-                                    <input disabled {{ $denunciante['seguimiento'] === '1' ? 'checked' : '' }}
+                                    <input disabled {{ $denunciante['seguimiento'] === 1 ? 'checked' : '' }}
                                         type="radio" name="opcionSeguimiento" value="true">
                                     <span class="radiomark"></span>
                                     <h5 class="label-text">Sí</h5>
                                 </label>
                                 <label class="custom-radio">
-                                    <input disabled {{ $denunciante['seguimiento'] === '0' ? 'checked' : '' }}
+                                    <input disabled {{ $denunciante['seguimiento'] === 0 ? 'checked' : '' }}
                                         type="radio" name="opcionSeguimiento" value="false">
                                     <span class="radiomark"></span>
                                     <h5 class="label-text">No</h5>

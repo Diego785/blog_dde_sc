@@ -30,7 +30,5 @@ class Unidad extends Model
         return $this->hasMany(Valor::class);
     }
 
-    public function subdireccionNoticias(){
-        return $this->hasMany(SubdireccionNoticia::class, 'unidad_id');
-    }
+   
 }

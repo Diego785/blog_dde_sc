@@ -19,45 +19,16 @@
             <div class="wrapper-tecnicos">
                 <i id="left" class="fa-solid fa-angle-left"></i>
                 <ul class="carousel">
-                    <li class="card">
-                        <div class="img"><img src="{{ asset('img/img-profiles/claudina.jpg') }}" class="img-galeria"
-                                draggable="false"></div>
-                        <h2>Lic. Claudina Nina Calisaya</h2>
-                        <span>Técnica de Educación Inicial en Familia Comunitaria Vocacional</span>
-                    </li>
-                    <li class="card">
-                        <div class="img"><img src="" class="img-galeria" draggable="false"></div>
-                        <h2>Lic. Verónica Castro Torrez</h2>
-                        <span>Técnica de Educación Inicial en Familia Comunitaria Vocacional</span>
-                    </li>
-                    <li class="card">
-                        <div class="img"><img src="" class="img-galeria" draggable="false"></div>
-                        <h2>Lic. Jessica Kamy Menacho Ramos</h2>
-                        <span>Técnica de Educación Primaria Comunitaria Vocacional</span>
-                    </li>
-                    <li class="card">
-                        <div class="img"><img src="" class="img-galeria" draggable="false"></div>
-                        <h2>Lic. Edwin Rios Peñaranda</h2>
-                        <span>Técnico de Educación Primaria Comunitaria Vocacional</span>
-                    </li>
-                    <li class="card">
-                        <div class="img"><img src="{{ asset('img/img-profiles/gloria.jpg') }}" class="img-galeria"
-                                draggable="false"></div>
-                        <h2>Lic. Gloria Vanesa Ajata Villca</h2>
-                        <span>Técnica de Educación Primaria Comunitaria Vocacional</span>
-                    </li>
-                    <li class="card">
-                        <div class="img"><img src="{{ asset('img/img-profiles/lidia2.jpg') }}" class="img-galeria"
-                                draggable="false"></div>
-                        <h2>Lic. Lidia Soria Terceros</h2>
-                        <span>Técnica de Educación Secundaria Comunitaria Vocacional</span>
-                    </li>
 
+                    @foreach ($tecnicos as $tecnico)
                     <li class="card">
-                        <div class="img"><img src="{{ asset('img/img-profiles/cherla.jpg') }}" class="img-galeria" draggable="false"></div>
-                        <h2>Lic. Cherla Rosario Sequeli Potosi</h2>
-                        <span>Técnica de Educación Secundaria Comunitaria Vocacional</span>
+                        <div class="img"><img src="{{ asset($tecnico->imagen) }}" class="img-galeria"
+                                draggable="false"></div>
+                        <h2> {{$tecnico->nombre}} </h2>
+                        <span>{{$tecnico->cargo}}</span>
                     </li>
+                    @endforeach
+                   
 
                     {{-- <li class="card">
                         <div class="img"><img src="img/img-1.jpg" alt="img" draggable="false"></div>

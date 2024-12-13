@@ -15,6 +15,7 @@ class Noticia extends Model
         'fecha',
         'hora',
         'portada_path',
+        'unidad_id',
     ];
 
     public function images()
@@ -22,9 +23,6 @@ class Noticia extends Model
         return $this->hasMany(NoticiaImagen::class, 'noticia_id');
     }
 
-    public function subdireccionNoticias(){
-        return $this->hasMany(SubdireccionNoticia::class, 'noticia_id');
-    }
-
+ 
     
 }

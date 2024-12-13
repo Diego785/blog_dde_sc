@@ -13,6 +13,7 @@ class Portada extends Model
 
     protected $fillable = [
         'imagen_path',
+        'url',
         'titulo',
         'fecha_inicio',
         'fecha_fin',
