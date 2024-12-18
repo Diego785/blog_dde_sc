@@ -407,7 +407,7 @@ class FormDenuncia extends Component
                 'text' => 'Denuncia guardada correctamente.',
             ]);
 
-            return redirect('/sder#inicio');
+            return redirect('/#inicio');
         } catch (\Exception $e) {
             DB::rollBack();
             $this->dispatch('swal', [

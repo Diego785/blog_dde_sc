@@ -27,7 +27,7 @@ class TecnicoSeeder extends Seeder
             [
                 'nombre' => 'Lic. Edwin Rios Peñaranda',
                 'cargo' => 'Técnico de Educación Primaria Comunitaria Vocacional',
-                'imagen' => null, // No image provided
+                'imagen' => 'img/img-profiles/edwin.jpg', // No image provided
             ],
             [
                 'nombre' => 'Lic. Gloria Vanesa Ajata Villca',

@@ -1234,13 +1234,7 @@ iframe {
 
 
 @media screen and (max-width: 800px) {
-  .container-functions {
-    display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    gap: 20px;
-    width: 90%;
-    padding: 20px;
-  }
+ 
   .slider {
     position: relative;
     width: 100%;
@@ -1296,13 +1290,7 @@ iframe {
   .contenedor-servicio{
     width: 1000px;
   } */
-  .container-functions {
-    display: grid;
-    grid-template-columns: repeat(1, 1fr);
-    gap: 20px;
-    width: 90%;
-    padding: 20px;
-  }
+  
   .slider {
     position: relative;
     width: 100%;

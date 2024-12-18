@@ -10,6 +10,8 @@
 
     <title>{{ config('app.name', 'Laravel') }}</title>
 
+    <link rel="icon" href="{{ asset('favicon_bolivia.png') }}" type="image/x-icon">
+
     <title>SDER</title>
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper/swiper-bundle.min.css" />
     {{-- <link rel="stylesheet" href="css/estilos.css">

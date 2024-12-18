@@ -73,7 +73,7 @@ return [
     |
     */
 
-    'home' => '/sder/admin/denuncias',
+    'home' => '/admin/denuncias',
 
     'redirects' => [
         'logout' => 'login',
