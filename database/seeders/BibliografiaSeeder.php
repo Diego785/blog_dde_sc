@@ -245,12 +245,12 @@ class BibliografiaSeeder extends Seeder
             'tipo_id' => $tipo4->id,
         ]);
         self::$pedagogico_curricular3 = Bibliografia::create([
-            'portada_path' => 'https://scontent.fvvi1-1.fna.fbcdn.net/v/t39.30808-6/391692278_810941657706362_6062915903811086124_n.jpg?_nc_cat=101&ccb=1-7&_nc_sid=127cfc&_nc_ohc=Ks8NKEFI9y8Q7kNvgFU_0-v&_nc_zt=23&_nc_ht=scontent.fvvi1-1.fna&_nc_gid=AZEJ_2QN_hhdqGdcdqpt55K&oh=00_AYC4CpLtiSQgMGqnT1oRCjRgaKb3Vg2de0-rNCNvZL91Yg&oe=675DA706',
+            'portada_path' => 'https://red.minedu.gob.bo/repositorio/img/portada900/4093.jpg',
             'descripcion' => 'Resolución Ministerial N° 10/2022 de 22 de noviembre de 2022, que aprueba los Lineamientos Curriculares del Subsistema de Educación Regular.',
             'tipo_id' => $tipo4->id,
         ]);
         self::$pedagogico_curricular4 = Bibliografia::create([
-            'portada_path' => 'https://red.minedu.gob.bo/repositorio/img/portada900/4093.jpg',
+            'portada_path' => 'https://red.minedu.gob.bo/repositorio/img/portada900/4095.jpg',
             'descripcion' => 'Resolución Ministerial N° 10/2022 de 22 de noviembre de 2022, que aprueba los Planes y Programas del Subsistema de Educación Regular 2023. (según el Nivel, Campos y Áreas de Saberes y Conocimientos).',
             'tipo_id' => $tipo4->id,
         ]);
