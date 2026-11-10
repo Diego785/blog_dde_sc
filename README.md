@@ -46,4 +46,4 @@ Or with Docker: run `docker network create server-network` once, then `docker co
 
 ## Author
 
-Diego Hurtado Vargas · [GitHub](https://github.com/Diego785) · [LinkedIn](https://www.linkedin.com/in/diego-hurtado-vargas-perfil/)
+Diego Hurtado Vargas · [GitHub](https://github.com/Diego785) · [LinkedIn](https://www.linkedin.com/in/diegohurtadovargas/)
